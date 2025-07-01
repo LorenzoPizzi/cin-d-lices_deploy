@@ -2,7 +2,7 @@ import { DataTypes } from "sequelize";
 import { sequelize } from "../index.js";
 
 const Role = sequelize.define("Role", {
-  id: {
+  id_role: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
