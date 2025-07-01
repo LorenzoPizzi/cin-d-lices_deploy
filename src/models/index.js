@@ -1,15 +1,11 @@
-
 import { sequelize } from "../index.js";
-
 
 import User from "./user.model.js";
 import Role from "./role.model.js";
 import Movie from "./movie.model.js";
 import Recipe from "./recipe.model.js";
 import Category from "./category.model.js";
-import Appartient from "./appartient.model.js";
-
-
+import RecipeCategory from "./recipe_category.model.js";
 
 Role.hasMany(User, {
   as: "users",
@@ -52,15 +48,16 @@ Recipe.belongsTo(Movie, {
   foreignKey: "id_movie",
 });
 
+
 Recipe.belongsToMany(Category, {
   as: "categories",
-  through: Appartient,
+  through: RecipeCategory,
   foreignKey: "id_recipe",
   otherKey: "id_category",
 });
 Category.belongsToMany(Recipe, {
   as: "recipes",
-  through: Appartient,
+  through: RecipeCategory,
   foreignKey: "id_category",
   otherKey: "id_recipe",
 });
@@ -72,5 +69,5 @@ export {
   Movie,
   Recipe,
   Category,
-  Appartient,
+  RecipeCategory,
 };

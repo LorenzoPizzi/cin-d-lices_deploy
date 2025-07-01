@@ -1,13 +1,12 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../index.js";
 
-const Appartient = sequelize.define("Appartient", {
+const RecipeCategory = sequelize.define("RecipeCategory", {
   id_recipe: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     references: {
-      model: "recipe",
-      key: "id_recipe",
+      model: "recipe", 
     },
     onDelete: "CASCADE",
     onUpdate: "CASCADE",
@@ -23,8 +22,8 @@ const Appartient = sequelize.define("Appartient", {
     onUpdate: "CASCADE",
   },
 }, {
-  tableName: "appartient",
+  tableName: "appartient", 
   timestamps: false,
 });
 
-export default Appartient; 
+export default RecipeCategory;
