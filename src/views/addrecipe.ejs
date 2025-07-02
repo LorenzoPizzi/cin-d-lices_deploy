@@ -1,0 +1,38 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+  <div class="image-upload-box">
+    <img src="/images/tartelette.png" alt="Recipe Image" class="recipe-image" />
+    <div class="drag-drop-area">
+      <p>Drag and drop (or) choose files</p>
+      <button class="upload-button">
+        <img src="/images/Icons/Upload.svg" alt="Upload" />
+      </button>
+    </div>
+  </div>
+  <form class="recipe-form">
+    <div class="form-group">
+      <label for="recipe-title">Titre Recette</label>
+      <input type="text" id="recipe-title" placeholder="Valeur" />
+    </div>
+    <div class="form-group">
+      <label for="recipe-category">Catégorie</label>
+      <input type="text" id="recipe-category" placeholder="Valeur" />
+    </div>
+    <div class="form-group">
+      <label for="recipe-film">Film</label>
+      <input type="text" id="recipe-film" placeholder="Valeur" />
+    </div>
+    <div class="form-group">
+      <label for="recipe-instructions">Instructions</label>
+      <textarea id="recipe-instructions" placeholder="Valeur"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="recipe-ingredients">Ingrédients</label>
+      <textarea id="recipe-ingredients" placeholder="Valeur"></textarea>
+    </div>
+    <button type="submit" class="publish-button">Publier</button>
+  </form>
+</div>
+
+<%- include('./partials/footer') %>
