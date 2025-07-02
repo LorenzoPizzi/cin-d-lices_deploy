@@ -2,14 +2,22 @@
 
 body {
   background-color: var(--color-popcorn);
-  font-family: "Cinzel";
+  font-family: "Inter", serif;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 500px;
 }
 
 .login-container {
   display: flex;
-  width: 500px;
-  height: 80px;
-  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-popcorn);
 }
 
 .input-group {
@@ -17,43 +25,88 @@ body {
   margin-bottom: 15px;
 }
 
-.icone-input1,
-.icone-input2 {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  background-repeat: no-repeat;
-  background-size: contain;
-  pointer-events: none;
+.mail-title {
+  color: #2e2e2e;
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: var(--color-popcorn);
+  border-width: 12px;
+  padding: 0 60px 0px 20px;
+  width: 50px;
+  margin-left: 50px;
+  margin-bottom: -13px;
+  position: relative;
+  z-index: 2;
 }
 
-.icone-input1 {
+.password-title {
+  color: #2e2e2e;
+  font-family: "Cinzel", serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: var(--color-popcorn);
+  border-width: 12px;
+  padding: 0 110px 0px 17px;
+  width: 50px;
+  margin-left: 50px;
+  margin-bottom: -13px;
+  position: relative;
+  z-index: 2;
+}
+.class-email {
   background-image: url("/public/images/Icons/Mail.svg");
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  background-size: 20px 20px;
+
+  background-color: var(--color-popcorn);
+  color: #2e2e2e;
+
+  padding-left: 50px; /* espace à gauche pour l’icône */
+  padding-right: 16px;
+  height: 55px;
+  width: 500px;
+  border: 2px solid var(--color-grey-cinema);
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+  outline: none;
+  position: relative;
+  z-index: 1;
 }
 
-.icone-input2 {
+.class-password {
   background-image: url("/public/images/Icons/Key-logo.svg");
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  background-size: 20px 20px;
+  background-color: var(--color-popcorn);
+  color: #2e2e2e;
+  padding-left: 50px; /* espace à gauche pour l’icône */
+  padding-right: 16px;
+  height: 55px;
+  width: 500px;
+  border: 2px solid var(--color-grey-cinema);
+  border-radius: 8px;
+  font-size: 16px;
+  font-family: "Cinzel", serif;
+  outline: none;
+  position: relative;
+  z-index: 1;
 }
 
-.input-group input {
-  width: 100%;
-  padding: 10px 10px 10px 40px; /* espace pour l’icône à gauche */
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
-input[type="submit"] {
+.login-button {
   display: flex;
   width: 500px;
   height: 80px;
-  padding: 10px;
   background-color: var(--color-gold-cinema);
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--color-popcorn);
   border-radius: 5px;
 }
