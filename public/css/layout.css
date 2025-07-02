@@ -25,6 +25,9 @@
   --cinzel-font-bold: 'Cinzel', serif;
 }
 
+/* Login page */
+
+
 
 footer {
   display: flex;
@@ -70,3 +73,28 @@ footer {
 .icone3 {
   background-image: url('/public/images/Icons/Logo\ YouTube.svg');
 }
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+  footer {
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 0;
+    position: absolute; 
+    bottom: 0;
+  }
+
+  .icones-conteneur {
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .icone {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+
+

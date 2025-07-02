@@ -1,0 +1,59 @@
+/* Login Page */
+
+body {
+  background-color: var(--color-popcorn);
+  font-family: "Cinzel";
+}
+
+.login-container {
+  display: flex;
+  width: 500px;
+  height: 80px;
+  padding: 10px;
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.icone-input1,
+.icone-input2 {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.icone-input1 {
+  background-image: url("/public/images/Icons/Mail.svg");
+}
+
+.icone-input2 {
+  background-image: url("/public/images/Icons/Key-logo.svg");
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 10px 10px 40px; /* espace pour l’icône à gauche */
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+input[type="submit"] {
+  display: flex;
+  width: 500px;
+  height: 80px;
+  padding: 10px;
+  background-color: var(--color-gold-cinema);
+  justify-content: center;
+  align-items: center;
+  color: white;
+  border-radius: 5px;
+}
