@@ -5,8 +5,8 @@ async function seedTables() {
     const now = new Date();
 
     // 1. Création des rôles
-    const adminRole = await Role.create({ name: "admin", created_at: now, updated_at: now });
-    const userRole = await Role.create({ name: "user", created_at: now, updated_at: now });
+    const adminRole = await Role.create({ roleName: "admin", created_at: now, updated_at: now });
+    const userRole = await Role.create({ roleName: "user", created_at: now, updated_at: now });
 
     // 2. Création des utilisateurs
     const john = await User.create({

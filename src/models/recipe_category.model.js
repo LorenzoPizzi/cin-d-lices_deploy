@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "/index.js";
+import { sequelize } from "../../index.js";
 
 const RecipeCategory = sequelize.define("RecipeCategory", {
   id_recipe: {
@@ -22,7 +22,7 @@ const RecipeCategory = sequelize.define("RecipeCategory", {
     onUpdate: "CASCADE",
   },
 }, {
-  tableName: "appartient", 
+  tableName: "recipeCategory", 
   timestamps: false,
 });
 

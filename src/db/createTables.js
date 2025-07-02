@@ -1,7 +1,7 @@
-import { sequelize } from "../index.js"
+import { sequelize } from "../models/index.js"
 
 console.log("🗑️ Suppression des tables existantes...");
-await sequelize.drop();
+await sequelize.drop({ cascade: true});
 
 console.log("🚧 Définition des tables...");
 await sequelize.sync();
