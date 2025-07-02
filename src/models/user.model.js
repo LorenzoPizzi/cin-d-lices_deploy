@@ -24,6 +24,14 @@ const User = sequelize.define("User", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  picture_url: {
+    type: DataTypes.STRING,
+    allowNull: true,
+  },
+  descriptions: {
+    type :DataTypes.STRING,
+    allowNull: true,
+  }
 }, {
   tableName: "users",
   timestamps: true,
