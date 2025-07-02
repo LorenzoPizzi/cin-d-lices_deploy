@@ -1,0 +1,92 @@
+:root {
+  --color-popcorn: #f8ecd8;
+  --color-red-cinema: #c7342d;
+  --color-gold-cinema: #d4af37;
+  --color-grey-cinema: #2e2e2e;
+  --font-heading: "Playfair Display", serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-popcorn);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.image-upload-box {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin-right: 160px;
+}
+
+.recipe-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.drag-drop-area {
+  border: 2px dashed #ccc;
+  padding: 20px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.upload-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.recipe-form {
+  background-color: transparent;
+  padding: 20px;
+  width: 45%;
+}
+
+.form-group {
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: normal;
+  width: 70%;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 70%;
+  padding: 8px;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+}
+
+.publish-button {
+  background-color: var(--color-gold-cinema);
+  color: white;
+  border: 0.5px solid var(--color-grey-cinema);
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  display: block;
+  margin-top: 20px;
+}
+
+.publish-button:hover {
+  background-color: #ffc700;
+}

@@ -1,0 +1,127 @@
+:root {
+  --color-popcorn: #f8ecd8;
+  --color-red-cinema: #c7342d;
+  --color-gold-cinema: #d4af37;
+  --color-grey-cinema: #2e2e2e;
+  --font-heading: "Playfair Display", serif;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-popcorn);
+  font-family: "Cinzel", serif;
+  color: var(--color-grey-cinema);
+}
+
+.home-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 1.25rem 4rem;
+  position: relative;
+  text-align: center;
+}
+
+.intro-line {
+  font-size: 1.1rem;
+  margin: 0.25rem 0;
+}
+
+.intro-note {
+  font-size: 0.875rem;
+  margin-top: 0.75rem;
+  font-style: italic;
+}
+
+.filter-btn {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  font-size: 1.4rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-grey-cinema);
+}
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin: 2.5rem 0 1.75rem;
+  letter-spacing: 2px;
+}
+
+.dash {
+  font-weight: normal;
+  color: var(--color-grey-cinema);
+  margin: 0 0.5rem;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.card {
+  background-color: rgb(246, 238, 228);
+  border: 1px solid var(--color-gold-cinema);
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+}
+.card-image img {
+  width: 100%;
+  height: 215px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid var(--color-gold-cinema);
+}
+
+.recipe-title {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 0.75rem 0 0.25rem;
+}
+
+.film-title {
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.cta {
+  margin-top: 2rem;
+}
+
+.btn-load-all {
+  display: inline-block;
+  padding: 0.75rem 2.5rem;
+  border: 2px solid var(--color-gold-cinema);
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background 0.25s ease;
+  color: var(--color-grey-cinema);
+  background-color: transparent;
+}
+
+.btn-load-all:hover {
+  background: var(--color-grey-cinema);
+  color: var(--color-popcorn);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .section-heading {
+    font-size: 1.6rem;
+  }
+
+  .btn-load-all {
+    padding: 0.6rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .card-image img {
+    height: 180px;
+  }
+}

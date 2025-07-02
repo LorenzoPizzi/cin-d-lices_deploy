@@ -1,0 +1,47 @@
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" />
+
+  <title>Ciné Délices</title>
+
+  <link rel="stylesheet" href="/css/header.css" />
+  <link rel="stylesheet" href="/css/footer.css" />
+  <link rel="stylesheet" href="/css/home.css" />
+  <link rel="stylesheet" href="/css/addrecipe.css" />
+  <link rel="stylesheet" href="/css/adminpage.css" />
+</head>
+
+<header class="site-header">
+  <div class="logo-block">
+    <img
+      src="/images/Logo_mini.svg"
+      alt="Logo Ciné Délices"
+      class="logo-img logo-desktop"
+    />
+    <img
+      src="/images/Logo_Full.svg"
+      alt="Logo Ciné Délices"
+      class="logo-img logo-mobile"
+    />
+    <h1 class="logo-title">CINÉ DÉLICES</h1>
+  </div>
+
+  <form action="/search" method="GET" class="search-form">
+    <input
+      type="text"
+      name="q"
+      class="search-input"
+      placeholder="Je cherche une recette, un film…"
+    />
+    <button type="submit" class="search-btn">
+      <img src="/images/Search.svg" alt="Rechercher" />
+    </button>
+  </form>
+
+  <a href="/profil" class="profile-link" title="Mon profil">
+    <div class="profile-circle">
+      <img src="/images/Profile_icon.svg" alt="Profil" />
+    </div>
+  </a>
+</header>

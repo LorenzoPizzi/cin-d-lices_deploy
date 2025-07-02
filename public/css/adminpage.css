@@ -1,0 +1,94 @@
+:root {
+  --color-popcorn: #f8ecd8;
+  --color-red-cinema: #c7342d;
+  --color-gold-cinema: #d4af37;
+  --color-grey-cinema: #2e2e2e;
+}
+
+.admin-container {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-popcorn);
+  margin: 0;
+  padding: 20px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.admin-button {
+  background-color: transparent;
+  border: 2px solid var(--color-gold-cinema);
+  color: var(--color-grey-cinema);
+  padding: 12px 22px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 15px;
+  margin: 0 12px;
+}
+
+.admin-button:hover {
+  background-color: rgba(212, 175, 55, 0.1);
+}
+
+.admin-button.selected {
+  background-color: var(--color-gold-cinema);
+  color: white;
+}
+
+.menu-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.user-card {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.user-card img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+
+.button-group {
+  margin-left: auto;
+}
+
+.modify-button,
+.delete-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.modify-button {
+  background-color: var(--color-gold-cinema);
+}
+
+.delete-button {
+  background-color: var(--color-red-cinema);
+  color: white;
+}
+
+.profil-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--color-gold-cinema);
+}
