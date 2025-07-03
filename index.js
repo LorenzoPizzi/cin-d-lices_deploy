@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { Sequelize } from "sequelize";
 import router from "./src/routes/router.js";
 
@@ -16,6 +17,7 @@ try {
 const PORT = process.env.PORT || 3000;
 const app = express();
 
+app.use(cookieParser());
 
 app.set("view engine", "ejs");
 app.set("views", "./src/views");
