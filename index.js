@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express from "express";
-import { Sequelize } from "sequelize";
+import sequelize from "./src/db/sequelize.js";
 import router from "./src/routes/router.js";
 
 

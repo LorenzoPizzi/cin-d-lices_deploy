@@ -23,35 +23,23 @@
   </h2>
 
   <section class="cards">
-    <article class="card">
-      <div class="card-image">
-        <img src="/images/tartelette.png" alt="Photo de tartelette" />
-      </div>
-      <div class="card-body">
-        <h3 class="recipe-title">Tartelettes aux fraises et à la crème</h3>
-        <p class="film-title"><em>Le fabuleux destin d'Amélie Poulain</em></p>
-      </div>
-    </article>
-    <article class="card">
-      <div class="card-image">
-        <img src="/images/tartelette.png" alt="Photo de tartelette" />
-      </div>
-      <div class="card-body">
-        <h3 class="recipe-title">Tartelettes aux fraises et à la crème</h3>
-        <p class="film-title"><em>Le fabuleux destin d'Amélie Poulain</em></p>
-      </div>
-    </article>
-    <article class="card">
-      <div class="card-image">
-        <img src="/images/tartelette.png" alt="Photo de tartelette" />
-      </div>
-      <div class="card-body">
-        <h3 class="recipe-title">Tartelettes aux fraises et à la crème</h3>
-        <p class="film-title"><em>Le fabuleux destin d'Amélie Poulain</em></p>
-      </div>
-    </article>
+    <% recipes.forEach(recipe => { %>
+      <article class="card">
+        <div class="card-image">
+          <% if (recipe.image_url) { %>
+            <img src="<%= recipe.image_url %>" alt="Photo de <%= recipe.name %>" />
+          <% } else { %>
+            <img src="/images/tartelette.png" alt="Image par défaut" />
+          <% } %>
+        </div>
+        <div class="card-body">
+          <h3 class="recipe-title"><%= recipe.name %></h3>
+          <p class="film-title"><em><%=  %></em></p>
+        </div>
+      </article>
+    <% }) %>
   </section>
-
+  
   <div class="cta">
     <a href="/recettes" class="btn-load-all">CHARGER TOUT</a>
   </div>
