@@ -1,8 +1,16 @@
+/* Variables */
+:root {
+  --color-popcorn: #f8ecd8;
+  --color-red-cinema: #c7342d;
+  --color-gold-cinema: #d4af37;
+  --color-grey-cinema: #2e2e2e;
+}
+
 /* Login Page */
 
 body {
   background-color: var(--color-popcorn);
-  font-family: "Inter", serif;
+  font-family: "Cinzel", serif;
 }
 
 form {
@@ -63,11 +71,9 @@ form {
   background-repeat: no-repeat;
   background-position: left 16px center;
   background-size: 20px 20px;
-
   background-color: var(--color-popcorn);
   color: #2e2e2e;
-
-  padding-left: 50px; /* espace à gauche pour l’icône */
+  padding-left: 50px; 
   padding-right: 16px;
   height: 55px;
   width: 500px;
@@ -87,7 +93,7 @@ form {
   background-size: 20px 20px;
   background-color: var(--color-popcorn);
   color: #2e2e2e;
-  padding-left: 50px; /* espace à gauche pour l’icône */
+  padding-left: 50px; 
   padding-right: 16px;
   height: 55px;
   width: 500px;
@@ -109,4 +115,19 @@ form {
   align-items: center;
   color: var(--color-popcorn);
   border-radius: 5px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .mail-title,
+  .password-title {
+    font-size: 16px;
+  }
+
+  .class-email,
+  .class-password,
+  .login-button {
+    font-size: 16px;
+    height: 50px;
+  }
 }
