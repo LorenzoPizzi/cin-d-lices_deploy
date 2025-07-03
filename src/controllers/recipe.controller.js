@@ -1,56 +1,71 @@
-import { Recipe, User, Movie, Category } from "../models/index.js";
+import { Recipe } from "../models/index.js";
 
-export async function getAllRecipes(req, res) {
-  try {
-    const recipes = await Recipe.findAll({
-      include: [User, Movie, Category],
-    });
-    res.json(recipes);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
+const recipeController = {
+  showAllRecipes: async (req, res) => {
+    try {
+      const recipes = await Recipe.findAll();
+      res.send(recipes); // envoie directement les données brutes pour test
+    } catch (error) {
+      res.status(500).send("Erreur lors de la récupération des recettes");
+    }
+  },
 
+  showRecipeDetail: async (req, res) => {
+    try {
+      const recipe = await Recipe.findByPk(req.params.id);
+      if (!recipe) return res.status(404).send("Recette non trouvée");
+      res.send(recipe); 
+    } catch (error) {
+      res.status(500).send("Erreur lors de la récupération de la recette");
+    }
+  },
 
-export async function getRecipeById(req, res) {
-  try {
-    const recipe = await Recipe.findByPk(req.params.id, {
-      include: [User, Movie, Category],
-    });
-    if (!recipe) return res.status(404).json({ error: "Recette non trouvée" });
-    res.json(recipe);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-}
+  showAddRecipeForm: (req, res) => {
+    res.send("Affichage formulaire ajout recette (non implémenté)");
+  },
 
-export async function createRecipe(req, res) {
-  try {
-    const newRecipe = await Recipe.create(req.body);
-    res.status(201).json(newRecipe);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-}
+  addRecipe: async (req, res) => {
+    try {
+      const { name, instructions, ingredients, image_url } = req.body;
+      const newRecipe = await Recipe.create({ name, instructions, ingredients, image_url });
+      res.send(newRecipe);
+    } catch (error) {
+      res.status(500).send("Erreur lors de l'ajout de la recette");
+    }
+  },
 
-export async function updateRecipe(req, res) {
-  try {
-    const recipe = await Recipe.findByPk(req.params.id);
-    if (!recipe) return res.status(404).json({ error: "Recette non trouvée" });
-    await recipe.update(req.body);
-    res.json(recipe);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-}
+  showEditRecipeForm: async (req, res) => {
+    try {
+      const recipe = await Recipe.findByPk(req.params.id);
+      if (!recipe) return res.status(404).send("Recette non trouvée");
+      res.send(recipe); 
+    } catch (error) {
+      res.status(500).send("Erreur lors de la récupération de la recette");
+    }
+  },
 
-export async function deleteRecipe(req, res) {
-  try {
-    const recipe = await Recipe.findByPk(req.params.id);
-    if (!recipe) return res.status(404).json({ error: "Recette non trouvée" });
-    await recipe.destroy();
-    res.json({ message: "Recette supprimée" });
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-} 
+  editRecipe: async (req, res) => {
+    try {
+      const { name, instructions, ingredients, image_url } = req.body;
+      const recipe = await Recipe.findByPk(req.params.id);
+      if (!recipe) return res.status(404).send("Recette non trouvée");
+      await recipe.update({ name, instructions, ingredients, image_url });
+      res.send(recipe); // envoie recette mise à jour
+    } catch (error) {
+      res.status(500).send("Erreur lors de la modification de la recette");
+    }
+  },
+
+  deleteRecipe: async (req, res) => {
+    try {
+      const recipe = await Recipe.findByPk(req.params.id);
+      if (!recipe) return res.status(404).send("Recette non trouvée");
+      await recipe.destroy();
+      res.send("Recette supprimée");
+    } catch (error) {
+      res.status(500).send("Erreur lors de la suppression de la recette");
+    }
+  },
+};
+
+export default recipeController;

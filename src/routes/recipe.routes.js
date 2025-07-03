@@ -1,27 +1,22 @@
 import { Router } from "express";
-import {
-  getAllRecipes,
-  getRecipeById,
-  createRecipe,
-  updateRecipe,
-  deleteRecipe
-} from "../controllers/recipe.controller.js";
+import recipeController from "../controllers/recipe.controller.js";
+
 
 const router = Router();
 
-// GET /recipes - toutes les recettes
-router.get("/", getAllRecipes);
+router.get("/", recipeController.showAllRecipes);
 
-// GET /recipes/:id - une recette par ID
-router.get("/:id", getRecipeById);
+router.get("/:id", recipeController.showRecipeDetail);
 
-// POST /recipes - créer une recette
-router.post("/", createRecipe);
+router.get("/add", /* authMiddleware, */ recipeController.showAddRecipeForm);
 
-// PUT /recipes/:id - mettre à jour une recette
-router.put("/:id", updateRecipe);
+router.post("/add", /* authMiddleware, */ recipeController.addRecipe);
 
-// DELETE /recipes/:id - supprimer une recette
-router.delete("/:id", deleteRecipe);
+router.get("/:id/edit", /* authMiddleware, */ recipeController.showEditRecipeForm);
 
-export default router; 
+router.post("/:id/edit", /* authMiddleware, */ recipeController.editRecipe);
+
+router.post("/:id/delete", /* authMiddleware, */ recipeController.deleteRecipe);
+
+
+export default router;

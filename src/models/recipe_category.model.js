@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../../index.js";
+import sequelize from "../db/sequelize.js";
 
 const RecipeCategory = sequelize.define("RecipeCategory", {
   id_recipe: {
