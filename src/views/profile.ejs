@@ -1,0 +1,141 @@
+<%- include('./partials/header') %>
+
+<div class="container">
+  <section class="profile-section">
+    <h1 class="profile-title">MON PROFIL</h1>
+
+    <section class="profile">
+      <div class="profile-card">
+        <img
+          src="/images/PhotoProfil.png"
+          alt="Photo de profil"
+          class="profile-img"
+        />
+        <h2 class="name"><strong>BOUMAZA</strong></h2>
+        <p class="surname">LAMINE</p>
+
+        <button class="edit-btn" title="Modifier mon profil">
+          <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+        </button>
+      </div>
+    </section>
+
+    <div class="bio-delete-wrapper">
+      <div class="bio">
+        <h3>Présentation</h3>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          aliquip ex ea commodo consequat.
+        </p>
+
+        <button class="edit-btn bio-edit" title="Modifier ma présentation">
+          <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+        </button>
+      </div>
+
+      <form action="/profil/delete" method="POST">
+        <button type="submit" class="delete-account">
+          Supprimer mon compte
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section class="recipes">
+    <h2>MES RECETTES</h2>
+
+    <div class="recipe-grid">
+      <!-- Recette 1 -->
+      <div class="recipe-card">
+        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
+        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
+        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
+
+        <div class="actions">
+          <a href="/recettes/edit/1" class="edit-btn" title="Modifier">
+            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+          </a>
+          <form action="/recettes/delete/1" method="POST">
+            <button type="submit" class="delete-btn" title="Supprimer">
+              <img
+                src="/images/Icons/delete.svg"
+                alt="Supprimer"
+                class="icon"
+              />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Recette 2 -->
+      <div class="recipe-card">
+        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
+        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
+        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
+
+        <div class="actions">
+          <a href="/recettes/edit/2" class="edit-btn" title="Modifier">
+            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+          </a>
+          <form action="/recettes/delete/2" method="POST">
+            <button type="submit" class="delete-btn" title="Supprimer">
+              <img
+                src="/images/Icons/delete.svg"
+                alt="Supprimer"
+                class="icon"
+              />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Recette 3 -->
+      <div class="recipe-card">
+        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
+        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
+        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
+
+        <div class="actions">
+          <a href="/recettes/edit/3" class="edit-btn" title="Modifier">
+            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+          </a>
+          <form action="/recettes/delete/3" method="POST">
+            <button type="submit" class="delete-btn" title="Supprimer">
+              <img
+                src="/images/Icons/delete.svg"
+                alt="Supprimer"
+                class="icon"
+              />
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Recette 4 -->
+      <div class="recipe-card">
+        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
+        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
+        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
+
+        <div class="actions">
+          <a href="/recettes/edit/4" class="edit-btn" title="Modifier">
+            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+          </a>
+          <form action="/recettes/delete/4" method="POST">
+            <button type="submit" class="delete-btn" title="Supprimer">
+              <img
+                src="/images/Icons/delete.svg"
+                alt="Supprimer"
+                class="icon"
+              />
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<%- include('./partials/footer') %>
