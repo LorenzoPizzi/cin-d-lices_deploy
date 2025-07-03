@@ -50,7 +50,7 @@ const recipeController = {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
       await recipe.update({ name, instructions, ingredients, image_url });
-      res.send(recipe); // envoie recette mise à jour
+      res.send(recipe); 
     } catch (error) {
       res.status(500).send("Erreur lors de la modification de la recette");
     }
