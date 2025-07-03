@@ -73,3 +73,8 @@ export async function login(req, res) {
       .json({ error: "merci de réessayer ultérieurement" });
   }
 }
+
+export function logout(req, res) {
+  res.clearCookie("token");
+  return res.redirect("/");
+}
