@@ -14,7 +14,7 @@ export function authenticate( req, res, next) {
 
     try {
         const dataDecoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.userID = dataDecoded.user_id;
+        req.id_user = dataDecoded.user_id;
 
         next();
     }
@@ -34,11 +34,11 @@ export function checkRole(requiredRole) {
                 res.status(StatusCodes.FORBIDDEN).json({ error : "Accès refusé"})
             }
 
-            if (user.role.name === "admin") {
+            if (user.role.roleName === "admin") {
                 return next();
             }
 
-            else if (user.role.name === requiredRole) {
+            else if (user.role.roleName === requiredRole) {
                 // TODO : ajouter toutes les actions faisables par l'utilisateur 
             }
 

@@ -34,7 +34,15 @@ const User = sequelize.define("User", {
   descriptions: {
     type :DataTypes.STRING,
     allowNull: true,
+  },
+  id_role: {
+  type: DataTypes.INTEGER,
+  allowNull: false,
+  references: {
+    model: "roles",
+    key: "id_role",
   }
+},
 }, {
   tableName: "users",
   timestamps: true,
