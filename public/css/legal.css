@@ -1,69 +1,68 @@
 /* Variables */
 
 :root {
-    --color-popcorn: #f8ecd8;
-    --color-red-cinema: #c7342d;
-    --color-gold-cinema: #d4af37;
-    --color-grey-cinema: #2e2e2e;
-  }
+  --color-popcorn: #f8ecd8;
+  --color-red-cinema: #c7342d;
+  --color-gold-cinema: #d4af37;
+  --color-grey-cinema: #2e2e2e;
+}
 
 body {
-    font-family: 'Cinzel', sans-serif;
-    background-color: var(--color-popcorn);
-    margin: 0;
-    padding: 0;
-    color: var(--color-grey-cinema);
-  }
-  
+  font-family: "Cinzel", sans-serif;
+  background-color: var(--color-popcorn);
+  margin: 0;
+  padding: 0;
+  color: var(--color-grey-cinema);
+}
+
+.legal-container {
+  text-transform: none;
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: var(--color-popcorn);
+  border: 1px solid var(--color-gold-cinema);
+  border-radius: 10px;
+}
+
+h1 {
+  font-size: 2rem;
+  color: var(--color-red-cinema);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+h2 {
+  font-size: 1.2rem;
+  color: var(--color-grey-cinema);
+  margin-top: 2rem;
+  border-left: 5px solid var(--color-red-cinema);
+  padding-left: 10px;
+}
+
+p {
+  line-height: 1.7;
+  margin-top: 0.5rem;
+}
+
+/* Responsive */
+
+@media (max-width: 600px) {
   .legal-container {
-    text-transform: none;
-    max-width: 900px;
-    margin: 3rem auto;
-    padding: 2rem;
-    background-color: var(--color-popcorn);
-    border: 1px solid var(--color-gold-cinema);
-    border-radius: 10px;
+    margin: 1.5rem 1rem;
+    padding: 1rem;
   }
-  
+
   h1 {
-    font-size: 2rem;
-    color: var(--color-red-cinema);
-    text-align: center;
-    margin-bottom: 2rem;
+    font-size: 1.4rem;
   }
-  
+
   h2 {
-    font-size: 1.2rem;
-    color: var(--color-grey-cinema);
-    margin-top: 2rem;
-    border-left: 5px solid var(--color-red-cinema);
-    padding-left: 10px;
+    font-size: 1rem;
+    padding-left: 6px;
   }
-  
+
   p {
-    line-height: 1.7;
-    margin-top: 0.5rem;
+    font-size: 0.9rem;
   }
-
-
-  /* Responsive */
-
-  @media (max-width: 600px) {
-    .legal-container {
-      margin: 1.5rem 1rem;
-      padding: 1rem;
-    }
-  
-    h1 {
-      font-size: 1.4rem;
-    }
-  
-    h2 {
-      font-size: 1rem;
-      padding-left: 6px;
-    }
-  
-    p {
-      font-size: 0.9rem;
-    }
-  }
+}

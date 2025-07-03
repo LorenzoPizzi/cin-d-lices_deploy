@@ -78,3 +78,32 @@ export function logout(req, res) {
   res.clearCookie("token");
   return res.redirect("/");
 }
+
+export async function myProfile(req, res) {
+  try {
+    const user = await User.findByPk(req.id_user, {
+      attributes: [
+        "id_user",
+        "first_name",
+        "last_name",
+        "email",
+        "picture_url",
+        "descriptions",
+      ],
+      include: { model: Role, as: "role", attributes: ["roleName"] },
+    });
+
+    if (!user) {
+      return res
+        .status(StatusCodes.NOT_FOUND)
+        .render("error", { message: "Utilisateur non trouvé" });
+    }
+
+    return res.render("profile", { user });
+  } catch (error) {
+    console.error("Erreur dans myProfile:", error);
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .render("error", { message: "Erreur interne" });
+  }
+}

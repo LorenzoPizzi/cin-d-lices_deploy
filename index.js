@@ -21,6 +21,15 @@ const app = express();
 
 app.use(cookieParser());
 
+app.set("view engine", "ejs");
+app.set("views", "./src/views");
+
+app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.render("registerpage");
+});
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
