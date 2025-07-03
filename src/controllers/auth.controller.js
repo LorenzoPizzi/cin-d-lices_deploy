@@ -35,3 +35,41 @@ export async function register(req, res) {
     throw new Error("Internal Server Error !");
   }
 }
+
+export async function login(req, res) {
+  const emailFromRequest = req.body.email;
+  const passwordFromRequest = req.body.password;
+
+  try {
+    const user = await User.findOne({ where: { email: emailFromRequest } });
+
+    if (user) {
+      if (scrypt.compare(passwordFromRequest, user.password)) {
+        const token = jwt.sign(
+          { id_user: user.id_user },
+          process.env.JWT_SECRET,
+          { expiresIn: "1h" }
+        );
+        res.cookie("token", token, {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          maxAge: 3600000,
+        });
+        return res.redirect("/profile");
+      } else {
+        return res
+          .status(StatusCodes.BAD_REQUEST)
+          .json({ error: "couple login / mdp incorrect" });
+      }
+    } else {
+      return res
+        .status(StatusCodes.BAD_REQUEST)
+        .json({ error: "couple login / mdp incorrect" });
+    }
+  } catch (error) {
+    return res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: "merci de réessayer ultérieurement" });
+  }
+}

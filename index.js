@@ -1,5 +1,6 @@
 import "dotenv/config";
 import express from "express";
+import cookieParser from "cookie-parser";
 import { Sequelize } from "sequelize";
 
 export const sequelize = new Sequelize(process.env.PG_URL, {
@@ -17,6 +18,8 @@ try {
 
 const PORT = process.env.PORT || 3000;
 const app = express();
+
+app.use(cookieParser());
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
