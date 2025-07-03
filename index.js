@@ -24,7 +24,7 @@ app.set("views", "./src/views");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("errorpage");
+  res.render("addrecipe");
 });
 
 app.listen(PORT, () => {
