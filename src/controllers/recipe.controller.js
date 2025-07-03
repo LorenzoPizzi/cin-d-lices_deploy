@@ -4,7 +4,7 @@ const recipeController = {
   showAllRecipes: async (req, res) => {
     try {
       const recipes = await Recipe.findAll();
-      res.send(recipes); // envoie directement les données brutes pour test
+      res.send("home",{recipes}); ///
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération des recettes");
     }
