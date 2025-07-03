@@ -1,0 +1,36 @@
+<%- include('./partials/header') %>
+
+<section>
+    <h1>CONTACT</h1>
+
+    <p class="contact-instruction">Pour poser une question, envoyer un message, nous contacter, utilisez ce formulaire…</p>
+
+        <div class="contact-container">
+          <form>
+    
+            <div class="input-group">
+                <div class="name-title">Nom</div>
+                  <input type="name" name="name" class="class-name" required>
+                </div>
+                
+                <div class="input-group">
+                <div class="firstname-title">Prénom</div>
+                  <input type="firstname" name="firstname" class="class-firstname" required>
+                </div>
+               
+                <div class="input-group">
+                <div class="subject-title">Objet</div>
+                <input type="subject" name="subject" class="class-subject" required>
+                </div>
+             
+                <div class="input-group">
+                <div class="message-title">Message</div>
+                <input type="message" name="message" class="class-message" placeholder="Rédigez votre message..." required>
+                </div>
+             
+                <button class="send-button" type="submit"> Envoyer </button>
+          </form>
+        </div>
+</section>
+
+<%- include('./partials/footer') %>
