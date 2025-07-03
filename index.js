@@ -24,7 +24,7 @@ app.set("views", "./src/views");
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.render("registerpage");
+  res.render("errorpage");
 });
 
 app.listen(PORT, () => {
