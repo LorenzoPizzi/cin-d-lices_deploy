@@ -4,12 +4,6 @@ import { Sequelize } from "sequelize";
 import router from "./src/routes/router.js";
 
 
-export const sequelize = new Sequelize(process.env.PG_URL, {
- dialect: "postgres",
- logging: false,
-});
-
-
 try {
  await sequelize.authenticate();
  console.log("✅ Connexion à la base de données réussie !");
