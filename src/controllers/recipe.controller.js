@@ -6,14 +6,12 @@ const recipeController = {
       const recipes = await Recipe.findAll({
         include: [
           {
-            association:"movie", 
+            association: "movie",
             attributes: ["title"]
-      }
-    ]
-  },
-        
-      );
-      res.render("home",{recipes}); ///
+          }
+        ]
+      });
+      res.render("home", { recipes });
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération des recettes");
     }
@@ -25,30 +23,30 @@ const recipeController = {
         include: [
           {
             model: Category,
-            as: "categories",       
+            as: "categories"
           },
           {
             association: "movie",
-            attributes: ["title"] 
+            attributes: ["title"]
           }
         ]
       });
       if (!recipe) return res.status(404).send("Recette non trouvée");
-      res.render("recipeDetail", { recipe }); 
+      res.render("recipeDetail", { recipe });
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération de la recette");
     }
   },
 
   showAddRecipeForm: (req, res) => {
-    res.send("Affichage formulaire ajout recette (non implémenté)");
+    res.render("addrecipe"); 
   },
 
   addRecipe: async (req, res) => {
     try {
       const { name, instructions, ingredients, image_url } = req.body;
       const newRecipe = await Recipe.create({ name, instructions, ingredients, image_url });
-      res.send(newRecipe);
+      res.render("addrecipe");
     } catch (error) {
       res.status(500).send("Erreur lors de l'ajout de la recette");
     }
@@ -58,7 +56,7 @@ const recipeController = {
     try {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
-      res.send(recipe); 
+      res.send(recipe);
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération de la recette");
     }
@@ -70,7 +68,7 @@ const recipeController = {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
       await recipe.update({ name, instructions, ingredients, image_url });
-      res.send(recipe); 
+      res.send(recipe);
     } catch (error) {
       res.status(500).send("Erreur lors de la modification de la recette");
     }
@@ -85,7 +83,7 @@ const recipeController = {
     } catch (error) {
       res.status(500).send("Erreur lors de la suppression de la recette");
     }
-  },
+  }
 };
 
 export default recipeController;

@@ -7,9 +7,9 @@ const router = Router();
 
 router.get("/", recipeController.showAllRecipes);
 
-router.get("/:id", recipeController.showRecipeDetail);
+router.get("/add", /* authenticate*/ recipeController.showAddRecipeForm);
 
-router.get("/add", authenticate, recipeController.showAddRecipeForm);
+router.get("/:id", recipeController.showRecipeDetail);
 
 router.post("/add", authenticate, recipeController.addRecipe);
 
