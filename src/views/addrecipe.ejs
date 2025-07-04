@@ -21,8 +21,12 @@
     </div>
     <div class="form-group">
       <label for="recipe-film">Film</label>
-      <input type="text" id="recipe-film" placeholder="Valeur" />
+      <input type="text" id="recipe-film" placeholder="Chercher un film..." autocomplete="off" />
+      <ul id="film-suggestions" style="border:1px solid #ccc; max-height:150px; overflow:auto; padding:0; margin-top:5px;"></ul>
+      <input type="hidden" name="tmdbMovieId" id="tmdbMovieId" />
+      <input type="hidden" name="tmdbType" id="tmdbType" />
     </div>
+    
     <div class="form-group">
       <label for="recipe-instructions">Instructions</label>
       <textarea id="recipe-instructions" placeholder="Valeur"></textarea>
@@ -34,5 +38,63 @@
     <button type="submit" class="publish-button">Publier</button>
   </form>
 </div>
+
+<script>
+  const filmInput = document.getElementById('recipe-film');
+  const suggestions = document.getElementById('film-suggestions');
+  const hiddenId = document.getElementById('tmdbMovieId');
+  const hiddenType = document.getElementById('tmdbType');
+
+  let debounceTimeout;
+
+  filmInput.addEventListener('input', () => {
+    const query = filmInput.value.trim();
+    clearTimeout(debounceTimeout);
+
+    if (query.length < 2) {
+      suggestions.innerHTML = '';
+      return;
+    }
+
+    debounceTimeout = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(query)}`);
+        if (!res.ok) throw new Error('Erreur réseau');
+        const data = await res.json();
+
+        suggestions.innerHTML = data.results.length ? 
+          data.results.map(item => `
+            <li 
+              data-id="${item.id}" 
+              data-type="${item.type}"
+              style="cursor:pointer; padding:5px; list-style:none;"
+            >
+              ${item.title} (${item.type})
+            </li>`).join('') 
+          : '<li style="list-style:none; padding:5px;">Aucun résultat</li>';
+      } catch (err) {
+        console.error('Recherche API error:', err);
+        suggestions.innerHTML = '<li style="list-style:none; padding:5px; color:red;">Erreur de recherche</li>';
+      }
+    }, 300);
+  });
+
+  suggestions.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI' && e.target.dataset.id) {
+      filmInput.value = e.target.textContent.replace(/\s\(.+?\)$/, ''); 
+      hiddenId.value = e.target.dataset.id;
+      hiddenType.value = e.target.dataset.type;
+      suggestions.innerHTML = '';
+    }
+  });
+
+
+  document.addEventListener('click', (e) => {
+    if (!filmInput.contains(e.target) && !suggestions.contains(e.target)) {
+      suggestions.innerHTML = '';
+    }
+  });
+</script>
+
 
 <%- include('./partials/footer') %>
