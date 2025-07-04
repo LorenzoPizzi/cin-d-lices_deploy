@@ -24,7 +24,7 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
-  res.render("profile");
+  res.render("recipedetail");
 });
 app.use(router);
 

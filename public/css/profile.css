@@ -1,10 +1,3 @@
-:root {
-  --color-popcorn: #f8ecd8;
-  --color-red-cinema: #c7342d;
-  --color-gold-cinema: #d4af37;
-  --color-grey-cinema: #2e2e2e;
-}
-
 body {
   font-family: Arial, sans-serif;
   background-color: var(--color-popcorn);
