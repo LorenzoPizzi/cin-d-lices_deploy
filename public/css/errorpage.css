@@ -1,0 +1,25 @@
+.error-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  background-color: var(--color-popcorn);
+}
+
+.error-box {
+  border: 0.5px solid var(--color-gold-cinema);
+
+  text-align: center;
+  max-width: 400px;
+  padding: 1rem;
+}
+
+.error-box h1 {
+  color: var(--color-red-cinema);
+  margin-bottom: 15px;
+}
+
+.error-box p {
+  color: var(--color-grey-cinema);
+  font-size: 1.1rem;
+}

@@ -1,0 +1,217 @@
+:root {
+  --color-popcorn: #f8ecd8;
+  --color-red-cinema: #c7342d;
+  --color-gold-cinema: #d4af37;
+  --color-grey-cinema: #2e2e2e;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--color-popcorn);
+  color: var(--color-grey-cinema);
+  padding: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.profile {
+  flex: 1;
+  border: 0.5px solid var(--color-gold-cinema);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+.profile-title {
+  color: var(--color-gold-cinema);
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.profile-card {
+  margin-bottom: 20px;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+.profile-section {
+  max-width: 400px;
+  margin: 0 auto;
+}
+.profile,
+.bio-delete-wrapper {
+  width: 100%;
+}
+.bio-delete-wrapper {
+  margin-top: 30px;
+}
+.profile .edit-btn {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.name {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: var(--color-grey-cinema);
+}
+
+.surname {
+  font-size: 1.5rem;
+  color: var(--color-grey-cinema);
+}
+
+.edit-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn img.icon {
+  width: 20px;
+  height: 20px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.edit-btn img.icon:hover {
+  opacity: 1;
+}
+
+.bio {
+  border: 0.5px solid var(--color-gold-cinema);
+  padding: 20px;
+  text-align: left;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.bio h3 {
+  color: var(--color-gold-cinema);
+  margin-bottom: 10px;
+  align-items: center;
+}
+.bio-edit {
+  align-self: flex-end;
+}
+.delete-account {
+  width: 100%;
+  padding: 10px;
+  max-width: 400px;
+  background-color: var(--color-red-cinema);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.recipes {
+  flex: 2;
+
+  padding: 20px;
+}
+
+.recipes h2 {
+  color: var(--color-gold-cinema);
+  margin-bottom: 20px;
+  text-align: center;
+  border-left: 5px solid #c7342d00;
+  padding-left: 10px;
+  font-size: 2rem;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.recipe-card {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+  background-color: rgb(245, 238, 228);
+  padding: 10px;
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.recipe-card h3 {
+  font-size: 1rem;
+  margin: 10px 0;
+  color: var(--color-grey-cinema);
+}
+
+.recipe-card .film {
+  font-style: italic;
+  color: var(--color-red-cinema);
+  font-size: 0.9rem;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(245, 238, 228);
+  justify-content: flex-start;
+}
+
+.edit-btn,
+.delete-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  flex-shrink: 0;
+  width: auto;
+}
+
+.edit-btn img.icon,
+.delete-btn img.icon {
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border-radius: 0;
+}
+
+.edit-btn img.icon {
+  background-color: var(--color-gold-cinema);
+}
+
+.delete-btn img.icon {
+  background-color: var(--color-red-cinema);
+  align-content: flex-end;
+}
+.delete-btn {
+  margin-left: auto;
+}

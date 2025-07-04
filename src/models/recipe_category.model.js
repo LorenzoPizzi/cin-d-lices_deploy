@@ -8,7 +8,7 @@ const RecipeCategory = sequelize.define("RecipeCategory", {
     references: {
       model: "recipe", 
     },
-    onDelete: "CASCADE",
+    onDelete: "CASCADE", 
     onUpdate: "CASCADE",
   },
   id_category: {
@@ -18,7 +18,7 @@ const RecipeCategory = sequelize.define("RecipeCategory", {
       model: "category",
       key: "id_category",
     },
-    onDelete: "CASCADE",
+    onDelete: "CASCADE", 
     onUpdate: "CASCADE",
   },
 }, {
