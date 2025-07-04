@@ -5,8 +5,7 @@
     --color-gold-cinema: #d4af37;
     --color-grey-cinema: #2e2e2e;
   }
-  
-  
+
   body {
     background-color: var(--color-popcorn);
     font-family: "Cinzel", serif;
@@ -169,7 +168,7 @@
     color: var(--color-popcorn);
     border-radius: 5px;
   }
-  
+
 
   @media (max-width: 600px) {
     .mail-title,

@@ -46,9 +46,33 @@
     </button>
   </form>
 
-  <a href="/profil" class="profile-link" title="Mon profil">
     <div class="profile-circle">
-      <img src="/images/Profile_icon.svg" alt="Profil" />
+      <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />
     </div>
-  </a>
+    
+   <div class="overlay" id="modal-overlay">
+      <div class="modal-box">
+        <button class="sign-in-button-modal"> Sign in </button>
+        <button class="register-button-modal"> Register </button>
+      </div>
+   </div>
+
+  <script>
+    const profileImg = document.getElementById('profile-img');
+    const modal = document.getElementById('modal-overlay');
+
+    profileImg.addEventListener('click', () => {
+      modal.style.display = 'flex';
+    });
+
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+  </script>
 </header>
