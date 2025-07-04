@@ -6,7 +6,6 @@
     --color-grey-cinema: #2e2e2e;
   }
   
-  /* Login Page */
   
   body {
     background-color: var(--color-popcorn);
@@ -171,14 +170,13 @@
     border-radius: 5px;
   }
   
-  /* Responsive */
+
   @media (max-width: 600px) {
     .mail-title,
     .password-title {
       font-size: 16px;
     }
-    .class-name,
-    .class-firstname,
+    .class-username,
     .class-email,
     .class-password,
     .class-confirm-password,
