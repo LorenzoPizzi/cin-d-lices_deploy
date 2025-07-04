@@ -33,7 +33,7 @@
     margin-bottom: 15px;
   }
 
-  .name-title {
+  .username-title {
     color: var(--color-grey-cinema);
     font-family: "Cinzel", serif;
     font-size: 18px;
@@ -42,26 +42,9 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 20px 0px 20px;
+    padding: 0 100px 0px 17px;
     width: 50px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .firstname-title {
-    color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 27px 0px 17px;
-    width: 50px;
-    margin-left: 50px;
+    margin: 50px;
     margin-bottom: -13px;
     position: relative;
     z-index: 2;
@@ -76,7 +59,7 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 20px 0px 20px;
+    padding: 0 60px 0px 17px;
     width: 50px;
     margin-left: 50px;
     margin-bottom: -13px;
@@ -93,7 +76,7 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 40px 0px 17px;
+    padding: 0 100px 0px 17px;
     width: 50px;
     margin-left: 50px;
     margin-bottom: -13px;
@@ -101,27 +84,24 @@
     z-index: 2;
   }
 
-  .class-name {
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
+  .confirm-password-title {
     color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 55px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
     font-family: "Cinzel", serif;
-    outline: none;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    background-color: var(--color-popcorn);
+    border-width: 12px;
+    padding: 0 100px 0px 17px;
+    width: 80px;
+    margin-left: 50px;
+    margin-bottom: -13px;
     position: relative;
-    z-index: 1;
+    z-index: 2;
   }
 
-  .class-firstname {
+  .class-username {
     background-image: url("");
     background-repeat: no-repeat;
     background-position: left 16px center;
@@ -161,6 +141,25 @@
     z-index: 1;
   }
   
+  .class-confirm-password {
+    background-image: url("/public/images/Icons/Key-logo.svg");
+    background-repeat: no-repeat;
+    background-position: left 16px center;
+    background-size: 20px 20px;
+    background-color: var(--color-popcorn);
+    color: var(--color-grey-cinema);
+    padding-left: 50px; 
+    padding-right: 16px;
+    height: 55px;
+    width: 500px;
+    border: 2px solid var(--color-grey-cinema);
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: "Cinzel", serif;
+    outline: none;
+    position: relative;
+    z-index: 1;
+  }
   .login-button {
     display: flex;
     width: 500px;
@@ -182,6 +181,7 @@
     .class-firstname,
     .class-email,
     .class-password,
+    .class-confirm-password,
     .login-button, {
       font-size: 16px;
       height: 50px;
