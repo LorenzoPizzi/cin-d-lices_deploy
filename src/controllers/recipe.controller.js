@@ -1,4 +1,4 @@
-import { Recipe } from "../models/index.js";
+import { Category, Recipe } from "../models/index.js";
 
 const recipeController = {
   showAllRecipes: async (req, res) => {
@@ -21,9 +21,20 @@ const recipeController = {
 
   showRecipeDetail: async (req, res) => {
     try {
-      const recipe = await Recipe.findByPk(req.params.id);
+      const recipe = await Recipe.findByPk(req.params.id, {
+        include: [
+          {
+            model: Category,
+            as: "categories",       
+          },
+          {
+            association: "movie",
+            attributes: ["title"] 
+          }
+        ]
+      });
       if (!recipe) return res.status(404).send("Recette non trouvée");
-      res.send(recipe); 
+      res.render("recipeDetail", { recipe }); 
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération de la recette");
     }
