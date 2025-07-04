@@ -1,11 +1,3 @@
-:root {
-  --color-popcorn: #f8ecd8;
-  --color-red-cinema: #c7342d;
-  --color-gold-cinema: #d4af37;
-  --color-grey-cinema: #2e2e2e;
-  --font-heading: "Playfair Display", serif;
-}
-
 body {
   font-family: Arial, sans-serif;
   background-color: var(--color-popcorn);
@@ -89,4 +81,27 @@ body {
 
 .publish-button:hover {
   background-color: #ffc700;
+}
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+
+  .image-upload-box {
+    order: -1;
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+  }
+
+  .recipe-form {
+    width: 100% !important;
+  }
+
+  .form-group label,
+  .form-group input,
+  .form-group textarea {
+    width: 100% !important;
+  }
 }

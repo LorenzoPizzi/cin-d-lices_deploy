@@ -1,16 +1,3 @@
-:root {
-  --color-popcorn: #f8ecd8;
-  --color-red-cinema: #c7342d;
-  --color-gold-cinema: #d4af37;
-  --color-grey-cinema: #2e2e2e;
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: Arial, sans-serif;
   background-color: var(--color-popcorn);
@@ -36,6 +23,8 @@ body {
   align-items: center;
   text-align: center;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 .profile-title {
   color: var(--color-gold-cinema);
@@ -55,11 +44,15 @@ body {
   margin-bottom: 10px;
 }
 .profile-section {
+  flex: 1;
   max-width: 400px;
-  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .profile,
 .bio-delete-wrapper {
+  max-width: 400px;
   width: 100%;
 }
 .bio-delete-wrapper {
@@ -214,4 +207,23 @@ body {
 }
 .delete-btn {
   margin-left: auto;
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    margin-bottom: 5px;
+  }
+  .recipe-grid {
+    grid-template-columns: 1fr;
+  }
+  .bio-delete-wrapper {
+    max-width: 400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+  .delete-account {
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 360px;
+  }
 }

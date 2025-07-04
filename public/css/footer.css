@@ -1,53 +1,3 @@
-/* Variables */
-
-@font-face {
-
-  font-family: "Cinzel";
-  src: url("/public/fonts/Cinzel/static/Cinzel-Regular.ttf");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Cinzel";
-  src: url("/public/fonts/Cinzel/static/Cinzel-Bold.ttf");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/public/fonts/Inter/static/Inter_18pt-Regular.ttf");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Inter";
-  src: url("/public/fonts/Inter/static/Inter_18pt-Bold.ttf");
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/public/fonts/Inter/static/Inter_18pt-Italic.ttf");
-  font-weight: italic;
-  font-style: normal;
-  font-display: swap;
-}
-:root {
-  --color-popcorn: #f8ecd8;
-  --color-red-cinema: #c7342d;
-  --color-gold-cinema: #d4af37;
-  --color-grey-cinema: #2e2e2e;
-}
-
-/* footer page */
-
 footer {
   display: flex;
   width: 100%;
@@ -72,4 +22,3 @@ footer {
   background-repeat: no-repeat;
   background-position: center;
 }
-
