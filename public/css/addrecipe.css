@@ -90,3 +90,26 @@ body {
 .publish-button:hover {
   background-color: #ffc700;
 }
+@media screen and (max-width: 600px) {
+  .container {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+
+  .image-upload-box {
+    order: -1;
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 20px;
+  }
+
+  .recipe-form {
+    width: 100% !important;
+  }
+
+  .form-group label,
+  .form-group input,
+  .form-group textarea {
+    width: 100% !important;
+  }
+}
