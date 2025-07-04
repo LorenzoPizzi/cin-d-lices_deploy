@@ -3,8 +3,17 @@ import { Recipe } from "../models/index.js";
 const recipeController = {
   showAllRecipes: async (req, res) => {
     try {
-      const recipes = await Recipe.findAll();
-      res.send("home",{recipes}); ///
+      const recipes = await Recipe.findAll({
+        include: [
+          {
+            association:"movie", 
+            attributes: ["title"]
+      }
+    ]
+  },
+        
+      );
+      res.render("home",{recipes}); ///
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération des recettes");
     }

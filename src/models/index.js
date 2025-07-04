@@ -1,4 +1,4 @@
-import { sequelize } from "../../index.js";
+import  sequelize  from "../db/sequelize.js";
 
 import User from "./user.model.js";
 import Role from "./role.model.js";
