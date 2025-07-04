@@ -55,11 +55,12 @@ Recipe.belongsToMany(Category, {
   foreignKey: "id_recipe",
   otherKey: "id_category",
 });
+
 Category.belongsToMany(Recipe, {
-  as: "recipes",
   through: RecipeCategory,
   foreignKey: "id_category",
   otherKey: "id_recipe",
+  as: "recipes",
 });
 
 export {
