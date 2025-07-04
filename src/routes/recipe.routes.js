@@ -1,5 +1,6 @@
 import { Router } from "express";
 import recipeController from "../controllers/recipe.controller.js";
+import { authenticate } from "../middlewares/auth.middleware.js"; 
 
 
 const router = Router();
@@ -8,15 +9,15 @@ router.get("/", recipeController.showAllRecipes);
 
 router.get("/:id", recipeController.showRecipeDetail);
 
-router.get("/add", /* authMiddleware, */ recipeController.showAddRecipeForm);
+router.get("/add", authenticate, recipeController.showAddRecipeForm);
 
-router.post("/add", /* authMiddleware, */ recipeController.addRecipe);
+router.post("/add", authenticate, recipeController.addRecipe);
 
-router.get("/:id/edit", /* authMiddleware, */ recipeController.showEditRecipeForm);
+router.get("/:id/edit", authenticate, recipeController.showEditRecipeForm);
 
-router.post("/:id/edit", /* authMiddleware, */ recipeController.editRecipe);
+router.post("/:id/edit", authenticate, recipeController.editRecipe);
 
-router.post("/:id/delete", /* authMiddleware, */ recipeController.deleteRecipe);
+router.post("/:id/delete", authenticate,  recipeController.deleteRecipe);
 
 
 export default router;
