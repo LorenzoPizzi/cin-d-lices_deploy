@@ -1,21 +1,23 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../db/sequelize.js";
 
-const Movie = sequelize.define("Movie", {
-  id_movie: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true,
-  },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
-}, {
-  tableName: "movie",
-  timestamps: true, // pour created_at et updated_at
-  createdAt: "created_at",
-  updatedAt: "updated_at",
-});
+const Movie = sequelize.define(
+    "Movie",
+    {
+        id_movie: {
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+    },
+    {
+        tableName: "movie",
+        timestamps: true,
+    }
+);
 
-export default Movie; 
+export default Movie;
