@@ -7,12 +7,11 @@
     <section class="profile">
       <div class="profile-card">
         <img
-          src="/images/PhotoProfil.png"
+          src="<%= user.picture_url %>"
           alt="Photo de profil"
           class="profile-img"
         />
-        <h2 class="name"><strong>BOUMAZA</strong></h2>
-        <p class="surname">LAMINE</p>
+        <h2 class="name"><strong><%= user.nickname %></strong></h2>
 
         <button class="edit-btn" title="Modifier mon profil">
           <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
@@ -23,20 +22,23 @@
     <div class="bio-delete-wrapper">
       <div class="bio">
         <h3>Présentation</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
+        <p><%= user.description %></p>
 
         <button class="edit-btn bio-edit" title="Modifier ma présentation">
           <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
         </button>
       </div>
 
-      <form action="/profil/delete" method="POST">
-        <button type="submit" class="delete-account">
+      <form
+        method="POST"
+        action="/profiles/<%= user.id_user %>/delete"
+        style="display: inline"
+      >
+        <button
+          type="submit"
+          class="delete-account"
+          onclick="return confirm('Confirmer la suppression ?')"
+        >
           Supprimer mon compte
         </button>
       </form>
@@ -45,19 +47,27 @@
 
   <section class="recipes">
     <h2>MES RECETTES</h2>
-
     <div class="recipe-grid">
-      <!-- Recette 1 -->
+      <% if (user.recipes && user.recipes.length) { %> <%
+      user.recipes.forEach(recipe => { %>
       <div class="recipe-card">
-        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
-        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
-        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
-
+        <img
+          src="<%= recipe.image_url || '/images/tartelette.png' %>"
+          alt="<%= recipe.title %>"
+        />
+        <h3><%= recipe.title %></h3>
+        <p class="film">
+          <em><%= recipe.movie || 'Le Fabuleux Destin d’Amélie Poulain' %></em>
+        </p>
         <div class="actions">
-          <a href="/recettes/edit/1" class="edit-btn" title="Modifier">
+          <a
+            href="/recettes/edit/<%= recipe.id %>"
+            class="edit-btn"
+            title="Modifier"
+          >
             <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
           </a>
-          <form action="/recettes/delete/1" method="POST">
+          <form action="/recettes/delete/<%= recipe.id %>" method="POST">
             <button type="submit" class="delete-btn" title="Supprimer">
               <img
                 src="/images/Icons/delete.svg"
@@ -68,72 +78,9 @@
           </form>
         </div>
       </div>
-
-      <!-- Recette 2 -->
-      <div class="recipe-card">
-        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
-        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
-        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
-
-        <div class="actions">
-          <a href="/recettes/edit/2" class="edit-btn" title="Modifier">
-            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
-          </a>
-          <form action="/recettes/delete/2" method="POST">
-            <button type="submit" class="delete-btn" title="Supprimer">
-              <img
-                src="/images/Icons/delete.svg"
-                alt="Supprimer"
-                class="icon"
-              />
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Recette 3 -->
-      <div class="recipe-card">
-        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
-        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
-        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
-
-        <div class="actions">
-          <a href="/recettes/edit/3" class="edit-btn" title="Modifier">
-            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
-          </a>
-          <form action="/recettes/delete/3" method="POST">
-            <button type="submit" class="delete-btn" title="Supprimer">
-              <img
-                src="/images/Icons/delete.svg"
-                alt="Supprimer"
-                class="icon"
-              />
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <!-- Recette 4 -->
-      <div class="recipe-card">
-        <img src="/images/tartelette.png" alt="Tartelette aux fraises" />
-        <h3>TARTELETTES AUX FRAISES ET À LA CRÈME</h3>
-        <p class="film"><em>Le Fabuleux Destin d’Amélie Poulain</em></p>
-
-        <div class="actions">
-          <a href="/recettes/edit/4" class="edit-btn" title="Modifier">
-            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
-          </a>
-          <form action="/recettes/delete/4" method="POST">
-            <button type="submit" class="delete-btn" title="Supprimer">
-              <img
-                src="/images/Icons/delete.svg"
-                alt="Supprimer"
-                class="icon"
-              />
-            </button>
-          </form>
-        </div>
-      </div>
+      <% }); %> <% } else { %>
+      <p>Aucune recette trouvée.</p>
+      <% } %>
     </div>
   </section>
 </div>
