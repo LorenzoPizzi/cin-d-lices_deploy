@@ -36,11 +36,16 @@
     <% categories.forEach(category => { %>
       <div>
         <h3><%= category.name %></h3>
+        <form method="POST" action="/categories/<%= category.id_category %>/delete" style="display:inline;">
+          <button type="submit" class="delete-button" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
+        </form>
+        
+        
         <li>
           <%= category.name %>
           <button class="modify-button" data-id="<%= category.id_category %>" data-name="<%= category.name %>">Modifier</button>
         </li>
-            <button type="submit" class="delete-button">Supprimer</button>
+           
         <div id="categoryModal" class="modal" style="display:none;">
           <div class="modal-content">
             <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
