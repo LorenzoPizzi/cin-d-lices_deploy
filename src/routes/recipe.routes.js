@@ -1,7 +1,6 @@
 import { Router } from "express";
 import recipeController from "../controllers/recipe.controller.js";
-import { authenticate } from "../middlewares/auth.middleware.js"; 
-
+import { authenticate } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
@@ -17,7 +16,6 @@ router.get("/:id/edit", authenticate, recipeController.showEditRecipeForm);
 
 router.post("/:id/edit", authenticate, recipeController.editRecipe);
 
-router.post("/:id/delete", authenticate,  recipeController.deleteRecipe);
-
+router.post("/:id/delete", authenticate, recipeController.deleteRecipe);
 
 export default router;
