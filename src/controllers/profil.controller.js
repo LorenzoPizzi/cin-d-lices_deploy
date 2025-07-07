@@ -77,14 +77,16 @@ const profileController = {
       if (!profile) {
         return res.status(404).json({ message: "Profil non trouvé" });
       }
-
+  
       await profile.destroy();
-      res.status(204).send();
+      
+      res.redirect("/admin");
     } catch (error) {
       console.error("Erreur deleteProfile:", error);
       res.status(500).json({ message: "Erreur serveur" });
     }
   },
+  
 };
 
 export default profileController;
