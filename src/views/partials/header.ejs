@@ -54,16 +54,16 @@
       <div class="modal-box">
         <span class="close-button" id="close-modal">&times;</span>
 
-      <!-- Si user non connecté -->
-       <% if (!user) { %> 
+      
+       
         <button class="sign-in-button-modal" onclick="location.href='/login'"> Sign in </button>
         <button class="register-button-modal" onclick="location.href='/register'"> Register </button>
 
-      <!-- Si user connecté -->
-        <% } else { %> 
+      
+        
         <button class="profile-button-modal" onclick="location.href='/profile'">Profile</button>
         <button class="logout-button-modal" onclick="location.href='/logout'">Log out</button>
-        <% } %>
+        
       </div>
    </div>
 

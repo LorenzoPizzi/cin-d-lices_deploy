@@ -79,7 +79,7 @@ const profileController = {
       }
 
       await profile.destroy();
-      res.status(204).send();
+      res.redirect('/');
     } catch (error) {
       console.error("Erreur deleteProfile:", error);
       res.status(500).json({ message: "Erreur serveur" });
