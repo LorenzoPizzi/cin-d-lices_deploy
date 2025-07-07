@@ -1,5 +1,6 @@
 import User from "../models/user.model.js";
 import Role from "../models/role.model.js";
+import Recipe from "../models/recipe.model.js";
 
 const profileController = {
   getAllProfiles: async (req, res) => {
@@ -25,7 +26,14 @@ const profileController = {
           "picture_url",
           "description",
         ],
-        include: { model: Role, as: "role", attributes: ["roleName"] },
+        include: [
+          { model: Role, as: "role", attributes: ["roleName"] },
+          {
+            model: Recipe,
+            as: "recipes",
+            attributes: ["id_user", "name", "image_url", "id_movie"],
+          },
+        ],
       });
       console.log("test", user);
       if (!user) {
