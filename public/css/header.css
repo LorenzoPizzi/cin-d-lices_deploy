@@ -144,17 +144,25 @@ body {
 }
 
 .overlay {
-  display: none;
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   justify-content: flex-end;
   align-items: flex-start;
-  transform: translateY(133px);
+  padding: 1rem;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  display: flex;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.active {
+  opacity: 1;
+  visibility: visible;
+  top: 80px;
 }
 
 .modal-box {
@@ -191,6 +199,16 @@ body {
 }
 
 .register-button-modal {
+  background-color: var(--color-grey-cinema);
+  color: white;
+}
+
+.profile-button-modal {
+  background-color: var(--color-gold-cinema);
+  color: var(--color-grey-cinema);
+}
+
+.logout-button-modal {
   background-color: var(--color-grey-cinema);
   color: white;
 }

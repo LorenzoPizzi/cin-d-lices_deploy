@@ -68,8 +68,11 @@
   cursor: pointer;
 }
 
+
 .modify-button {
   background-color: var(--color-gold-cinema);
+  text-decoration: none;
+  color: black;
 }
 
 .delete-button {

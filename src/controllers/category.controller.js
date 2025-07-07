@@ -40,19 +40,21 @@ const categoryController = {
     }
   },
 
+  
   deleteCategory: async (req, res) => {
     try {
       const { id } = req.params;
       const category = await Category.findByPk(id);
-      if (!category) return res.status(404).json({ message: 'Catégorie non trouvée' });
-
+      if (!category) return res.status(404).send('Catégorie non trouvée');
+  
       await category.destroy();
-      res.status(204).send();
+      res.redirect('/admin');  
     } catch (error) {
-      console.error('Erreur deleteCategory:', error);
-      res.status(500).json({ message: 'Erreur serveur' });
+      console.error(error);
+      res.status(500).send('Erreur serveur');
     }
   }
+  
 };
 
 export default categoryController;
