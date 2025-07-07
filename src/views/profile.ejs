@@ -7,12 +7,11 @@
     <section class="profile">
       <div class="profile-card">
         <img
-          src="/images/PhotoProfil.png"
+          src="<%= user.picture_url %>"
           alt="Photo de profil"
           class="profile-img"
         />
-        <h2 class="name"><strong>BOUMAZA</strong></h2>
-        <p class="surname">LAMINE</p>
+        <h2 class="name"><strong><%= user.nickname %></strong></h2>
 
         <button class="edit-btn" title="Modifier mon profil">
           <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
@@ -23,12 +22,7 @@
     <div class="bio-delete-wrapper">
       <div class="bio">
         <h3>Présentation</h3>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </p>
+        <p><%= user.description %></p>
 
         <button class="edit-btn bio-edit" title="Modifier ma présentation">
           <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />

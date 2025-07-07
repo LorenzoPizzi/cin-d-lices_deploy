@@ -14,39 +14,26 @@ const profileController = {
     }
   },
 
-  myProfile: async (req, res) => {
+  showProfile: async (req, res) => {
     try {
-      const userId = 3;
-      const user = await User.findByPk(req.id_user, {
+      const user = await User.findByPk(req.params.id, {
         attributes: [
           "id_user",
           "nickname",
+
           "email",
           "picture_url",
           "description",
         ],
-        include: {
-          model: Role,
-          as: "role",
-          attributes: ["roleName"],
-        },
+        include: { model: Role, as: "role", attributes: ["roleName"] },
       });
-      console.log(userId);
-      if (!userId) {
-        return res.render("errorpage", {
-          message: "Utilisateur non trouvé",
-        });
+      console.log("test", user);
+      if (!user) {
+        return res.status(404).send("Profil non trouvée");
       }
-
-      return res.render("profile", {
-        user: user,
-        title: "Mon Profil",
-      });
+      res.render("profile", { user });
     } catch (error) {
-      console.error("Erreur dans myProfile:", error);
-      return res.render("errorpage", {
-        message: "Une erreur est survenue",
-      });
+      res.status(500).send("Erreur lors de la récupération du profil");
     }
   },
 
