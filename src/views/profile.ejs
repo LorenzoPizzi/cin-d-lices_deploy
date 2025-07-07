@@ -29,8 +29,16 @@
         </button>
       </div>
 
-      <form action="/profil/delete" method="POST">
-        <button type="submit" class="delete-account">
+      <form
+        method="POST"
+        action="/profiles/<%= user.id_user %>/delete"
+        style="display: inline"
+      >
+        <button
+          type="submit"
+          class="delete-account"
+          onclick="return confirm('Confirmer la suppression ?')"
+        >
           Supprimer mon compte
         </button>
       </form>
