@@ -208,7 +208,9 @@ body {
 .delete-btn {
   margin-left: auto;
 }
-
+.inline-input { padding:.4rem; font:inherit; width:100%; }
+.save-btn     { margin-left:.4rem; background:none; border:none; cursor:pointer; }
+.save-btn:hover { transform:scale(1.1); }
 @media screen and (max-width: 600px) {
   .profile {
     margin-bottom: 5px;
