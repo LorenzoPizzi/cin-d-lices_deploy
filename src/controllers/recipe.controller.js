@@ -11,7 +11,7 @@ const recipeController = {
           }
         ]
       });
-      res.render("home", { recipes });
+      res.render("home", { recipes});
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération des recettes");
     }

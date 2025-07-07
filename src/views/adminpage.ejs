@@ -25,7 +25,13 @@
         </div>
         <div class="button-group">
           <button class="modify-button">Modifier</button>
-          <button class="delete-button">Supprimer</button>
+          <form action="/profiles/<%= user.id_user %>/delete" method="POST" onsubmit="return confirm('Confirmer la suppression ?')">
+            <button type="submit">Supprimer</button>
+          </form>
+          
+          
+          
+          
         </div>
       </div>
     <% }) %>
