@@ -13,11 +13,11 @@ router.get("/:id", recipeController.showRecipeDetail);
 
 router.post("/add", authenticate, recipeController.addRecipe);
 
-router.get("/:id/edit", authenticate, recipeController.showEditRecipeForm);
+router.get("/:id/edit", /* authenticate,*/ recipeController.showEditRecipeForm);
 
-router.post("/:id/edit", authenticate, recipeController.editRecipe);
+router.post("/:id/edit", /*authenticate,*/ recipeController.editRecipe);
 
-router.post("/:id/delete", authenticate,  recipeController.deleteRecipe);
+router.post("/:id/delete", /*authenticate,*/  recipeController.deleteRecipe);
 
 
 export default router;
