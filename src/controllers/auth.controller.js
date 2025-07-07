@@ -68,6 +68,13 @@ export async function login(req, res) {
         const user = await User.findOne({ where: { email: emailFromRequest } });
 
         if (user) {
+            if (!user.email_verified) {
+                return res.status(StatusCodes.FORBIDDEN).render("errorpage", {
+                    message:
+                        "Veuillez valider votre adresse e-mail avant de vous connecter.",
+                    isSuccess: false,
+                });
+            }
             if (await scrypt.compare(passwordFromRequest, user.password)) {
                 const token = jwt.sign(
                     { id_user: user.id_user },
