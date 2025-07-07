@@ -203,6 +203,16 @@ body {
   color: white;
 }
 
+.profile-button-modal {
+  background-color: var(--color-gold-cinema);
+  color: var(--color-grey-cinema);
+}
+
+.logout-button-modal {
+  background-color: var(--color-grey-cinema);
+  color: white;
+}
+
 @media (max-width: 600px) {
   .logo-desktop {
     display: none;
