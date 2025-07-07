@@ -8,7 +8,6 @@ const adminController = {
       const users = await User.findAll();
       const categories = await Category.findAll();
       const recipes = await Recipe.findAll();
-      console.log("Categories envoyées à la vue :", categories);
       res.render("adminpage", { users, categories, recipes });
     } catch (error) {
       console.error("Erreur dans adminController:", error);

@@ -19,7 +19,9 @@
       </button>
     </div>
   </div>
-  <form class="recipe-form" method="POST" action="<%= recipe ? '/recettes/' + recipe.id + '/edit' : '/recettes/add' %>">
+  <form class="recipe-form" method="POST" action="<%= recipe ? '/recipes/' + recipe.id_recipe + '/edit' : '/recipes/add' %>">
+
+
     <div class="form-group">
       <label for="recipe-title">Titre Recette</label>
       <input 

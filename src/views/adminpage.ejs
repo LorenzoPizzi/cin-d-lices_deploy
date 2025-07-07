@@ -36,7 +36,22 @@
     <% categories.forEach(category => { %>
       <div>
         <h3><%= category.name %></h3>
-        
+        <li>
+          <%= category.name %>
+          <button class="modify-button" data-id="<%= category.id_category %>" data-name="<%= category.name %>">Modifier</button>
+        </li>
+            <button type="submit" class="delete-button">Supprimer</button>
+        <div id="categoryModal" class="modal" style="display:none;">
+          <div class="modal-content">
+            <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
+            <h2>Modifier la catégorie</h2>
+            <form id="categoryForm">
+              <input type="text" id="categoryName" name="categoryName" required />
+              <button type="submit">Enregistrer</button>
+            </form>
+          </div>
+        </div>
+      </form>
       </div>
     <% }) %>
   </div>
@@ -48,7 +63,7 @@
         <h3><%= recipe.name %></h3>
         <a href="/recipes/<%= recipe.id_recipe %>/edit" class="modify-button">Modifier</a>
 
-        <form action="/recipes/<%= recipe.id %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
+        <form action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
           <button type="submit" class="delete-button">Supprimer</button>
         </form>
 
@@ -72,4 +87,10 @@
     clickedButton.classList.add("selected");
   }
 </script>
+
+
+
+<script src="/js/category-modal.js"></script>
+
+
 <%- include('./partials/footer') %>
