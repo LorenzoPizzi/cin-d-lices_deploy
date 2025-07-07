@@ -39,7 +39,7 @@ const recipeController = {
   },
 
   showAddRecipeForm: (req, res) => {
-    res.render("addrecipe"); 
+    res.render("addrecipe", { recipe: {}}); 
   },
 
   addRecipe: async (req, res) => {
@@ -56,7 +56,7 @@ const recipeController = {
     try {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
-      res.send(recipe);
+      res.render("addrecipe", { recipe });
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération de la recette");
     }
@@ -68,7 +68,7 @@ const recipeController = {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
       await recipe.update({ name, instructions, ingredients, image_url });
-      res.send(recipe);
+      res.render("addrecipe", { recipe });
     } catch (error) {
       res.status(500).send("Erreur lors de la modification de la recette");
     }

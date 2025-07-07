@@ -2,14 +2,16 @@
 
 <div class="container">
   <div class="image-upload-box">
-    <img src="/images/tartelette.png" alt="Recipe Image" class="recipe-image" />
-    <div class="delete-recipe-floating">
-      <form action="/recettes/delete/1" method="POST">
-        <button type="submit" class="delete-btn" title="Supprimer">
-          <img src="/images/Icons/delete.svg" alt="Supprimer" class="icon" />
-        </button>
-      </form>
-    </div>
+    <img src="<%= recipe && recipe.image_url ? recipe.image_url : '/images/tartelette.png' %>" alt="Recipe Image" class="recipe-image" />
+    <% if (recipe) { %>
+      <div class="delete-recipe-floating">
+        <form action="/recettes/<%= recipe.id %>/delete" method="POST">
+          <button type="submit" class="delete-btn" title="Supprimer">
+            <img src="/images/Icons/delete.svg" alt="Supprimer" class="icon" />
+          </button>
+        </form>
+      </div>
+    <% } %>
     <div class="drag-drop-area">
       <p>Drag and drop (or) choose files</p>
       <button class="upload-button">
@@ -17,38 +19,52 @@
       </button>
     </div>
   </div>
-  <form class="recipe-form">
+  <form class="recipe-form" method="POST" action="<%= recipe ? '/recettes/' + recipe.id + '/edit' : '/recettes/add' %>">
     <div class="form-group">
       <label for="recipe-title">Titre Recette</label>
-      <input type="text" id="recipe-title" placeholder="Valeur" />
+      <input 
+        type="text" 
+        id="recipe-title" 
+        name="name" 
+        placeholder="Valeur" 
+        value="<%= recipe ? recipe.name : '' %>" 
+      />
     </div>
     <div class="form-group">
       <label for="recipe-category">Catégorie</label>
-      <input type="text" id="recipe-category" placeholder="Valeur" />
+      <input 
+        type="text" 
+        id="recipe-category" 
+        name="category" 
+        placeholder="Valeur" 
+        value="<%= recipe && recipe.categories ? recipe.categories.name : '' %>" 
+      />
     </div>
     <div class="form-group">
       <label for="recipe-film">Film</label>
       <input
         type="text"
         id="recipe-film"
+        name="movie"
         placeholder="Chercher un film..."
         autocomplete="off"
+        value="<%= recipe && recipe.movie ? recipe.movie.title : '' %>"
       />
       <ul
         id="film-suggestions"
         style="overflow: auto; padding: 0; margin-top: 5px"
       ></ul>
-      <input type="hidden" name="tmdbMovieId" id="tmdbMovieId" />
-      <input type="hidden" name="tmdbType" id="tmdbType" />
+      <input type="hidden" name="tmdbMovieId" id="tmdbMovieId" value="<%= recipe ? recipe.id_movie : '' %>" />
+      <input type="hidden" name="tmdbType" id="tmdbType" value="<%= recipe ? 'movie' : '' %>" />
     </div>
 
     <div class="form-group">
       <label for="recipe-instructions">Instructions</label>
-      <textarea id="recipe-instructions" placeholder="Valeur"></textarea>
+      <textarea id="recipe-instructions" name="instructions" placeholder="Valeur"><%= recipe ? recipe.instructions : '' %></textarea>
     </div>
     <div class="form-group">
       <label for="recipe-ingredients">Ingrédients</label>
-      <textarea id="recipe-ingredients" placeholder="Valeur"></textarea>
+      <textarea id="recipe-ingredients" name="ingredients" placeholder="Valeur"><%= recipe ? recipe.ingredients : '' %></textarea>
     </div>
     <button type="submit" class="publish-button">Publier</button>
   </form>
