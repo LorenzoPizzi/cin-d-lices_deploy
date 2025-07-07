@@ -79,8 +79,12 @@ const profileController = {
       }
   
       await profile.destroy();
-      
-      res.redirect("/admin");
+  if (redirectTo === 'admin') {
+      return res.redirect('/admin');
+    } else {
+      return res.redirect('/');
+    }
+
     } catch (error) {
       console.error("Erreur deleteProfile:", error);
       res.status(500).json({ message: "Erreur serveur" });

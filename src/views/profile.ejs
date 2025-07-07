@@ -1,88 +1,90 @@
 <%- include('./partials/header') %>
 
-<div class="container">
-  <section class="profile-section">
-    <h1 class="profile-title">MON PROFIL</h1>
+<body data-userid="<%= user.id_user %>">
+  <div class="container">
+    <section class="profile-section">
+      <h1 class="profile-title">MON PROFIL</h1>
 
-    <section class="profile">
-      <div class="profile-card">
-        <img
-          src="<%= user.picture_url %>"
-          alt="Photo de profil"
-          class="profile-img"
-        />
-        <h2 class="name"><strong><%= user.nickname %></strong></h2>
+      <section class="profile">
+        <div class="profile-card">
+          <img
+            src="<%= user.picture_url %>"
+            alt="Photo de profil"
+            class="profile-img"
+          />
 
-        <button class="edit-btn" title="Modifier mon profil">
-          <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
-        </button>
+          <h2 class="name">
+            <span class="editable" data-field="nickname"><strong><%= user.nickname %></strong></span>
+            <button class="edit-btn" data-field="nickname" title="Modifier le pseudo">
+              <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+            </button>
+          </h2>
+        </div>
+      </section>
+
+      <div class="bio-delete-wrapper">
+        <div class="bio">
+          <h3>Présentation</h3>
+          <p class="editable" data-field="description"><%= user.description %></p>
+          <button class="edit-btn" data-field="description" title="Modifier ma présentation">
+            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+          </button>
+        </div>
+
+        <form
+          method="POST"
+          action="/profiles/<%= user.id_user %>/delete"
+          style="display: inline"
+        >
+          <button
+            type="submit"
+            class="delete-account"
+            onclick="return confirm('Confirmer la suppression ?')"
+          >
+            Supprimer mon compte
+          </button>
+        </form>
       </div>
     </section>
 
-    <div class="bio-delete-wrapper">
-      <div class="bio">
-        <h3>Présentation</h3>
-        <p><%= user.description %></p>
-
-        <button class="edit-btn bio-edit" title="Modifier ma présentation">
-          <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
-        </button>
-      </div>
-
-      <form
-        method="POST"
-        action="/profiles/<%= user.id_user %>/delete"
-        style="display: inline"
-      >
-        <button
-          type="submit"
-          class="delete-account"
-          onclick="return confirm('Confirmer la suppression ?')"
-        >
-          Supprimer mon compte
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <section class="recipes">
-    <h2>MES RECETTES</h2>
-    <div class="recipe-grid">
-      <% if (user.recipes && user.recipes.length) { %> <%
-      user.recipes.forEach(recipe => { %>
-      <div class="recipe-card">
-        <img
-          src="<%= recipe.image_url || '/images/tartelette.png' %>"
-          alt="<%= recipe.title %>"
-        />
-        <h3><%= recipe.title %></h3>
-        <p class="film">
-          <em><%= recipe.movie || 'Le Fabuleux Destin d’Amélie Poulain' %></em>
-        </p>
-        <div class="actions">
-          <a
-            href="/recettes/edit/<%= recipe.id %>"
-            class="edit-btn"
-            title="Modifier"
-          >
-            <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
-          </a>
-          <form action="/recettes/delete/<%= recipe.id %>" method="POST">
-            <button type="submit" class="delete-btn" title="Supprimer">
+    <section class="recipes">
+      <h2>MES RECETTES</h2>
+      <div class="recipe-grid">
+        <% if (user.recipes && user.recipes.length) { %>
+          <% user.recipes.forEach(recipe => { %>
+            <div class="recipe-card">
               <img
-                src="/images/Icons/delete.svg"
-                alt="Supprimer"
-                class="icon"
+                src="<%= recipe.image_url || '/images/tartelette.png' %>"
+                alt="<%= recipe.name %>"
               />
-            </button>
-          </form>
-        </div>
+              <h3><%= recipe.name %></h3>
+              <p class="film">
+                <em><%= recipe.movie || 'Le Fabuleux Destin d’Amélie Poulain' %></em>
+              </p>
+              <div class="actions">
+                <a
+                  href="/recettes/edit/<%= recipe.id %>"
+                  class="edit-btn"
+                  title="Modifier"
+                >
+                  <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+                </a>
+                <form action="/recettes/delete/<%= recipe.id %>" method="POST">
+                  <button type="submit" class="delete-btn" title="Supprimer">
+                    <img src="/images/Icons/delete.svg" alt="Supprimer" class="icon" />
+                  </button>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>Aucune recette trouvée.</p>
+        <% } %>
       </div>
-      <% }); %> <% } else { %>
-      <p>Aucune recette trouvée.</p>
-      <% } %>
-    </div>
-  </section>
-</div>
+    </section>
+  </div>
+
+  <script src="/js/profile-inline-edit.js" defer></script>
+</body>
 
 <%- include('./partials/footer') %>
