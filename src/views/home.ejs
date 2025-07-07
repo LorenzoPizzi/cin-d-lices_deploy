@@ -34,7 +34,7 @@
         </div>
         <div class="card-body">
           <h3 class="recipe-title"><%= recipe.name %></h3>
-          <p class="film-title"><em><%=  %></em></p>
+          <p class="film-title"><em><%= recipe.movie ? recipe.movie.title : "Film non renseigné" %></em></p>
         </div>
       </article>
     <% }) %>

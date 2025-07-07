@@ -1,0 +1,42 @@
+<%- include('./partials/header') %>
+
+<div class="recipe-detail-container">
+  <div class="recipe-hero">
+    <img
+      src="<%= recipe.image || '/images/default-recipe.png' %>"
+      alt="<%= recipe.name %>"
+      class="recipe-img"
+    />
+    <div class="recipe-heading">
+      <h1 class="recipe-title"><%= recipe.name %></h1>
+      <p class="recipe-film">
+        <em>Référence film : <%= recipe.movie ? recipe.movie.title : 'Aucun film associé' %></em>
+      </p>
+    </div>
+  </div>
+
+  <section class="recipe-section">
+    <h2>Instructions</h2>
+    <p><%= recipe.instructions %></p>
+  </section>
+
+  <section class="recipe-section">
+    <h2>Ingrédients</h2>
+    <p><%= recipe.ingredients %></p>
+  </section>
+
+  <section class="recipe-section">
+    <h3>Catégories :</h3>
+    <ul>
+      <% if (recipe.categories && recipe.categories.length > 0) { %>
+        <% recipe.categories.forEach(category => { %>
+          <li><%= category.name %></li>
+        <% }) %>
+      <% } else { %>
+        <li>Aucune catégorie disponible</li>
+      <% } %>
+    </ul>
+  </section>
+</div>
+
+<%- include('./partials/footer') %>
