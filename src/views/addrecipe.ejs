@@ -2,7 +2,21 @@
 
 <div class="container">
   <div class="image-upload-box">
-    <img src="<%= recipe && recipe.image_url ? recipe.image_url : '/images/tartelette.png' %>" alt="Recipe Image" class="recipe-image" />
+    <% if (recipe && recipe.image_url) { %>
+  <img
+    id="image-preview"
+    src="<%= recipe.image_url %>"
+    alt="Recipe Image"
+    class="recipe-image"
+  />
+<% } else { %>
+  <img
+    id="image-preview"
+    style="display:none"
+    alt="Recipe Image"
+    class="recipe-image"
+  />
+<% } %>
     <% if (recipe) { %>
       <div class="delete-recipe-floating">
         <form action="/recettes/<%= recipe.id %>/delete" method="POST">
@@ -12,15 +26,15 @@
         </form>
       </div>
     <% } %>
-    <div class="drag-drop-area">
+    <div class="drag-drop-area" id="drag-drop-area">
       <p>Drag and drop (or) choose files</p>
-      <button class="upload-button">
+      <input type="file" name="image" id="file-input" accept="image/*" style="display:none;" />
+      <button type="button" class="upload-button" id="select-file-btn">
         <img src="/images/Icons/Upload.svg" alt="Upload" />
       </button>
     </div>
   </div>
-  <form class="recipe-form" method="POST" action="<%= recipe ? '/recipes/' + recipe.id_recipe + '/edit' : '/recipes/add' %>">
-
+  <form class="recipe-form" method="POST" enctype="multipart/form-data" action="<%= recipe ? '/recipes/' + recipe.id_recipe + '/edit' : '/recipes/add' %>">
 
     <div class="form-group">
       <label for="recipe-title">Titre Recette</label>
