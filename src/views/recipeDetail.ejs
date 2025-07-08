@@ -3,14 +3,16 @@
 <div class="recipe-detail-container">
   <div class="recipe-hero">
     <img
-      src="<%= recipe.image || '/images/default-recipe.png' %>"
+      src="<%= recipe.image_url || '/images/default-recipe.png' %>"
       alt="<%= recipe.name %>"
       class="recipe-img"
     />
     <div class="recipe-heading">
       <h1 class="recipe-title"><%= recipe.name %></h1>
       <p class="recipe-film">
-        <em>Référence film : <%= recipe.movie ? recipe.movie.title : 'Aucun film associé' %></em>
+        <em
+          >Référence film : <%= recipe.movie ? recipe.movie.title : "Aucun film associé" %> </em>
+        </em>
       </p>
     </div>
   </div>
@@ -28,12 +30,11 @@
   <section class="recipe-section">
     <h3>Catégories :</h3>
     <ul>
-      <% if (recipe.categories && recipe.categories.length > 0) { %>
-        <% recipe.categories.forEach(category => { %>
-          <li><%= category.name %></li>
-        <% }) %>
-      <% } else { %>
-        <li>Aucune catégorie disponible</li>
+      <% if (recipe.categories && recipe.categories.length > 0) { %> <%
+      recipe.categories.forEach(category => { %>
+      <li><%= category.name %></li>
+      <% }) %> <% } else { %>
+      <li>Aucune catégorie disponible</li>
       <% } %>
     </ul>
   </section>

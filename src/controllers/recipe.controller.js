@@ -11,7 +11,7 @@ const recipeController = {
           }
         ]
       });
-      res.render("home", { recipes });
+      res.render("home", { recipes});
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération des recettes");
     }
@@ -31,7 +31,9 @@ const recipeController = {
           }
         ]
       });
-      if (!recipe) return res.status(404).send("Recette non trouvée");
+      console.log("Recette trouvée :", req.params.id);
+      if (!recipe) { return res.status(404).send("Recette non trouvée");
+      }
       res.render("recipeDetail", { recipe });
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération de la recette");
@@ -39,7 +41,7 @@ const recipeController = {
   },
 
   showAddRecipeForm: (req, res) => {
-    res.render("addrecipe"); 
+    res.render("addrecipe", { recipe: {}}); 
   },
 
   addRecipe: async (req, res) => {
@@ -56,7 +58,7 @@ const recipeController = {
     try {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
-      res.send(recipe);
+      res.render("addrecipe", { recipe });
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération de la recette");
     }
@@ -64,22 +66,33 @@ const recipeController = {
 
   editRecipe: async (req, res) => {
     try {
+      console.log("ID de la recette reçue :", req.params.id);
+      console.log("Données du formulaire reçues :", req.body);
+  
       const { name, instructions, ingredients, image_url } = req.body;
+  
       const recipe = await Recipe.findByPk(req.params.id);
-      if (!recipe) return res.status(404).send("Recette non trouvée");
+      if (!recipe) {
+        console.log("Recette non trouvée avec cet id");
+        return res.status(404).send("Recette non trouvée");
+      }
+  
       await recipe.update({ name, instructions, ingredients, image_url });
-      res.send(recipe);
+      console.log("Recette modifiée avec succès");
+      res.redirect("/admin");
     } catch (error) {
+      console.error("Erreur lors de la modification :", error);
       res.status(500).send("Erreur lors de la modification de la recette");
     }
   },
+  
 
   deleteRecipe: async (req, res) => {
     try {
       const recipe = await Recipe.findByPk(req.params.id);
       if (!recipe) return res.status(404).send("Recette non trouvée");
       await recipe.destroy();
-      res.send("Recette supprimée");
+      res.redirect("/admin");
     } catch (error) {
       res.status(500).send("Erreur lors de la suppression de la recette");
     }
