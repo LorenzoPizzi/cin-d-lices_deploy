@@ -13,7 +13,16 @@ const adminController = {
       
 
       const categories = await Category.findAll();
-      const recipes = await Recipe.findAll();
+      const recipes = await Recipe.findAll({
+        include: [
+          {
+            model: User,
+            as: "author",  
+            attributes: ["nickname"]
+          }
+        ]
+      });
+      
 
       res.render("adminpage", { users, categories, recipes });
     } catch (error) {

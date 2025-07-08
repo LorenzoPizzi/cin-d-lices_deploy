@@ -7,7 +7,7 @@ const profileController = {
     try {
       const profiles = await User.findAll({
         attributes: { exclude: ["password", "token"] },
-        include: [{ model: Recipe, as: "recipes" }]
+        
       });
       res.status(200).json(profiles);
     } catch (error) {
