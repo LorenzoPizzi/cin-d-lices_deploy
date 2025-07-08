@@ -148,25 +148,6 @@
             });
         });
 
-        document.addEventListener("DOMContentLoaded", () => {
-            const profileImg = document.getElementById("profile-img");
-            const modal = document.getElementById("modal-overlay");
-            const closeButton = document.getElementById("close-modal");
-
-            profileImg.addEventListener("click", () => {
-                modal.classList.add("active");
-            });
-
-            closeButton.addEventListener("click", () => {
-                modal.classList.remove("active");
-            });
-
-            window.addEventListener("click", (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove("active");
-                }
-            });
-
             // Autocomplete logic
             const input = document.getElementById("search-input");
             const results = document.getElementById("search-results");
