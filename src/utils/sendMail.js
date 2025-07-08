@@ -2,10 +2,10 @@ import "dotenv/config";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    host: "live.slto.mailtrap.io",
+    host: "sandbox.smtp.mailtrap.io",
     port: 587,
     auth: {
-        user: "api",
+        user: "e74c3c9af4172f",
         pass: process.env.MAILTRAP_API,
     },
 });
