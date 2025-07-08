@@ -29,13 +29,13 @@ export async function register(req, res) {
         });
     }
     try {
-        // const hashedPassword = await scrypt.hash(password);
+        const hashedPassword = await scrypt.hash(password);
         const userRole = await Role.findOne({ where: { roleName: "user" } });
         const token = crypto.randomBytes(32).toString("hex");
         const newUser = await User.create({
             nickname,
             email,
-            password,
+            password: hashedPassword,
             id_role: userRole.id_role,
             token: token,
             email_verified: false,
@@ -65,7 +65,7 @@ export async function register(req, res) {
 export async function login(req, res) {
     const emailFromRequest = req.body.email;
     const passwordFromRequest = req.body.password;
-
+    //console.log(emailFromRequest, passwordFromRequest)
     try {
         const user = await User.findOne({ where: { email: emailFromRequest } });
 
@@ -89,7 +89,7 @@ export async function login(req, res) {
                     sameSite: "strict",
                     maxAge: 3600000,
                 });
-                return res.redirect("/profile");
+                return res.redirect("/profiles/myprofile/"+user.id_user);
             } else {
                 return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
                     message: "Couple login / mot de passe incorrect.",
