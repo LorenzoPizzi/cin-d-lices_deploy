@@ -17,21 +17,22 @@
     <h2>Utilisateurs</h2>
     <% users.forEach(user => { %>
       <div class="user-card">
-        <img src="/images/PhotoProfile.png" alt="User Image" />
+        <img
+        src="<%= user.picture_url %>"
+        alt="Photo de profil"
+        class="profile-img"
+      />
         <div>
           <h3><%= user.username || user.email || "Nom inconnu" %></h3>
           <button class="profil-button">Profil</button>
-          <p>Nombre de recettes: ???</p>
+         
+          <p>Nombre de recettes : <%= user.recipes ? user.recipes.length : 0 %></p>
         </div>
         <div class="button-group">
           <button class="modify-button">Modifier</button>
-          <form action="/profiles/<%= user.id_user %>/delete" method="POST" onsubmit="return confirm('Confirmer la suppression ?')">
-            <button type="submit">Supprimer</button>
+          <form method="POST" action="/profiles/<%= user.id_user %>/delete?redirectTo=admin" style="display:inline;">
+            <button class="delete-button" type="submit" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
           </form>
-          
-          
-          
-          
         </div>
       </div>
     <% }) %>
