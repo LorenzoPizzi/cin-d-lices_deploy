@@ -7,6 +7,7 @@ import Role  from "../models/role.model.js";
 import { sendEmail } from "../utils/sendMail.js";
 
 export async function register(req, res) {
+    //console.log(req.body);
     const { nickname, email, password, confirmedPassword } = req.body;
     if (!nickname || !email || !password || !confirmedPassword) {
         return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
@@ -28,13 +29,13 @@ export async function register(req, res) {
         });
     }
     try {
-        const hashedPassword = await scrypt.hash(password);
+        // const hashedPassword = await scrypt.hash(password);
         const userRole = await Role.findOne({ where: { roleName: "user" } });
         const token = crypto.randomBytes(32).toString("hex");
         const newUser = await User.create({
             nickname,
             email,
-            password: hashedPassword,
+            password,
             id_role: userRole.id_role,
             token: token,
             email_verified: false,
@@ -51,6 +52,7 @@ export async function register(req, res) {
             isSuccess: true,
         });
     } catch (error) {
+        console.error("Erreur lors du register:", error)
         return res
             .status(StatusCodes.INTERNAL_SERVER_ERROR)
             .render("errorpage", {
