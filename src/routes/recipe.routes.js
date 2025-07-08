@@ -34,7 +34,7 @@ router.get("/:id/edit", /* authenticate,*/ recipeController.showEditRecipeForm);
 
 router.post(
     "/:id/edit",
-    /*authenticate,*/ upload.single("image"),
+    /*authenticate, upload.single("image"),*/
     recipeController.editRecipe
 );
 

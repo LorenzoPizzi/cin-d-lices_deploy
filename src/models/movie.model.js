@@ -13,6 +13,10 @@ const Movie = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
         },
+        tmdb_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
     },
     {
         tableName: "movie",

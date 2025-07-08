@@ -1,4 +1,4 @@
-import { Category, Recipe } from "../models/index.js";
+import { Category, Recipe, Movie } from "../models/index.js";
 
 const recipeController = {
     showAllRecipes: async (req, res) => {
@@ -49,18 +49,52 @@ const recipeController = {
 
     addRecipe: async (req, res) => {
         try {
-            const { name, instructions, ingredients } = req.body;
-            const image_url = req.file ? `/uploads/${req.file.filename}` : null;
-            const newRecipe = await Recipe.create({
+            const {
                 name,
                 instructions,
                 ingredients,
-                image_url,
+                movie,
+                tmdbMovieId,
+                category,
+            } = req.body;
+            const image_url = req.file ? `/uploads/${req.file.filename}` : null;
+            console.log("Données reçues :", req.body);
+            console.log("Fichier reçu :", req.file);
+
+            let movieEntry = await Movie.findOne({
+                where: { tmdb_id: tmdbMovieId },
             });
-            res.render("addrecipe", {
-                message: "Recette ajoutée avec succès !",
+
+            if (!movieEntry) {
+                // S'il n'existe pas, crée-le
+                movieEntry = await Movie.create({
+                    title: movie, // Titre du film
+                    tmdb_id: tmdbMovieId,
+                });
+            }
+
+            let categoryEntry = await Category.findOne({
+                where: { name: category },
             });
+
+            if (!categoryEntry) {
+                categoryEntry = await Category.create({
+                    name: category,
+                });
+            }
+            const newRecipe = await Recipe.create({
+                id_user: 1,
+                name,
+                id_category: categoryEntry.id_category,
+                instructions,
+                ingredients,
+                id_movie: movieEntry.id_movie,
+                image_url: image_url,
+            });
+            console.log(newRecipe);
+            return res.redirect("/");
         } catch (error) {
+            console.error("Erreur lors de l'ajout de la recette :", error);
             res.status(500).send("Erreur lors de l'ajout de la recette");
         }
     },
@@ -68,6 +102,7 @@ const recipeController = {
     showEditRecipeForm: async (req, res) => {
         try {
             const recipe = await Recipe.findByPk(req.params.id);
+            console.log("Recipe :", recipe);
             if (!recipe) return res.status(404).send("Recette non trouvée");
             res.render("addrecipe", { recipe });
         } catch (error) {
