@@ -1,18 +1,17 @@
 <%- include('./partials/header') %>
 
 <div class="error-container">
-  <div class="error-box <%= isSuccess ? 'success' : 'error' %>">
-    <% if (isSuccess) { %>
-      <h1>✅ Succès !</h1>
-      <p><%= message %></p>
-      <a href="/login" class="btn btn-success">Se connecter</a>
-    <% } else { %>
-      <h1>Oups ! Une erreur est survenue.</h1>
-      <p><%= message %></p>
-      <a href="/" class="btn btn-error">Retour à l’accueil</a>
-    <% } %>
-  </div>
+    <div class="error-box <%= isSuccess ? 'success' : 'error' %>">
+        <% if (isSuccess) { %>
+        <h1>✅ Succès !</h1>
+        <p><%= message %></p>
+        <a href="/" class="btn btn-success">Retour à l'acceuil</a>
+        <% } else { %>
+        <h1>Oups ! Une erreur est survenue.</h1>
+        <p><%= message %></p>
+        <a href="/" class="btn btn-error">Retour à l’accueil</a>
+        <% } %>
+    </div>
 </div>
 
 <%- include('./partials/footer') %>
-
