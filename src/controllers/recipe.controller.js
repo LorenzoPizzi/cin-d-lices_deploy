@@ -8,12 +8,8 @@ const recipeController = {
           {
             association: "movie",
             attributes: ["title"]
-          },
-          {
-            model: User,
-            as: "author", 
-            attributes: ["nickname"]
-          },
+          }
+          
         ]
       });
       res.render("home", { recipes});

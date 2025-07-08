@@ -103,26 +103,7 @@
   }
 </script>
 
-<script>
-  const activeSection = "<%= section %>";
 
-  document.querySelectorAll(".menu-content").forEach((menu) => {
-    menu.style.display = "none";
-  });
-
-  const el = document.getElementById(activeSection);
-  if (el) {
-    el.style.display = "block";
-  }
-
-  // Et on ajuste les boutons sélectionnés
-  document.querySelectorAll(".admin-button").forEach((btn) => {
-    btn.classList.remove("selected");
-  });
-  const activeBtn = Array.from(document.querySelectorAll(".admin-button"))
-    .find(btn => btn.textContent.trim().toLowerCase() === activeSection);
-  if (activeBtn) activeBtn.classList.add("selected");
-</script>
 
 
 
