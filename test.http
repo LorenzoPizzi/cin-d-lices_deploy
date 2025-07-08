@@ -21,3 +21,7 @@ Content-Type: application/json
     "email": "test_modifie@test.com",
     "description": "Description modifiée"
 }
+
+### Test recherche de recettes
+GET http://localhost:3000/api/search?q=merguez
+Accept: application/json

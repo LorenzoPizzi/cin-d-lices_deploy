@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import recipeController from '../controllers/recipe.controller.js';
 
 const router = Router();
 
@@ -28,12 +29,14 @@ router.get('/search', async (req, res) => {
     const formattedMovies = movies.results.map(item => ({
       id: item.id,
       title: item.title,
+      type: "Film"
     }));
 
     // On transforme la liste des séries TV pour ne garder que l’id et le nom (titre)
     const formattedTV = tvShows.results.map(item => ({
       id: item.id,
       title: item.name,
+       type: "Série"
     }));
 
     // On combine les deux listes (films + séries)
@@ -49,5 +52,7 @@ router.get('/search', async (req, res) => {
   }
 });
 
+router.get('/search-recipes', recipeController.searchRecipesAutocomplete);
+console.log('✅ API routes loaded');
 // On exporte ce routeur pour pouvoir l’utiliser dans l’application principale Express
 export default router;

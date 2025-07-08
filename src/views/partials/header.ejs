@@ -20,23 +20,16 @@
 </head>
 
 <header class="site-header">
-  <div class="logo-block">
-    <img
-      src="/images/Logo_mini.svg"
-      alt="Logo Ciné Délices"
-      class="logo-img logo-desktop"
-    />
-    <img
-      src="/images/Logo_Full.svg"
-      alt="Logo Ciné Délices"
-      class="logo-img logo-mobile"
-    />
+  <a href="/recipes" class="logo-block">
+    <img src="/images/Logo_mini.svg" alt="Logo Ciné Délices" class="logo-img logo-desktop" />
+    <img src="/images/Logo_Full.svg" alt="Logo Ciné Délices" class="logo-img logo-mobile" />
     <h1 class="logo-title">CINÉ DÉLICES</h1>
-  </div>
+  </a>
 
-  <form action="/search" method="GET" class="search-form">
+  <form action="/search" method="GET" class="search-form" autocomplete="off" style="position: relative;">
     <input
       type="text"
+      id="search-input"
       name="q"
       class="search-input"
       placeholder="Je cherche une recette, un film…"
@@ -44,62 +37,57 @@
     <button type="submit" class="search-btn">
       <img src="/images/Search.svg" alt="Rechercher" />
     </button>
+    <div id="search-results" class="search-results"></div>
   </form>
 
-    <div class="profile-circle">
-      <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />
+  <style>
+    .search-results {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+    }
+
+    .search-results div {
+      padding: 10px;
+      cursor: pointer;
+    }
+
+    .search-results div:hover {
+      background-color: #eee;
+    }
+  </style>
+
+  <div class="profile-circle">
+    <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />
+  </div>
+
+  <div class="overlay" id="modal-overlay">
+    <div class="modal-box">
+      <span class="close-button" id="close-modal">&times;</span>
+      <button class="sign-in-button-modal" onclick="location.href='/login'">Sign in</button>
+      <button class="register-button-modal" onclick="location.href='/register'">Register</button>
+      <button class="profile-button-modal" onclick="location.href='/profile'">Profile</button>
+      <button class="logout-button-modal" onclick="location.href='/logout'">Log out</button>
     </div>
-    
-    
-    <div class="overlay" id="modal-overlay">
-      <div class="modal-box">
-
-
-
-      <!-- Si user non connecté -->
-      <div id="guest-buttons">
-        <button class="sign-in-button-modal" onclick="location.href='/login'"> Sign in </button>
-        <button class="register-button-modal" onclick="location.href='/register'"> Register </button>
-      </div>
-      <!-- Si user connecté -->
-      <div id="user-buttons">
-
-        <button class="profile-button-modal" onclick="location.href='/profile'">Profile</button>
-        <button class="logout-button-modal" onclick="location.href='/logout'">Log out</button>
-      </div>
-      </div>
-    </div>
-    
-    
-
+  </div>
 
   <script>
-
-    // On vérifie si le cookie token est présent
-        function isLoggedIn() {
-        return document.cookie.includes("token=");
-      }
-
-      document.addEventListener('DOMContentLoaded', () => {
-      const isAuthenticated = isLoggedIn();
-
-      const guestButtons = document.getElementById('guest-buttons');
-      const userButtons = document.getElementById('user-buttons');
-
-      // On affiche les bons boutons selon la connexion
-      if (isAuthenticated) {
-        guestButtons.style.display = 'none';
-        userButtons.style.display = 'block';
-      } else {
-        guestButtons.style.display = 'block';
-        userButtons.style.display = 'none';
-      }
-
+    document.addEventListener('DOMContentLoaded', () => {
       const profileImg = document.getElementById('profile-img');
       const modal = document.getElementById('modal-overlay');
+      const closeButton = document.getElementById("close-modal");
 
       profileImg.addEventListener('click', () => {
-        modal.classList.toggle('active');
+        modal.classList.add('active');
+      });
+
+      closeButton.addEventListener('click', () => {
+        modal.classList.remove('active');
       });
 
       window.addEventListener('click', (e) => {
@@ -107,8 +95,45 @@
           modal.classList.remove('active');
         }
       });
+
+      // Autocomplete logic
+      const input = document.getElementById('search-input');
+      const results = document.getElementById('search-results');
+
+      input.addEventListener('input', async () => {
+        const query = input.value.trim();
+
+        if (query.length < 2) {
+          results.innerHTML = '';
+          return;
+        }
+
+        try {
+          const res = await fetch(`/api/search-recipes?q=${encodeURIComponent(query)}`);
+          const data = await res.json();
+          console.log('Résultats de la recherche:', data);
+
+          results.innerHTML = '';
+
+          data.results.forEach(recipe => {
+            const movieTitle = recipe.movie ? recipe.movie.title : "Film inconnu";
+            const div = document.createElement('div');
+            div.textContent = `${recipe.name} - ${movieTitle}`;
+            div.addEventListener('click', () => {
+              window.location.href = `/recipes/${recipe.id_recipe}`;
+            });
+            results.appendChild(div);
+          });
+        } catch (error) {
+          console.error('Erreur recherche AJAX :', error);
+        }
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-form')) {
+          results.innerHTML = '';
+        }
+      });
     });
-
-  </script> 
-
+  </script>
 </header>
