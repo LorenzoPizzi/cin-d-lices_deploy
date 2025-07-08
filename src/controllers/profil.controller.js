@@ -7,6 +7,7 @@ const profileController = {
     try {
       const profiles = await User.findAll({
         attributes: { exclude: ["password", "token"] },
+        
       });
       res.status(200).json(profiles);
     } catch (error) {
@@ -35,7 +36,6 @@ const profileController = {
           },
         ],
       });
-      console.log("test", user);
       if (!user) {
         return res.status(404).send("Profil non trouvée");
       }
@@ -73,23 +73,22 @@ const profileController = {
   deleteProfile: async (req, res) => {
     try {
       const { id } = req.params;
+      const redirectTo = req.query.redirectTo || '';  
+  
       const profile = await User.findByPk(id);
       if (!profile) {
         return res.status(404).json({ message: "Profil non trouvé" });
       }
   
       await profile.destroy();
-  if (redirectTo === 'admin') {
-      return res.redirect('/admin');
-    } else {
-      return res.redirect('/');
-    }
-
+  
+      return res.redirect(`/${redirectTo}`); 
     } catch (error) {
       console.error("Erreur deleteProfile:", error);
       res.status(500).json({ message: "Erreur serveur" });
     }
   },
+  
   
 };
 

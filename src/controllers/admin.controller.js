@@ -5,9 +5,25 @@ import Recipe from "../models/recipe.model.js";
 const adminController = {
   showAdminPage: async (req, res) => {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({
+        attributes: { exclude: ["password", "token"] },
+        include: [{ model: Recipe, as: "recipes", attributes: ["id_recipe"] }],
+      });
+     
+      
+
       const categories = await Category.findAll();
-      const recipes = await Recipe.findAll();
+      const recipes = await Recipe.findAll({
+        include: [
+          {
+            model: User,
+            as: "author",  
+            attributes: ["nickname"]
+          }
+        ]
+      });
+      
+
       res.render("adminpage", { users, categories, recipes });
     } catch (error) {
       console.error("Erreur dans adminController:", error);
@@ -17,3 +33,4 @@ const adminController = {
 };
 
 export default adminController;
+
