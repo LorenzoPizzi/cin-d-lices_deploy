@@ -50,7 +50,7 @@ body {
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-bottom: 2.5rem;
 }
@@ -60,6 +60,11 @@ body {
   border-radius: 8px;
   padding: 1rem;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+  /* Force une hauteur min pour uniformiser */
+  min-height: 350px; /* Ajuste selon ta hauteur souhaitée */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .card-image img {
   width: 100%;
@@ -98,7 +103,7 @@ body {
 }
 
 .btn-load-all:hover {
-  background: var(--color-grey-cinema);
+  background: var(--color-gold-cinema);
   color: var(--color-popcorn);
   cursor: pointer;
 }
@@ -107,7 +112,11 @@ body {
   .section-heading {
     font-size: 1.6rem;
   }
-
+  
+  
+  .cards {
+    grid-template-columns: 1fr;
+  }
   .btn-load-all {
     padding: 0.6rem 1.8rem;
     font-size: 0.95rem;
