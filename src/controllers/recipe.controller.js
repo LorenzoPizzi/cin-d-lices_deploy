@@ -155,29 +155,24 @@ const recipeController = {
         if (!q) return res.json({ results: [] });
       
         try {
-          const recipes = await Recipe.findAll({
-            where: {
-              [Op.or]: [
-                { name: { [Op.iLike]: `%${q}%` } },
-                { '$movie.title$': { [Op.iLike]: `%${q}%` } }, // Recherche aussi dans le titre du film
-              ],
-            },
-            attributes: ["id_recipe", "name"],
-            include: [
-              {
-                model: Movie,
-                as: "movie",
-                attributes: ["title"],
-                required: false,
-              },
-              {
-                model: Category,
-                as: "categories",
-                attributes: ["name"],
-              }
-            ],
-            limit: 10,
-          });
+            const recipes = await Recipe.findAll({
+                attributes: ['id_recipe', 'name'], // seulement id et nom recette
+                where: {
+                    [Op.or]: [
+                      { name: { [Op.iLike]: `%${q}%` } },
+                      { '$movie.title$': { [Op.iLike]: `%${q}%` } }
+                    ]
+                  },
+                include: [{
+                  model: Movie,
+                  as: 'movie',
+                  attributes: ['title'], // seulement le titre du film
+                  required: true // pour avoir la recette même sans film lié
+                }],
+                limit: 10
+              });
+              
+              
       
           res.json({ results: recipes });
         } catch (error) {
