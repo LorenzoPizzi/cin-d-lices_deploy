@@ -9,7 +9,6 @@ const recipeController = {
             association: "movie",
             attributes: ["title"]
           }
-          
         ]
       });
       res.render("home", { recipes});
