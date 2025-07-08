@@ -1,4 +1,5 @@
 import { Category, Recipe, Movie } from "../models/index.js";
+import { Op } from "sequelize";
 
 const recipeController = {
 
@@ -147,6 +148,50 @@ const recipeController = {
             res.status(500).send("Erreur lors de la suppression de la recette");
         }
     },
+
+    searchRecipesAutocomplete: async (req, res) => {
+        console.log('🟢 searchRecipesAutocomplete triggered with q =', req.query.q);
+        const q = req.query.q || "";
+        if (!q) return res.json({ results: [] });
+      
+        try {
+          const recipes = await Recipe.findAll({
+            where: {
+              [Op.or]: [
+                { name: { [Op.iLike]: `%${q}%` } },
+                { '$movie.title$': { [Op.iLike]: `%${q}%` } }, // Recherche aussi dans le titre du film
+              ],
+            },
+            attributes: ["id_recipe", "name"],
+            include: [
+              {
+                model: Movie,
+                as: "movie",
+                attributes: ["title"],
+                required: false,
+              },
+              {
+                model: Category,
+                as: "categories",
+                attributes: ["name"],
+              }
+            ],
+            limit: 10,
+          });
+      
+          res.json({ results: recipes });
+        } catch (error) {
+          console.error("Erreur recherche recettes :", error);
+          res.status(500).json({ results: [] });
+        }
+      },
+
+
+   
+      
+    
+
+    
 };
 
 export default recipeController;

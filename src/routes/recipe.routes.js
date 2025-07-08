@@ -34,10 +34,17 @@ router.get("/:id/edit", /* authenticate,*/ recipeController.showEditRecipeForm);
 
 router.post(
     "/:id/edit",
-    /*authenticate, upload.single("image"),*/
+    /*authenticate,*/ upload.single("image"),
     recipeController.editRecipe
 );
 
 router.post("/:id/delete", /*authenticate,*/ recipeController.deleteRecipe);
+
+
+
+
+
+
+
 
 export default router;
