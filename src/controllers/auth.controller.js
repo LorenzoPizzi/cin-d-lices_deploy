@@ -1,9 +1,9 @@
 import jwt from "jsonwebtoken";
 import crypto from "node:crypto";
-import User from "../models/user.model.js";
+import User  from "../models/user.model.js";
 import { scrypt } from "../utils/scrypt.js";
 import { StatusCodes } from "http-status-codes";
-import Role from "../models/role.model.js";
+import Role  from "../models/role.model.js";
 import { sendEmail } from "../utils/sendMail.js";
 
 export async function register(req, res) {

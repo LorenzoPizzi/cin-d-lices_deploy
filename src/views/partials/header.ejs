@@ -53,31 +53,51 @@
     
     <div class="overlay" id="modal-overlay">
       <div class="modal-box">
-        <span class="close-button" id="close-modal">&times;</span>
-       
-          <button class="sign-in-button-modal" onclick="location.href='/login'"> Sign in </button>
-          <button class="register-button-modal" onclick="location.href='/register'"> Register </button>
-       
-          <button class="profile-button-modal" onclick="location.href='/profile'">Profile</button>
-          <button class="logout-button-modal" onclick="location.href='/logout'">Log out</button>
 
+
+      <!-- Si user non connecté -->
+      <div id="guest-buttons">
+        <button class="sign-in-button-modal" onclick="location.href='/login'"> Sign in </button>
+        <button class="register-button-modal" onclick="location.href='/register'"> Register </button>
+      </div>
+      <!-- Si user connecté -->
+      <div id="user-buttons">
+        <button class="profile-button-modal" onclick="location.href='/profile'">Profile</button>
+        <button class="logout-button-modal" onclick="location.href='/logout'">Log out</button>
+      </div>
       </div>
     </div>
     
     
 
-   <script>
+
+  <script>
+
+    // On vérifie si le cookie token est présent
+        function isLoggedIn() {
+        return document.cookie.includes("token=");
+      }
+
       document.addEventListener('DOMContentLoaded', () => {
+      const isAuthenticated = isLoggedIn();
+
+      const guestButtons = document.getElementById('guest-buttons');
+      const userButtons = document.getElementById('user-buttons');
+
+      // On affiche les bons boutons selon la connexion
+      if (isAuthenticated) {
+        guestButtons.style.display = 'none';
+        userButtons.style.display = 'block';
+      } else {
+        guestButtons.style.display = 'block';
+        userButtons.style.display = 'none';
+      }
+
       const profileImg = document.getElementById('profile-img');
       const modal = document.getElementById('modal-overlay');
-      const closeButton = document.getElementById("close-modal");
 
       profileImg.addEventListener('click', () => {
-        modal.classList.add('active');
-      });
-
-      closeButton.addEventListener('click', () => {
-        modal.classList.remove('active');
+        modal.classList.toggle('active');
       });
 
       window.addEventListener('click', (e) => {
@@ -87,8 +107,6 @@
       });
     });
 
-  </script>
-
-  
+  </script> 
 
 </header>
