@@ -1,6 +1,7 @@
 import { Category, Recipe, Movie } from "../models/index.js";
 
 const recipeController = {
+
     showAllRecipes: async (req, res) => {
         try {
             const recipes = await Recipe.findAll({

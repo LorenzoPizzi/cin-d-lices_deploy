@@ -17,15 +17,24 @@
     <h2>Utilisateurs</h2>
     <% users.forEach(user => { %>
       <div class="user-card">
-        <img src="/images/PhotoProfile.png" alt="User Image" />
-        <div>
-          <h3><%= user.username || user.email || "Nom inconnu" %></h3>
-          <button class="profil-button">Profil</button>
-          <p>Nombre de recettes: ???</p>
-        </div>
+        <img
+        src="<%= user.picture_url %>"
+        alt="Photo de profil"
+        class="profile-img"
+      />
+      <div>
+        <h3><%= user.nickname || "Pseudo inconnu" %></h3>
+        <p><%= user.email || "Email inconnu" %></p>
+        <p>Nombre de recettes : <%= user.recipes ? user.recipes.length : 0 %></p>
+      </div>
         <div class="button-group">
-          <button class="modify-button">Modifier</button>
-          <button class="delete-button">Supprimer</button>
+          <a href="/profiles/myprofile/<%= user.id_user %>" class="modify-button">Modifier</a>
+
+
+
+          <form method="POST" action="/profiles/<%= user.id_user %>/delete?redirectTo=admin" style="display:inline;">
+            <button class="delete-button" type="submit" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
+          </form>
         </div>
       </div>
     <% }) %>
@@ -66,6 +75,7 @@
     <% recipes.forEach(recipe => { %>
       <div>
         <h3><%= recipe.name %></h3>
+        <p>Créée par : <%= recipe.author ? recipe.author.nickname : "Inconnu" %></p>
         <a href="/recipes/<%= recipe.id_recipe %>/edit" class="modify-button">Modifier</a>
 
         <form action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
@@ -92,6 +102,9 @@
     clickedButton.classList.add("selected");
   }
 </script>
+
+
+
 
 
 
