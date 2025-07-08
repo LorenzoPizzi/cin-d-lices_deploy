@@ -9,40 +9,97 @@
       Vous trouverez des recettes de cuisine inspirées de vos films préférés.
     </p>
     <p class="intro-note">
-      -Attention, ces recettes peuvent contenir des spoilers… et beaucoup de
-      fromage-
+      -Attention, ces recettes peuvent contenir des spoilers… et beaucoup de fromage-
     </p>
   </section>
 
   <button class="filter-btn" aria-label="Filtrer les recettes">
-    <img src="/images/filters.svg" alt="Filtrer" />
+    <img src="/images/Icons/filters.svg" alt="Filtrer" />
   </button>
 
   <h2 class="section-heading">
     <span class="dash">-</span> À L’AFFICHE <span class="dash">-</span>
   </h2>
 
-  <section class="cards">
-    <% recipes.forEach(recipe => { %>
-      <article class="card">
-        <div class="card-image">
-          <% if (recipe.image_url) { %>
-            <img src="<%= recipe.image_url %>" alt="Photo de <%= recipe.name %>" />
-          <% } else { %>
-            <img src="/images/tartelette.png" alt="Image par défaut" />
-          <% } %>
-        </div>
-        <div class="card-body">
-          <h3 class="recipe-title"><%= recipe.name %></h3>
-          <p class="film-title"><em><%= recipe.movie ? recipe.movie.title : "Film non renseigné" %></em></p>
-        </div>
-      </article>
-    <% }) %>
-  </section>
-  
+  <section class="cards" id="cards"></section>
+
   <div class="cta">
-    <a href="/recipes" class="btn-load-all">CHARGER TOUT</a>
+    <a href="#" class="btn-load-all" id="showMoreBtn">AFFICHER PLUS</a>
   </div>
+
+  <div class="pagination" id="pagination" style="display: none;"></div>
+
+  <!-- Template pour une carte recette -->
+  <template id="recipe-template">
+    <article class="card">
+      <div class="card-image">
+        <img src="" alt="" />
+      </div>
+      <div class="card-body">
+        <h3 class="recipe-title"></h3>
+        <p class="film-title"><em></em></p>
+      </div>
+    </article>
+  </template>
 </main>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const showMoreBtn = document.getElementById('showMoreBtn');
+    const cardsSection = document.getElementById('cards');
+    const paginationSection = document.getElementById('pagination');
+    const template = document.getElementById('recipe-template');
+
+    // Utilisation des vraies recettes passées par le serveur dans "recipes"
+    // Chaque recette doit avoir au moins : { name, image_url, movie: { title } }
+    const allRecipes = <%- JSON.stringify(recipes) %>;
+
+    const recipesPerPage = 6;
+
+    function createRecipeCard(recipe) {
+      const clone = template.content.cloneNode(true);
+      const img = clone.querySelector('img');
+      img.src = recipe.image_url || '/images/default-recipe.png';
+      img.alt = `Photo de ${recipe.name}`;
+      clone.querySelector('.recipe-title').textContent = recipe.name;
+      clone.querySelector('.film-title em').textContent = recipe.movie?.title || "Aucun film associé";
+      return clone;
+    }
+
+    function displayRecipes(recipes) {
+      cardsSection.innerHTML = '';
+      recipes.forEach(recipe => {
+        cardsSection.appendChild(createRecipeCard(recipe));
+      });
+    }
+
+    function setupPagination() {
+      const totalPages = Math.ceil(allRecipes.length / recipesPerPage);
+      paginationSection.innerHTML = '';
+      paginationSection.style.display = 'block';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.addEventListener('click', () => {
+          const start = (i - 1) * recipesPerPage;
+          const end = start + recipesPerPage;
+          displayRecipes(allRecipes.slice(start, end));
+        });
+        paginationSection.appendChild(btn);
+      }
+    }
+
+    // Affichage initial : 3 recettes
+    displayRecipes(allRecipes.slice(0, 3));
+
+    showMoreBtn.addEventListener('click', e => {
+      e.preventDefault();
+      displayRecipes(allRecipes.slice(0, recipesPerPage));
+      showMoreBtn.style.display = 'none';
+      setupPagination();
+    });
+  });
+</script>
 
 <%- include('./partials/footer') %>

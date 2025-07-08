@@ -5,6 +5,7 @@ import authRoutes from "./auth.routes.js";
 import apiRoutes from "./api.routes.js";
 import adminRoutes from "./admin.routes.js";
 import profileRoutes from "./profil.routes.js";
+import contactRoutes from "./contact.routes.js";
 
 const router = Router();
 
@@ -14,9 +15,10 @@ router.use("/categories", categoryRoutes);
 router.use("/api", apiRoutes);
 router.use("/profiles", profileRoutes);
 router.use("/admin", adminRoutes);
+router.use("/contact", contactRoutes);
 
 router.get("/", (req, res) => {
-  res.redirect("/recipes");
+    res.redirect("/recipes");
 });
 
 export default router;

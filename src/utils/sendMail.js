@@ -2,17 +2,17 @@ import "dotenv/config";
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    host: "live.slto.mailtrap.io",
+    host: "sandbox.smtp.mailtrap.io",
     port: 587,
     auth: {
-        user: "api",
+        user: "e74c3c9af4172f",
         pass: process.env.MAILTRAP_API,
     },
 });
 
 export async function sendEmail(to, subject, text) {
     const mailOptions = {
-        from: '"Ciné Délices" <noreply@cinedelices.com>',
+        from: '"Ciné Délices" <noreply@demomailtrap.co>',
         to,
         subject,
         text,

@@ -107,6 +107,10 @@ form {
   border-radius: 5px;
 }
 
+.login-button:hover {
+  background-color: #ffc700;
+}
+
 @media (max-width: 600px) {
   form {
     width: 100%;
