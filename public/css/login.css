@@ -14,7 +14,7 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   background-color: var(--color-popcorn);
 }
 
@@ -32,7 +32,7 @@ form {
   line-height: normal;
   background-color: var(--color-popcorn);
   border-width: 12px;
-  padding: 0 60px 0px 20px;
+  padding: 0 20px 0px 20px;
   width: 50px;
   margin-left: 50px;
   margin-bottom: -13px;
@@ -49,8 +49,8 @@ form {
   line-height: normal;
   background-color: var(--color-popcorn);
   border-width: 12px;
-  padding: 0 110px 0px 17px;
-  width: 50px;
+  padding: 0 20px 0px 20px;
+  width: 100px;
   margin-left: 50px;
   margin-bottom: -13px;
   position: relative;

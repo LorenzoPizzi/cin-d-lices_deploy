@@ -7,6 +7,7 @@ import {
     Category,
     RecipeCategory,
 } from "../models/index.js";
+import { scrypt } from "../utils/scrypt.js";
 
 async function seedTables() {
     try {
@@ -21,10 +22,12 @@ async function seedTables() {
         });
 
         // 2. Création des utilisateurs
+        const adminPassword = "adminpassword";
+        const adminHashedPassword = scrypt.hash(adminPassword);
         const john = await User.create({
             nickname: "JohnDoe",
             email: "john.doe@example.com",
-            password: "hashedpassword1",
+            password: adminHashedPassword,
             picture_url:
                 "https://i.pinimg.com/originals/54/72/d1/5472d1b09d3d724228109d381d617326.jpg",
             description: "test",
@@ -32,11 +35,12 @@ async function seedTables() {
             email_verified: true,
             id_role: adminRole.id_role,
         });
-
+        const userPassword = "userpassword";
+        const userHashedPassword = scrypt.hash(userPassword);
         const jane = await User.create({
             nickname: "JaneSmith",
             email: "jane.smith@example.com",
-            password: "hashedpassword2",
+            password: userHashedPassword,
             picture_url: null,
             description: "J'aime la cuisine et les films",
             token: null,
