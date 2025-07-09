@@ -1,10 +1,11 @@
 import jwt from "jsonwebtoken";
 import crypto from "node:crypto";
-import User  from "../models/user.model.js";
+import User from "../models/user.model.js";
 import { scrypt } from "../utils/scrypt.js";
 import { StatusCodes } from "http-status-codes";
-import Role  from "../models/role.model.js";
+import Role from "../models/role.model.js";
 import { sendEmail } from "../utils/sendMail.js";
+import { Op } from "sequelize";
 
 export async function register(req, res) {
     //console.log(req.body);
@@ -15,7 +16,11 @@ export async function register(req, res) {
             isSuccess: false,
         });
     }
-    let user = await User.findOne({ where: { email } });
+    let user = await User.findOne({
+        where: {
+            [Op.or]: [{ email: email }, { nickname: nickname }],
+        },
+    });
     if (user) {
         return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
             message: "Cet utilisateur existe déjà.",
@@ -29,7 +34,7 @@ export async function register(req, res) {
         });
     }
     try {
-        const hashedPassword = await scrypt.hash(password);
+        const hashedPassword = scrypt.hash(password);
         const userRole = await Role.findOne({ where: { roleName: "user" } });
         const token = crypto.randomBytes(32).toString("hex");
         const newUser = await User.create({
@@ -40,7 +45,7 @@ export async function register(req, res) {
             token: token,
             email_verified: false,
         });
-        const link = `${process.env.BASE_URL}/profile/confirm/${token}`;
+        const link = `${process.env.BASE_URL}/profiles/confirm/${token}`;
         await sendEmail(
             newUser.email,
             "Vérification de l'adresse e-mail",
@@ -52,7 +57,7 @@ export async function register(req, res) {
             isSuccess: true,
         });
     } catch (error) {
-        console.error("Erreur lors du register:", error)
+        console.error("Erreur lors du register:", error);
         return res
             .status(StatusCodes.INTERNAL_SERVER_ERROR)
             .render("errorpage", {
@@ -89,7 +94,7 @@ export async function login(req, res) {
                     sameSite: "strict",
                     maxAge: 3600000,
                 });
-                return res.redirect("/profiles/myprofile/"+user.id_user);
+                return res.redirect("/profiles/myprofile/" + user.id_user);
             } else {
                 return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
                     message: "Couple login / mot de passe incorrect.",
