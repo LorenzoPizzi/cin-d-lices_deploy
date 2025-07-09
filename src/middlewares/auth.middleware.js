@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
 import { StatusCodes } from "http-status-codes";
-import  User from "../models/user.model.js";
-import Role  from "../models/role.model.js";
-import  Recipe  from "../models/recipe.model.js";
+import User from "../models/user.model.js";
+import Role from "../models/role.model.js";
+import Recipe from "../models/recipe.model.js";
 
 export function authenticate(req, res, next) {
     const token = req.cookies.token;
@@ -112,3 +112,20 @@ export function checkRole(requiredRole) {
     };
 }
 
+export async function attachUser(req, res, next) {
+    const token = req.cookies.token;
+    if (!token) {
+        res.locals.user = null;
+        return next();
+    }
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const user = await User.findByPk(decoded.id_user, {
+            include: { model: Role, as: "role" },
+        });
+        res.locals.user = user || null;
+    } catch {
+        res.locals.user = null;
+    }
+    next();
+}
