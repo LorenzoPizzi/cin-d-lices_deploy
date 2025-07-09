@@ -6,6 +6,7 @@ import apiRoutes from "./api.routes.js";
 import adminRoutes from "./admin.routes.js";
 import profileRoutes from "./profil.routes.js";
 import contactRoutes from "./contact.routes.js";
+import legalRoutes from "./legal.routes.js";
 
 const router = Router();
 
@@ -16,6 +17,7 @@ router.use("/api", apiRoutes);
 router.use("/profiles", profileRoutes);
 router.use("/admin", adminRoutes);
 router.use("/contact", contactRoutes);
+router.use("/legal", legalRoutes);
 
 router.get("/", (req, res) => {
     res.redirect("/recipes");
