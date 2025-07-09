@@ -1,8 +1,10 @@
 import { Category, Recipe, Movie } from "../models/index.js";
+import { StatusCodes } from "http-status-codes";
 import { Op } from "sequelize";
+import { unlink } from "fs/promises";
+import path from "path";
 
 const recipeController = {
-
     showAllRecipes: async (req, res) => {
         try {
             const recipes = await Recipe.findAll({
@@ -19,15 +21,14 @@ const recipeController = {
                 ],
             });
 
-            
             const categories = await Category.findAll({
-                attributes: ["id_category", "name"]
+                attributes: ["id_category", "name"],
             });
 
             const movies = await Movie.findAll({
-                attributes: ["id_movie", "title"]
+                attributes: ["id_movie", "title"],
             });
-            res.locals.style = 'home';
+            res.locals.style = "home";
             res.render("home", { recipes, categories, movies });
         } catch (error) {
             console.error("Erreur showAllRecipes :", error);
@@ -54,19 +55,20 @@ const recipeController = {
                 return res.status(404).send("Recette non trouvée");
             }
 
-            
             const categories = await Category.findAll();
             const movies = await Movie.findAll();
 
-            res.locals.style = 'recipedetail';
+            res.locals.style = "recipedetail";
             res.render("recipeDetail", { recipe, categories, movies });
         } catch (error) {
-            res.status(500).send("Erreur lors de la récupération de la recette");
+            res.status(500).send(
+                "Erreur lors de la récupération de la recette"
+            );
         }
     },
 
     showAddRecipeForm: (req, res) => {
-        res.locals.style = 'addrecipe';
+        res.locals.style = "addrecipe";
         res.render("addrecipe", { recipe: {} });
     },
 
@@ -112,7 +114,6 @@ const recipeController = {
                 image_url,
             });
 
-            
             await newRecipe.addCategory(categoryEntry);
 
             res.redirect("/");
@@ -126,10 +127,12 @@ const recipeController = {
         try {
             const recipe = await Recipe.findByPk(req.params.id);
             if (!recipe) return res.status(404).send("Recette non trouvée");
-            res.locals.style = 'addrecipe';
+            res.locals.style = "addrecipe";
             res.render("addrecipe", { recipe });
         } catch (error) {
-            res.status(500).send("Erreur lors de la récupération de la recette");
+            res.status(500).send(
+                "Erreur lors de la récupération de la recette"
+            );
         }
     },
 
@@ -143,18 +146,46 @@ const recipeController = {
             res.redirect("/admin");
         } catch (error) {
             console.error("Erreur lors de la modification :", error);
-            res.status(500).send("Erreur lors de la modification de la recette");
+            res.status(500).send(
+                "Erreur lors de la modification de la recette"
+            );
         }
     },
 
     deleteRecipe: async (req, res) => {
+        const id = req.params.id;
+
         try {
-            const recipe = await Recipe.findByPk(req.params.id);
-            if (!recipe) return res.status(404).send("Recette non trouvée");
+            const recipe = await Recipe.findByPk(id);
+            if (!recipe) {
+                return res
+                    .status(StatusCodes.NOT_FOUND)
+                    .render("error", { message: "Recette non trouvée" });
+            }
+
+            if (recipe.image_url) {
+                const filePath = path.join(
+                    process.cwd(),
+                    "public",
+                    recipe.image_url
+                );
+                try {
+                    await unlink(filePath);
+                    console.log(`Image supprimée: ${filePath}`);
+                } catch (error) {
+                    console.warm(
+                        "Image non trouvée lors de la suppréssion: ",
+                        error.message
+                    );
+                }
+            }
             await recipe.destroy();
-            res.redirect("/admin");
+            res.redirect("/recipes");
         } catch (error) {
-            res.status(500).send("Erreur lors de la suppression de la recette");
+            console.error(error);
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
+                message: "Erreur lors de la suppression",
+            });
         }
     },
 
@@ -164,20 +195,22 @@ const recipeController = {
 
         try {
             const recipes = await Recipe.findAll({
-                attributes: ['id_recipe', 'name'],
+                attributes: ["id_recipe", "name"],
                 where: {
                     [Op.or]: [
                         { name: { [Op.iLike]: `%${q}%` } },
-                        { '$movie.title$': { [Op.iLike]: `%${q}%` } }
-                    ]
+                        { "$movie.title$": { [Op.iLike]: `%${q}%` } },
+                    ],
                 },
-                include: [{
-                    model: Movie,
-                    as: 'movie',
-                    attributes: ['title'],
-                    required: true
-                }],
-                limit: 10
+                include: [
+                    {
+                        model: Movie,
+                        as: "movie",
+                        attributes: ["title"],
+                        required: true,
+                    },
+                ],
+                limit: 10,
             });
 
             res.json({ results: recipes });
@@ -186,7 +219,6 @@ const recipeController = {
             res.status(500).json({ results: [] });
         }
     },
-
 };
 
 export default recipeController;
