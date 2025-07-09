@@ -1,8 +1,26 @@
+/* Structure globale pour sticky footer */
+
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= ADMIN =================== */
+
 .admin-container {
   font-family: Arial, sans-serif;
   background-color: var(--color-popcorn);
   margin: 0;
   padding: 20px;
+  flex: 1; /* permet à admin-container de prendre la place disponible */
 }
 
 .admin-header {
@@ -43,6 +61,7 @@
   flex-direction: column;
 }
 
+/* Utilisateurs */
 .user-card {
   display: flex;
   align-items: center;
@@ -53,7 +72,7 @@
   border-radius: 10px;
   margin-bottom: 10px;
   width: 80%;
-  background-color: rgb(245, 238, 228);;
+  background-color: rgb(245, 238, 228);
 }
 
 .user-card img {
@@ -71,33 +90,29 @@
   justify-content: center;
 }
 
-
 .modify-button {
   display: inline-block;
   padding: 5px; 
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  
   background-color: var(--color-gold-cinema);
   text-decoration: none;
   color: black;
   text-align: center; 
   font: inherit;
-
- 
 }
+
 .delete-button {
   padding: 5px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
   background-color: var(--color-red-cinema);
-  text-decoration:none ;
+  text-decoration: none;
   color: white;
-
 }
+
 .modify-button,
 .delete-button {
   width: 100px;
@@ -121,8 +136,7 @@
   font: inherit;
 }
 
-/* partie recette*/
-
+/* Recettes */
 .recipe-card {
   display: flex;
   flex-direction: column;
@@ -141,24 +155,22 @@
   gap: 10px;
 }
 
-.recipes{
+.recipes {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-
-/*Partie categorie */
-
-.categories-grid{
+/* Catégories */
+.categories-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 30px;
   padding: 20px;
 }
 
-.categories-card{
+.categories-card {
   border: 1px solid var(--color-gold-cinema);
   border-radius: 10px;
   padding: 16px;
@@ -177,10 +189,7 @@
   background-color: var(--color-gold-cinema);
 }
 
-
-
-
-
+/* Responsive */
 @media screen and (max-width: 600px) {
   .admin-header {
     flex-direction: column;
@@ -213,33 +222,7 @@
     gap: 10px;
   }
 
-  
-
- 
-
-  /*partie categorie*/
-
-.profil-button {
-  padding: 5px 10px;
-  margin-left: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: var(--color-gold-cinema);
-}
-.delete-button, button {
-  text-decoration: none;
-  background-color: var(--color-red-cinema);
-  color: white;
-  border: none;
-  font: inherit;
-}
-
-.categories-card{
-  display: flex;
-  flex-direction: column;
-}
-
-
-
+  .categories-card {
+    flex-direction: column;
+  }
 }

@@ -1,19 +1,5 @@
-html, body {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-body {
-  min-height: 100vh;
-}
-main {
-  flex: 1 0 auto; /* le contenu principal prend tout l’espace possible */
-}
-.page-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+*{
+  box-sizing: border-box;
 }
 
 .content {

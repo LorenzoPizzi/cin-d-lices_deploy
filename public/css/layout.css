@@ -52,4 +52,5 @@
     background-color: var(--color-popcorn);
     font-family: "Cinzel", serif;
     color: var(--color-grey-cinema);
+    padding: 0;
   }
