@@ -1,128 +1,109 @@
-
 <%- include('./partials/header') %>
 
-<div class="admin-container">
-  <div class="admin-header">
-    <button class="admin-button" onclick="toggleMenu('users', this)">
-      UTILISATEURS
-    </button>
-    <button class="admin-button" onclick="toggleMenu('categories', this)">
-      CATÉGORIES
-    </button>
-    <button class="admin-button" onclick="toggleMenu('recipes', this)">
-      RECETTES
-    </button>
-  </div>
-
-  <div id="users" class="menu-content">
-    <div class="user-section">
-      <% users.forEach(user => { %>
-        <div class="user-card">
-          <img
-          src="<%= user.picture_url %>"
-          alt="Photo de profil"
-          class="profile-img"
-        />
-        <div>
-          <h3><%= user.nickname || "Pseudo inconnu" %></h3>
-          <p><%= user.email || "Email inconnu" %></p>
-          <p>Nombre de recettes : <%= user.recipes ? user.recipes.length : 0 %></p>
-        </div>
-          <div class="button-group">
-            <a href="/profiles/myprofile/<%= user.id_user %>" class="modify-button">Modifier</a>
-  
-  
-  
-            <form method="POST" action="/profiles/<%= user.id_user %>/delete?redirectTo=admin" style="display:inline;">
-              <button class="delete-button" type="submit" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
-            </form>
-          </div>
-        </div>
-      <% }) %>
-
-    </div>
-    
-  </div>
-  
-  <div id="categories" class="menu-content" style="display: none">
-    <div class="categories-grid">
-       <% categories.forEach(category => { %>
-      
-      <div class="categories-card" >
-        <h3><%= category.name %></h3>
-        <form method="POST" action="/categories/<%= category.id_category %>/delete" style="display:inline;">
-          <button type="submit" class="delete-button" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
-        </form>
-          <button class="modify-button" data-id="<%= category.id_category %>" data-name="<%= category.name %>">Modifier</button>
-
-        <div id="categoryModal" class="modal" style="display:none;">
-          <div class="modal-content">
-            <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
-            <h2>Modifier la catégorie</h2>
-            <form id="categoryForm">
-              <input type="text" id="categoryName" name="categoryName" required />
-              <button type="submit">Enregistrer</button>
-            </form>
-          </div>
-        </div>
-      </form>
+<div class="page-wrapper">
+  <main class="main-content">
+    <div class="admin-container">
+      <div class="admin-header">
+        <button class="admin-button" onclick="toggleMenu('users', this)">
+          UTILISATEURS
+        </button>
+        <button class="admin-button" onclick="toggleMenu('categories', this)">
+          CATÉGORIES
+        </button>
+        <button class="admin-button" onclick="toggleMenu('recipes', this)">
+          RECETTES
+        </button>
       </div>
-    <% }) %>
 
-    </div>
-   
-  </div>
-  
-  <div id="recipes" class="menu-content" style="display: none">
-    <div class="recipes">
-      <% recipes.forEach(recipe => { %>
-        <div class="recipe-card">
-          <h3><%= recipe.name %></h3>
-          <p>Créée par : <%= recipe.author ? recipe.author.nickname : "Inconnu" %></p>
-          <div class="admin-action-buttons"> 
-            <a href="/recipes/<%= recipe.id_recipe %>/edit" class="modify-button">Modifier</a>
-  
-          <form class="delete-button" action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
-            <button type="submit">Supprimer</button>
-          </form>
-  
-          </div>
+      <div id="users" class="menu-content">
+        <div class="user-section">
+          <% users.forEach(user => { %>
+            <div class="user-card">
+              <img
+                src="<%= user.picture_url %>"
+                alt="Photo de profil"
+                class="profile-img"
+              />
+              <div>
+                <h3><%= user.nickname || "Pseudo inconnu" %></h3>
+                <p><%= user.email || "Email inconnu" %></p>
+                <p>Nombre de recettes : <%= user.recipes ? user.recipes.length : 0 %></p>
+              </div>
+              <div class="button-group">
+                <a href="/profiles/myprofile/<%= user.id_user %>" class="modify-button">Modifier</a>
+                <form method="POST" action="/profiles/<%= user.id_user %>/delete?redirectTo=admin" style="display:inline;">
+                  <button class="delete-button" type="submit" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
+                </form>
+              </div>
+            </div>
+          <% }) %>
         </div>
-      <% }) %>
+      </div>
 
+      <div id="categories" class="menu-content" style="display: none">
+        <div class="categories-grid">
+          <% categories.forEach(category => { %>
+            <div class="categories-card">
+              <h3><%= category.name %></h3>
+              <form method="POST" action="/categories/<%= category.id_category %>/delete" style="display:inline;">
+                <button type="submit" class="delete-button" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
+              </form>
+              <button class="modify-button" data-id="<%= category.id_category %>" data-name="<%= category.name %>">Modifier</button>
+
+              <div id="categoryModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                  <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
+                  <h2>Modifier la catégorie</h2>
+                  <form id="categoryForm">
+                    <input type="text" id="categoryName" name="categoryName" required />
+                    <button type="submit">Enregistrer</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
+
+      <div id="recipes" class="menu-content" style="display: none">
+        <div class="recipes">
+          <% recipes.forEach(recipe => { %>
+            <div class="recipe-card">
+              <h3><%= recipe.name %></h3>
+              <p>Créée par : <%= recipe.author ? recipe.author.nickname : "Inconnu" %></p>
+              <div class="admin-action-buttons">
+                <a href="/recipes/<%= recipe.id_recipe %>/edit" class="modify-button">Modifier</a>
+                <form class="delete-button" action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
+                  <button type="submit">Supprimer</button>
+                </form>
+              </div>
+            </div>
+          <% }) %>
+        </div>
+      </div>
     </div>
+  </main>
 
-   
-  </div>
-  
+  <%- include('./partials/footer') %>
+</div>
 
 <script>
- function toggleMenu(menuId, clickedButton) {
-  document.querySelectorAll(".menu-content").forEach((menu) => {
-    menu.style.display = "none";
-  });
+  function toggleMenu(menuId, clickedButton) {
+    document.querySelectorAll(".menu-content").forEach((menu) => {
+      menu.style.display = "none";
+    });
 
-  requestAnimationFrame(() => {
-    const selectedMenu = document.getElementById(menuId);
-    selectedMenu.style.display = "block";
-  });
+    requestAnimationFrame(() => {
+      const selectedMenu = document.getElementById(menuId);
+      selectedMenu.style.display = "block";
+    });
 
-  document.querySelectorAll(".admin-button").forEach((button) => {
-    button.classList.remove("selected");
-  });
+    document.querySelectorAll(".admin-button").forEach((button) => {
+      button.classList.remove("selected");
+    });
 
-  clickedButton.classList.add("selected");
-}
-
-
+    clickedButton.classList.add("selected");
+  }
 </script>
 
-
-
-
-
-
 <script src="/js/category-modal.js"></script>
-
-
-<%- include('./partials/footer') %>
