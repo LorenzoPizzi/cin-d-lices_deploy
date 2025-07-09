@@ -11,6 +11,7 @@
   padding: 10px;
   border-radius: 8px;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .admin-button {
@@ -25,7 +26,7 @@
 }
 
 .admin-button:hover {
-  background-color: rgba(212, 175, 55, 0.1);
+  background-color: var(--color-gold-cinema)
 }
 
 .admin-button.selected {
@@ -35,17 +36,22 @@
 
 .menu-content {
   padding: 20px;
-
   margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .user-card {
   display: flex;
   align-items: center;
-  padding: 10px;
+  padding: 10px 50px;
   border-bottom: 1px solid #ccc;
-  border: 2px solid var(--color-gold-cinema);
-  margin-bottom: 5px;
+  border: 1px solid var(--color-gold-cinema);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 80%;
 }
 
 .user-card img {
@@ -59,26 +65,63 @@
   margin-left: auto;
 }
 
-.modify-button,
-.delete-button {
-  padding: 5px 10px;
-  margin-left: 10px;
+.modify-button {
+  display: inline-block;
+  padding: 5px; 
   border: none;
   border-radius: 4px;
   cursor: pointer;
-}
-
-
-.modify-button {
+  width: 80px;
   background-color: var(--color-gold-cinema);
   text-decoration: none;
   color: black;
+  text-align: center; 
+  font: inherit;
+ 
 }
-
 .delete-button {
+  padding: 5px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 80px;
   background-color: var(--color-red-cinema);
+  text-decoration:none ;
   color: white;
 }
+
+.delete-button, button {
+  text-decoration: none;
+  background-color: var(--color-red-cinema);
+  border: none;
+  font: inherit;
+}
+
+.recipe-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 50px;
+  border-bottom: 1px solid #ccc;
+  border: 1px solid var(--color-gold-cinema);
+  border-radius: 5px;
+  margin-bottom: 10px;
+  width: 80%;
+}
+
+.admin-action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.recipes{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 
 .profil-button {
   padding: 5px 10px;
@@ -88,6 +131,10 @@
   cursor: pointer;
   background-color: var(--color-gold-cinema);
 }
+
+
+
+
 @media screen and (max-width: 600px) {
   .admin-header {
     flex-direction: column;

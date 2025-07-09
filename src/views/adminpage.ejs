@@ -71,36 +71,49 @@
   </div>
   
   <div id="recipes" class="menu-content" style="display: none">
-    <h2>Recettes</h2>
-    <% recipes.forEach(recipe => { %>
-      <div>
-        <h3><%= recipe.name %></h3>
-        <p>Créée par : <%= recipe.author ? recipe.author.nickname : "Inconnu" %></p>
-        <a href="/recipes/<%= recipe.id_recipe %>/edit" class="modify-button">Modifier</a>
+    <div class="recipes">
+      <% recipes.forEach(recipe => { %>
+        <div class="recipe-card">
+          <h3><%= recipe.name %></h3>
+          <p>Créée par : <%= recipe.author ? recipe.author.nickname : "Inconnu" %></p>
+          <div class="admin-action-buttons"> 
+            <a href="/recipes/<%= recipe.id_recipe %>/edit" class="modify-button">Modifier</a>
+  
+          <form class="delete-button" action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
+            <button type="submit">Supprimer</button>
+          </form>
+  
+          </div>
+          
+  
+        </div>
+      <% }) %>
 
-        <form action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cette recette ?');">
-          <button type="submit" class="delete-button">Supprimer</button>
-        </form>
+    </div>
 
-      </div>
-    <% }) %>
+   
   </div>
   
 
 <script>
-  function toggleMenu(menuId, clickedButton) {
-    document.querySelectorAll(".menu-content").forEach((menu) => {
-      menu.style.display = "none";
-    });
+ function toggleMenu(menuId, clickedButton) {
+  document.querySelectorAll(".menu-content").forEach((menu) => {
+    menu.style.display = "none";
+  });
 
-    document.getElementById(menuId).style.display = "block";
+  requestAnimationFrame(() => {
+    const selectedMenu = document.getElementById(menuId);
+    selectedMenu.style.display = "block";
+  });
 
-    document.querySelectorAll(".admin-button").forEach((button) => {
-      button.classList.remove("selected");
-    });
+  document.querySelectorAll(".admin-button").forEach((button) => {
+    button.classList.remove("selected");
+  });
 
-    clickedButton.classList.add("selected");
-  }
+  clickedButton.classList.add("selected");
+}
+
+
 </script>
 
 
