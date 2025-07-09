@@ -1,9 +1,4 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: var(--color-popcorn);
-  color: var(--color-grey-cinema);
-  padding: 20px;
-}
+
 
 .container {
   display: flex;

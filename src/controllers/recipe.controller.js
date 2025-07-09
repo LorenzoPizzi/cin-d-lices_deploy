@@ -13,7 +13,9 @@ const recipeController = {
                     },
                 ],
             });
+            res.locals.style = 'home';
             res.render("home", { recipes });
+            
         } catch (error) {
             res.status(500).send("Erreur lors de la récupération des recettes");
         }
@@ -37,6 +39,8 @@ const recipeController = {
             if (!recipe) {
                 return res.status(404).send("Recette non trouvée");
             }
+            res.locals.style = null;
+            res.locals.style = 'recipedetail';
             res.render("recipeDetail", { recipe });
         } catch (error) {
             res.status(500).send(
@@ -46,6 +50,7 @@ const recipeController = {
     },
 
     showAddRecipeForm: (req, res) => {
+        res.locals.style = 'addrecipe';
         res.render("addrecipe", { recipe: {} });
     },
 
@@ -106,6 +111,7 @@ const recipeController = {
             const recipe = await Recipe.findByPk(req.params.id);
             console.log("Recipe :", recipe);
             if (!recipe) return res.status(404).send("Recette non trouvée");
+            res.locals.style = 'addrecipe';
             res.render("addrecipe", { recipe });
         } catch (error) {
             res.status(500).send(

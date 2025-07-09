@@ -3,6 +3,7 @@ import { sendEmail } from "../utils/sendMail.js";
 
 export async function handleContactForm(req, res) {
     const { name, email, message } = req.body;
+    res.locals.style = 'error';
 
     if (!name || !email || !message) {
         return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {

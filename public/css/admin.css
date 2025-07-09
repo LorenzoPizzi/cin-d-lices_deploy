@@ -46,6 +46,7 @@
 .user-card {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 10px 50px;
   border-bottom: 1px solid #ccc;
   border: 1px solid var(--color-gold-cinema);
@@ -70,9 +71,6 @@
   justify-content: center;
 }
 
-.button-group {
-  margin-left: auto;
-}
 
 .modify-button {
   display: inline-block;
@@ -118,6 +116,7 @@
 .delete-button, button {
   text-decoration: none;
   background-color: var(--color-red-cinema);
+  color: white;
   border: none;
   font: inherit;
 }
@@ -181,6 +180,7 @@
 
 
 
+
 @media screen and (max-width: 600px) {
   .admin-header {
     flex-direction: column;
@@ -220,4 +220,30 @@
     width: auto;
     flex: 1 1 auto;
   }
+
+  /*partie categorie*/
+
+.profil-button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: var(--color-gold-cinema);
+}
+.delete-button, button {
+  text-decoration: none;
+  background-color: var(--color-red-cinema);
+  color: white;
+  border: none;
+  font: inherit;
+}
+
+.categories-card{
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 }

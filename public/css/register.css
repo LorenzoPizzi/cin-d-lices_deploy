@@ -1,16 +1,4 @@
-/* Variables */
-:root {
-    --color-popcorn: #f8ecd8;
-    --color-red-cinema: #c7342d;
-    --color-gold-cinema: #d4af37;
-    --color-grey-cinema: #2e2e2e;
-  }
 
-  body {
-    background-color: var(--color-popcorn);
-    font-family: "Cinzel", serif;
-  }
-  
   form {
     display: flex;
     flex-direction: column;
@@ -174,12 +162,12 @@
     .mail-title,
     .password-title {
       font-size: 16px;
-    }
+    } 
     .class-username,
     .class-email,
     .class-password,
     .class-confirm-password,
-    .login-button, {
+    .login-button {
       font-size: 16px;
       height: 50px;
     }

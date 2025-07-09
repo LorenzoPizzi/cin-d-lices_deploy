@@ -9,6 +9,7 @@ import { sendEmail } from "../utils/sendMail.js";
 export async function register(req, res) {
     //console.log(req.body);
     const { nickname, email, password, confirmedPassword } = req.body;
+    res.locals.style = 'error';
     if (!nickname || !email || !password || !confirmedPassword) {
         return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
             message: "Tous les champs sont obligatoires.",
