@@ -1,6 +1,5 @@
 <%- include('./partials/header') %>
 
-
 <div class="filter-container">
   <button class="filter-btn" aria-label="Filtrer les recettes" id="filterBtn" type="button">
     <img src="/images/Icons/filters.svg" alt="Filtrer" />
@@ -30,20 +29,12 @@
 
 <main class="home-container">
   <section class="intro">
-    <p class="intro-line">
-      Bienvenue sur le site des passionnés du cinéma et de la cuisine&nbsp;!
-    </p>
-    <p class="intro-line">
-      Vous trouverez des recettes de cuisine inspirées de vos films préférés.
-    </p>
-    <p class="intro-note">
-      -Attention, ces recettes peuvent contenir des spoilers… et beaucoup de fromage-
-    </p>
+    <p class="intro-line">Bienvenue sur le site des passionnés du cinéma et de la cuisine&nbsp;!</p>
+    <p class="intro-line">Vous trouverez des recettes de cuisine inspirées de vos films préférés.</p>
+    <p class="intro-note">-Attention, ces recettes peuvent contenir des spoilers… et beaucoup de fromage-</p>
   </section>
 
-  <h2 class="section-heading">
-    <span class="dash">-</span> À L’AFFICHE <span class="dash">-</span>
-  </h2>
+  <h2 class="section-heading"><span class="dash">-</span> À L’AFFICHE <span class="dash">-</span></h2>
 
   <section class="cards" id="cards"></section>
 
@@ -56,37 +47,39 @@
   </div>
   <div class="pagination" id="pagination" style="display: none;"></div>
 
-  
   <template id="recipe-template">
-    <article class="card">
-      <div class="card-image">
-        <img src="" alt="" />
-      </div>
-      <div class="card-body">
-        <h3 class="recipe-title"></h3>
-        <p class="film-title"><em></em></p>
-      </div>
-    </article>
+    <a class="card-link" href="">
+      <article class="card">
+        <div class="card-image">
+          <img src="" alt="" />
+        </div>
+        <div class="card-body">
+          <h3 class="recipe-title"></h3>
+          <p class="film-title"><em></em></p>
+        </div>
+      </article>
+    </a>
   </template>
 </main>
 
 <style>
- 
   .home-container {
     max-width: 1280px;
     margin: 0 auto;
     padding: 2.5rem 1.25rem 4rem;
     text-align: center;
   }
-
-  
+  .card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
   .filter-container {
     position: absolute;
     top: 10px;
     right: 10px;
     z-index: 100;
   }
-
   .filter-btn {
     background: transparent;
     border: none;
@@ -94,7 +87,6 @@
     padding: 5px;
     color: var(--color-grey-cinema);
   }
-
   .filter-dropdown {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -103,24 +95,20 @@
     min-width: 220px;
     box-shadow: 0 8px 16px rgba(0,0,0,0.2);
   }
-
   .filter-section {
     margin-bottom: 10px;
   }
-
   .filter-section label {
     display: block;
     margin-bottom: 5px;
     font-size: 0.9em;
   }
-
   .filter-section select {
     width: 100%;
     padding: 5px;
     border: 1px solid #ddd;
     border-radius: 4px;
   }
-
   #applyFilter {
     background-color: var(--color-gold-cinema);
     color: white;
@@ -130,13 +118,9 @@
     cursor: pointer;
     width: 100%;
   }
-
   #applyFilter:hover {
     background-color: #45a049;
   }
-
-  
- 
 </style>
 
 <script>
@@ -157,11 +141,15 @@
 
     function createRecipeCard(recipe) {
       const clone = template.content.cloneNode(true);
+      const link = clone.querySelector('.card-link');
       const img = clone.querySelector('img');
+
+      link.href = `/recipes/${recipe.id_recipe}`;
       img.src = recipe.image_url || '/images/default-recipe.png';
       img.alt = `Photo de ${recipe.name}`;
       clone.querySelector('.recipe-title').textContent = recipe.name;
       clone.querySelector('.film-title em').textContent = recipe.movie?.title || "Aucun film associé";
+
       return clone;
     }
 
@@ -193,10 +181,8 @@
       }
     }
 
-    
     displayRecipes(allRecipes.slice(0, 3));
 
-    
     showMoreBtn.addEventListener('click', e => {
       e.preventDefault();
       displayRecipes(allRecipes.slice(0, recipesPerPage));
@@ -204,13 +190,11 @@
       setupPagination(allRecipes);
     });
 
-    
     filterBtn.addEventListener('click', (event) => {
       event.stopPropagation();
       filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
     });
 
-    
     applyFilterBtn.addEventListener('click', () => {
       const selectedCategoryId = categoryFilter.value;
       const selectedMovieTitle = movieFilter.value;
@@ -232,7 +216,6 @@
       filterDropdown.style.display = 'none';
     });
 
-    
     document.addEventListener('click', (event) => {
       if (!filterBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
         filterDropdown.style.display = 'none';
