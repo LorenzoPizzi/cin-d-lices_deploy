@@ -6,11 +6,11 @@
     width: 500px;
   }
   
-  .login-container {
+  .register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 80vh;
     background-color: var(--color-popcorn);
   }
   
@@ -19,7 +19,7 @@
     margin-bottom: 15px;
   }
 
-  .username-title {
+  .username-register {
     color: var(--color-grey-cinema);
     font-family: "Cinzel", serif;
     font-size: 18px;
@@ -28,7 +28,7 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 100px 0px 17px;
+    padding: 0 20px 0px 20px;
     width: 50px;
     margin: 50px;
     margin-bottom: -13px;
@@ -36,7 +36,7 @@
     z-index: 2;
   }
   
-  .mail-title {
+  .mail-register {
     color: var(--color-grey-cinema);
     font-family: "Cinzel", serif;
     font-size: 18px;
@@ -45,7 +45,7 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 60px 0px 17px;
+    padding: 0 20px 0px 20px;
     width: 50px;
     margin-left: 50px;
     margin-bottom: -13px;
@@ -53,7 +53,7 @@
     z-index: 2;
   }
   
-  .password-title {
+  .password-register {
     color: var(--color-grey-cinema);
     font-family: "Cinzel", serif;
     font-size: 18px;
@@ -62,15 +62,15 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 100px 0px 17px;
-    width: 50px;
+    padding: 0 20px 0px 20px;
+    width: 100px;
     margin-left: 50px;
     margin-bottom: -13px;
     position: relative;
     z-index: 2;
   }
 
-  .confirm-password-title {
+  .confirm-password-register {
     color: var(--color-grey-cinema);
     font-family: "Cinzel", serif;
     font-size: 18px;
@@ -79,8 +79,8 @@
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 100px 0px 17px;
-    width: 80px;
+    padding: 0 20px 0px 20px;
+    width: 230px;
     margin-left: 50px;
     margin-bottom: -13px;
     position: relative;
@@ -146,7 +146,7 @@
     position: relative;
     z-index: 1;
   }
-  .login-button {
+  .register-button {
     display: flex;
     width: 500px;
     height: 80px;
@@ -167,7 +167,7 @@
     .class-email,
     .class-password,
     .class-confirm-password,
-    .login-button {
+    .register-button {
       font-size: 16px;
       height: 50px;
     }

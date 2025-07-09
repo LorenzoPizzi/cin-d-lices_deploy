@@ -1,31 +1,48 @@
 <%- include('./partials/header') %>
 
 <section>
-    <div class="login-container">
-      <form action="/register" method="POST">
-        <div class="input-group">
-            <div class="username-title">Username</div>
-              <input type="text" name="nickname" class="class-username" required>
-            </div>
-   
+    <div class="register-container">
+        <form action="/register" method="POST">
             <div class="input-group">
-            <div class="mail-title">Mail</div>
-            <input type="email" name="email" class="class-email" required>
+                <div class="username-register">Pseudo</div>
+                <input
+                    type="text"
+                    name="nickname"
+                    class="class-username"
+                    required
+                />
             </div>
-     
+
             <div class="input-group">
-            <div class="password-title">Password</div>
-            <input type="password" name="password" class="class-password" required>
+                <div class="mail-register">Email</div>
+                <input type="email" name="email" class="class-email" required />
             </div>
-         
+
             <div class="input-group">
-            <div class="confirm-password-title">Confirm Password</div>
-            <input type="password" name="confirmedPassword" class="class-confirm-password" required>
+                <div class="password-register">Mot de passe</div>
+                <input
+                    type="password"
+                    name="password"
+                    class="class-password"
+                    required
+                />
             </div>
-          
-            <button type="submit" class="login-button"> Log in </button>
-      </form>
+
+            <div class="input-group">
+                <div class="confirm-password-register">
+                    Confirmation de mot de passe
+                </div>
+                <input
+                    type="password"
+                    name="confirmedPassword"
+                    class="class-confirm-password"
+                    required
+                />
+            </div>
+
+            <button type="submit" class="register-button">S'inscrire</button>
+        </form>
     </div>
-  </section>
-  
+</section>
+
 <%- include('./partials/footer') %>

@@ -84,20 +84,7 @@
 
     <div class="overlay" id="modal-overlay">
         <div class="modal-box">
-            <div id="guest-buttons">
-                <button
-                    class="sign-in-button-modal"
-                    onclick="location.href='/login'"
-                >
-                    Connexion
-                </button>
-                <button
-                    class="register-button-modal"
-                    onclick="location.href='/register'"
-                >
-                    Inscription
-                </button>
-            </div>
+            <% if (user) { %>
             <div id="user-buttons">
                 <button
                     class="profile-button-modal"
@@ -112,36 +99,35 @@
                     Déconnexion
                 </button>
             </div>
+            <% } else { %>
+            <div id="guest-buttons">
+                <button
+                    class="sign-in-button-modal"
+                    onclick="location.href='/login'"
+                >
+                    Connexion
+                </button>
+                <button
+                    class="register-button-modal"
+                    onclick="location.href='/register'"
+                >
+                    Inscription
+                </button>
+            </div>
+            <% } %>
         </div>
     </div>
 
     <script>
-        // On vérifie si le cookie token est présent
-        function isLoggedIn() {
-            return document.cookie.includes("token=");
-        }
-
         document.addEventListener("DOMContentLoaded", () => {
-            const isAuthenticated = isLoggedIn();
-
-            const guestButtons = document.getElementById("guest-buttons");
-            const userButtons = document.getElementById("user-buttons");
-
-            // On affiche les bons boutons selon la connexion
-            if (isAuthenticated) {
-                guestButtons.style.display = "none";
-                userButtons.style.display = "block";
-            } else {
-                guestButtons.style.display = "block";
-                userButtons.style.display = "none";
-            }
-
             const profileImg = document.getElementById("profile-img");
             const modal = document.getElementById("modal-overlay");
 
-            profileImg.addEventListener("click", () => {
-                modal.classList.toggle("active");
-            });
+            if (profileImg) {
+                profileImg.addEventListener("click", () => {
+                    modal.classList.toggle("active");
+                });
+            }
 
             window.addEventListener("click", (e) => {
                 if (e.target === modal) {
