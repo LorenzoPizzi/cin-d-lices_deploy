@@ -14,47 +14,46 @@
   </div>
 
   <div id="users" class="menu-content">
-    <h2>Utilisateurs</h2>
-    <% users.forEach(user => { %>
-      <div class="user-card">
-        <img
-        src="<%= user.picture_url %>"
-        alt="Photo de profil"
-        class="profile-img"
-      />
-      <div>
-        <h3><%= user.nickname || "Pseudo inconnu" %></h3>
-        <p><%= user.email || "Email inconnu" %></p>
-        <p>Nombre de recettes : <%= user.recipes ? user.recipes.length : 0 %></p>
-      </div>
-        <div class="button-group">
-          <a href="/profiles/myprofile/<%= user.id_user %>" class="modify-button">Modifier</a>
-
-
-
-          <form method="POST" action="/profiles/<%= user.id_user %>/delete?redirectTo=admin" style="display:inline;">
-            <button class="delete-button" type="submit" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
-          </form>
+    <div class="user-section">
+      <% users.forEach(user => { %>
+        <div class="user-card">
+          <img
+          src="<%= user.picture_url %>"
+          alt="Photo de profil"
+          class="profile-img"
+        />
+        <div>
+          <h3><%= user.nickname || "Pseudo inconnu" %></h3>
+          <p><%= user.email || "Email inconnu" %></p>
+          <p>Nombre de recettes : <%= user.recipes ? user.recipes.length : 0 %></p>
         </div>
-      </div>
-    <% }) %>
+          <div class="button-group">
+            <a href="/profiles/myprofile/<%= user.id_user %>" class="modify-button">Modifier</a>
+  
+  
+  
+            <form method="POST" action="/profiles/<%= user.id_user %>/delete?redirectTo=admin" style="display:inline;">
+              <button class="delete-button" type="submit" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
+            </form>
+          </div>
+        </div>
+      <% }) %>
+
+    </div>
+    
   </div>
   
   <div id="categories" class="menu-content" style="display: none">
-    <h2>Catégories</h2>
-    <% categories.forEach(category => { %>
-      <div>
+    <div class="categories-grid">
+       <% categories.forEach(category => { %>
+      
+      <div class="categories-card" >
         <h3><%= category.name %></h3>
         <form method="POST" action="/categories/<%= category.id_category %>/delete" style="display:inline;">
           <button type="submit" class="delete-button" onclick="return confirm('Confirmer la suppression ?')">Supprimer</button>
         </form>
-        
-        
-        <li>
-          <%= category.name %>
           <button class="modify-button" data-id="<%= category.id_category %>" data-name="<%= category.name %>">Modifier</button>
-        </li>
-           
+
         <div id="categoryModal" class="modal" style="display:none;">
           <div class="modal-content">
             <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
@@ -68,6 +67,9 @@
       </form>
       </div>
     <% }) %>
+
+    </div>
+   
   </div>
   
   <div id="recipes" class="menu-content" style="display: none">
