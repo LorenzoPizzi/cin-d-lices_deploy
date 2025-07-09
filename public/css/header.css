@@ -47,6 +47,7 @@
   color: var(--color-grey-cinema);
   background-color: transparent;
   box-sizing: border-box;
+  margin-left: 2rem;
 }
 
 .search-btn {
@@ -80,6 +81,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .profile-circle img {
@@ -152,8 +154,29 @@
   background-color: var(--color-grey-cinema);
   color: white;
 }
+.add-recipe-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-gold-cinema);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  margin-left: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 5px;
+  flex-shrink: 0;
+}
+.add-recipe-button:hover {
+  background-color: #e6c958; 
+}
 
-@media (max-width: 600px) {
+.add-recipe-button img {
+  width: 24px;
+  height: 24px;
+}
+@media (max-width: 768px) {
   .logo-desktop {
     display: none;
   }
@@ -161,6 +184,7 @@
     display: block;
     height: 60px;
     width: auto;
+    margin-right: 2rem;
   }
   .logo-title {
     display: none;
