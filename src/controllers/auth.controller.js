@@ -10,26 +10,35 @@ import { Op } from "sequelize";
 export async function register(req, res) {
     //console.log(req.body);
     const { nickname, email, password, confirmedPassword } = req.body;
-    res.locals.style = 'error';
+    res.locals.style = "error";
     if (!nickname || !email || !password || !confirmedPassword) {
-        return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+        return res.status(StatusCodes.BAD_REQUEST).render("error", {
             message: "Tous les champs sont obligatoires.",
             isSuccess: false,
         });
     }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        return res.status(StatusCodes.BAD_REQUEST).render("error", {
+            message: "Format d'email invalide.",
+            isSuccess: false,
+        });
+    }
+
     let user = await User.findOne({
         where: {
             [Op.or]: [{ email: email }, { nickname: nickname }],
         },
     });
     if (user) {
-        return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+        return res.status(StatusCodes.BAD_REQUEST).render("error", {
             message: "Cet utilisateur existe déjà.",
             isSuccess: false,
         });
     }
     if (password !== confirmedPassword) {
-        return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+        return res.status(StatusCodes.BAD_REQUEST).render("error", {
             message: "Veuillez saisir deux fois le même mot de passe.",
             isSuccess: false,
         });
@@ -52,19 +61,17 @@ export async function register(req, res) {
             "Vérification de l'adresse e-mail",
             `Clique sur ce lien pour valider ton compte : ${link}`
         );
-        return res.status(StatusCodes.CREATED).render("errorpage", {
+        return res.status(StatusCodes.CREATED).render("error", {
             message:
                 "Compte créé ! Un e-mail de vérification a été envoyé. Merci de vérifier ta boîte de réception.",
             isSuccess: true,
         });
     } catch (error) {
         console.error("Erreur lors du register:", error);
-        return res
-            .status(StatusCodes.INTERNAL_SERVER_ERROR)
-            .render("errorpage", {
-                message: "Merci de réessayer ultérieurement.",
-                isSuccess: false,
-            });
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
+            message: "Merci de réessayer ultérieurement.",
+            isSuccess: false,
+        });
     }
 }
 
@@ -77,7 +84,7 @@ export async function login(req, res) {
 
         if (user) {
             if (!user.email_verified) {
-                return res.status(StatusCodes.FORBIDDEN).render("errorpage", {
+                return res.status(StatusCodes.FORBIDDEN).render("error", {
                     message:
                         "Veuillez valider votre adresse e-mail avant de vous connecter.",
                     isSuccess: false,
@@ -97,24 +104,22 @@ export async function login(req, res) {
                 });
                 return res.redirect("/profiles/myprofile/" + user.id_user);
             } else {
-                return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+                return res.status(StatusCodes.BAD_REQUEST).render("error", {
                     message: "Couple login / mot de passe incorrect.",
                     isSuccess: false,
                 });
             }
         } else {
-            return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+            return res.status(StatusCodes.BAD_REQUEST).render("error", {
                 message: "Couple login / mot de passe incorrect.",
                 isSuccess: false,
             });
         }
     } catch (error) {
-        return res
-            .status(StatusCodes.INTERNAL_SERVER_ERROR)
-            .render("errorpage", {
-                message: "Merci de réessayer ultérieurement.",
-                isSuccess: false,
-            });
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
+            message: "Merci de réessayer ultérieurement.",
+            isSuccess: false,
+        });
     }
 }
 
@@ -128,7 +133,7 @@ export async function confirmEmail(req, res) {
     try {
         const user = await User.findOne({ where: { token } });
         if (!user) {
-            return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+            return res.status(StatusCodes.BAD_REQUEST).render("error", {
                 message: "Lien de confirmation invalide ou expiré",
                 isSuccess: false,
             });
@@ -136,16 +141,14 @@ export async function confirmEmail(req, res) {
         user.email_verified = true;
         user.token = null;
         await user.save();
-        return res.render("errorpage", {
+        return res.render("error", {
             message: "Adresse e-mail confirmée avec succès !",
             isSuccess: true,
         });
     } catch (error) {
-        return res
-            .status(StatusCodes.INTERNAL_SERVER_ERROR)
-            .render("errorpage", {
-                message: "Erreur lors de la validation",
-                isSuccess: false,
-            });
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
+            message: "Erreur lors de la validation",
+            isSuccess: false,
+        });
     }
 }
