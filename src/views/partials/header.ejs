@@ -55,7 +55,11 @@
         </button>
         <div id="search-results" class="search-results"></div>
     </form>
-
+    <% if (user) { %>
+        <a href="/recipes/add" class="add-recipe-button" title="Ajouter une recette">
+            <img src="/images/Icons/Plus_icon.svg" alt="Ajouter une recette" />
+        </a>
+    <% } %>
     <style>
         .search-results {
             position: absolute;
