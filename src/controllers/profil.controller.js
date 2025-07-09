@@ -39,6 +39,7 @@ const profileController = {
       if (!user) {
         return res.status(404).send("Profil non trouvée");
       }
+      res.locals.style = 'profile';
       res.render("profile", { user });
     } catch (error) {
       res.status(500).send("Erreur lors de la récupération du profil");

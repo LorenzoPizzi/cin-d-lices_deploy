@@ -23,8 +23,8 @@ const adminController = {
         ]
       });
       
-
-      res.render("adminpage", { users, categories, recipes });
+    res.locals.style = 'admin';
+      res.render("admin", { users, categories, recipes });
     } catch (error) {
       console.error("Erreur dans adminController:", error);
       res.status(500).send("Erreur serveur");

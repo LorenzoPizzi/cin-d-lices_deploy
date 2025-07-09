@@ -1,9 +1,4 @@
-body {
-  margin: 0;
-  background-color: var(--color-popcorn);
-  font-family: "Cinzel", serif;
-  color: var(--color-grey-cinema);
-}
+
 
 .home-container {
   max-width: 1280px;

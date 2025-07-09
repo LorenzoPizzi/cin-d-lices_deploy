@@ -27,7 +27,7 @@ const recipeController = {
             const movies = await Movie.findAll({
                 attributes: ["id_movie", "title"]
             });
-
+            res.locals.style = 'home';
             res.render("home", { recipes, categories, movies });
         } catch (error) {
             console.error("Erreur showAllRecipes :", error);
@@ -58,6 +58,7 @@ const recipeController = {
             const categories = await Category.findAll();
             const movies = await Movie.findAll();
 
+            res.locals.style = 'recipedetail';
             res.render("recipeDetail", { recipe, categories, movies });
         } catch (error) {
             res.status(500).send("Erreur lors de la récupération de la recette");
@@ -65,6 +66,7 @@ const recipeController = {
     },
 
     showAddRecipeForm: (req, res) => {
+        res.locals.style = 'addrecipe';
         res.render("addrecipe", { recipe: {} });
     },
 
@@ -124,6 +126,7 @@ const recipeController = {
         try {
             const recipe = await Recipe.findByPk(req.params.id);
             if (!recipe) return res.status(404).send("Recette non trouvée");
+            res.locals.style = 'addrecipe';
             res.render("addrecipe", { recipe });
         } catch (error) {
             res.status(500).send("Erreur lors de la récupération de la recette");

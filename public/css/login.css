@@ -1,7 +1,3 @@
-body {
-  background-color: var(--color-popcorn);
-  font-family: "Cinzel", serif;
-}
 
 form {
   display: flex;
