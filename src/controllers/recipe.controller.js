@@ -9,12 +9,28 @@ const recipeController = {
                 include: [
                     {
                         association: "movie",
-                        attributes: ["title"],
+                        attributes: ["title", "id_movie"],
+                    },
+                    {
+                        association: "categories",
+                        attributes: ["name", "id_category"],
+                        through: { attributes: [] },
                     },
                 ],
             });
-            res.render("home", { recipes });
+
+            
+            const categories = await Category.findAll({
+                attributes: ["id_category", "name"]
+            });
+
+            const movies = await Movie.findAll({
+                attributes: ["id_movie", "title"]
+            });
+
+            res.render("home", { recipes, categories, movies });
         } catch (error) {
+            console.error("Erreur showAllRecipes :", error);
             res.status(500).send("Erreur lors de la récupération des recettes");
         }
     },
@@ -37,11 +53,14 @@ const recipeController = {
             if (!recipe) {
                 return res.status(404).send("Recette non trouvée");
             }
-            res.render("recipeDetail", { recipe });
+
+            
+            const categories = await Category.findAll();
+            const movies = await Movie.findAll();
+
+            res.render("recipeDetail", { recipe, categories, movies });
         } catch (error) {
-            res.status(500).send(
-                "Erreur lors de la récupération de la recette"
-            );
+            res.status(500).send("Erreur lors de la récupération de la recette");
         }
     },
 
@@ -60,17 +79,14 @@ const recipeController = {
                 category,
             } = req.body;
             const image_url = req.file ? `/uploads/${req.file.filename}` : null;
-            console.log("Données reçues :", req.body);
-            console.log("Fichier reçu :", req.file);
 
             let movieEntry = await Movie.findOne({
                 where: { tmdb_id: tmdbMovieId },
             });
 
             if (!movieEntry) {
-                // S'il n'existe pas, crée-le
                 movieEntry = await Movie.create({
-                    title: movie, // Titre du film
+                    title: movie,
                     tmdb_id: tmdbMovieId,
                 });
             }
@@ -84,17 +100,20 @@ const recipeController = {
                     name: category,
                 });
             }
+
             const newRecipe = await Recipe.create({
                 id_user: 1,
                 name,
-                id_category: categoryEntry.id_category,
                 instructions,
                 ingredients,
                 id_movie: movieEntry.id_movie,
-                image_url: image_url,
+                image_url,
             });
-            console.log(newRecipe);
-            return res.redirect("/");
+
+            
+            await newRecipe.addCategory(categoryEntry);
+
+            res.redirect("/");
         } catch (error) {
             console.error("Erreur lors de l'ajout de la recette :", error);
             res.status(500).send("Erreur lors de l'ajout de la recette");
@@ -104,37 +123,24 @@ const recipeController = {
     showEditRecipeForm: async (req, res) => {
         try {
             const recipe = await Recipe.findByPk(req.params.id);
-            console.log("Recipe :", recipe);
             if (!recipe) return res.status(404).send("Recette non trouvée");
             res.render("addrecipe", { recipe });
         } catch (error) {
-            res.status(500).send(
-                "Erreur lors de la récupération de la recette"
-            );
+            res.status(500).send("Erreur lors de la récupération de la recette");
         }
     },
 
     editRecipe: async (req, res) => {
         try {
-            console.log("ID de la recette reçue :", req.params.id);
-            console.log("Données du formulaire reçues :", req.body);
-
             const { name, instructions, ingredients, image_url } = req.body;
-
             const recipe = await Recipe.findByPk(req.params.id);
-            if (!recipe) {
-                console.log("Recette non trouvée avec cet id");
-                return res.status(404).send("Recette non trouvée");
-            }
+            if (!recipe) return res.status(404).send("Recette non trouvée");
 
             await recipe.update({ name, instructions, ingredients, image_url });
-            console.log("Recette modifiée avec succès");
             res.redirect("/admin");
         } catch (error) {
             console.error("Erreur lors de la modification :", error);
-            res.status(500).send(
-                "Erreur lors de la modification de la recette"
-            );
+            res.status(500).send("Erreur lors de la modification de la recette");
         }
     },
 
@@ -150,43 +156,34 @@ const recipeController = {
     },
 
     searchRecipesAutocomplete: async (req, res) => {
-        console.log('🟢 searchRecipesAutocomplete triggered with q =', req.query.q);
         const q = req.query.q || "";
         if (!q) return res.json({ results: [] });
-      
+
         try {
             const recipes = await Recipe.findAll({
-                attributes: ['id_recipe', 'name'], // seulement id et nom recette
+                attributes: ['id_recipe', 'name'],
                 where: {
                     [Op.or]: [
-                      { name: { [Op.iLike]: `%${q}%` } },
-                      { '$movie.title$': { [Op.iLike]: `%${q}%` } }
+                        { name: { [Op.iLike]: `%${q}%` } },
+                        { '$movie.title$': { [Op.iLike]: `%${q}%` } }
                     ]
-                  },
+                },
                 include: [{
-                  model: Movie,
-                  as: 'movie',
-                  attributes: ['title'], // seulement le titre du film
-                  required: true // pour avoir la recette même sans film lié
+                    model: Movie,
+                    as: 'movie',
+                    attributes: ['title'],
+                    required: true
                 }],
                 limit: 10
-              });
-              
-              
-      
-          res.json({ results: recipes });
+            });
+
+            res.json({ results: recipes });
         } catch (error) {
-          console.error("Erreur recherche recettes :", error);
-          res.status(500).json({ results: [] });
+            console.error("Erreur recherche recettes :", error);
+            res.status(500).json({ results: [] });
         }
-      },
+    },
 
-
-   
-      
-    
-
-    
 };
 
 export default recipeController;
