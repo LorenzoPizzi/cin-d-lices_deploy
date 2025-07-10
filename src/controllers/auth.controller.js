@@ -8,29 +8,32 @@ import { sendEmail } from "../utils/sendMail.js";
 import { Op } from "sequelize";
 
 export async function register(req, res) {
-    //console.log(req.body);
     const { nickname, email, password, confirmedPassword } = req.body;
-    res.locals.style = "error";
     if (!nickname || !email || !password || !confirmedPassword) {
-        return res.status(StatusCodes.BAD_REQUEST).render("error", {
-            message: "Tous les champs sont obligatoires.",
-            isSuccess: false,
+        return res.status(StatusCodes.BAD_REQUEST).render("register", {
+            errorMessage: "Tous les champs sont obligatoires.",
+            style: "register",
+            nickname,
+            email,
         });
     }
 
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-        return res.status(StatusCodes.BAD_REQUEST).render("error", {
-            message: "Format d'email invalide.",
-            isSuccess: false,
+        return res.status(StatusCodes.BAD_REQUEST).render("register", {
+            errorMessage: "Format d'email invalide.",
+            style: "register",
+            nickname,
         });
     }
     const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,}$/;
     if (!passwordRegex.test(password)) {
-        return res.status(StatusCodes.BAD_REQUEST).render("error", {
-            message:
+        return res.status(StatusCodes.BAD_REQUEST).render("register", {
+            errorMessage:
                 "Le mot de passe doit contenir au moins 8 caractères, une lettre et un chiffre.",
-            isSuccess: false,
+            style: "register",
+            nickname,
+            email,
         });
     }
 
@@ -40,15 +43,18 @@ export async function register(req, res) {
         },
     });
     if (user) {
-        return res.status(StatusCodes.BAD_REQUEST).render("error", {
-            message: "Cet utilisateur existe déjà.",
-            isSuccess: false,
+        return res.status(StatusCodes.BAD_REQUEST).render("register", {
+            errorMessage: "Cet utilisateur existe deja",
+            style: "register",
+            email,
         });
     }
     if (password !== confirmedPassword) {
-        return res.status(StatusCodes.BAD_REQUEST).render("error", {
-            message: "Veuillez saisir deux fois le même mot de passe.",
-            isSuccess: false,
+        return res.status(StatusCodes.BAD_REQUEST).render("register", {
+            errorMessage: "Veuillez saisir deux fois le même mot de passe.",
+            style: "register",
+            nickname,
+            email,
         });
     }
     try {
@@ -73,6 +79,7 @@ export async function register(req, res) {
             message:
                 "Compte créé ! Un e-mail de vérification a été envoyé. Merci de vérifier ta boîte de réception.",
             isSuccess: true,
+            style: "error",
         });
     } catch (error) {
         console.error("Erreur lors du register:", error);
@@ -86,7 +93,6 @@ export async function register(req, res) {
 export async function login(req, res) {
     const emailFromRequest = req.body.email;
     const passwordFromRequest = req.body.password;
-    //console.log(emailFromRequest, passwordFromRequest)
     try {
         const user = await User.findOne({ where: { email: emailFromRequest } });
 
@@ -96,6 +102,7 @@ export async function login(req, res) {
                     message:
                         "Veuillez valider votre adresse e-mail avant de vous connecter.",
                     isSuccess: false,
+                    style: "error",
                 });
             }
             if (await scrypt.compare(passwordFromRequest, user.password)) {
@@ -112,21 +119,22 @@ export async function login(req, res) {
                 });
                 return res.redirect("/profiles/myprofile/" + user.id_user);
             } else {
-                return res.status(StatusCodes.BAD_REQUEST).render("error", {
-                    message: "Couple login / mot de passe incorrect.",
-                    isSuccess: false,
+                return res.status(StatusCodes.BAD_REQUEST).render("login", {
+                    errorMessage: "Adresse mail et/ou mot de passe incorrect",
+                    style: "login",
                 });
             }
         } else {
-            return res.status(StatusCodes.BAD_REQUEST).render("error", {
-                message: "Couple login / mot de passe incorrect.",
-                isSuccess: false,
+            return res.status(StatusCodes.BAD_REQUEST).render("login", {
+                errorMessage: "Adresse mail et/ou mot de passe incorrect",
+                style: "login",
             });
         }
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
             message: "Merci de réessayer ultérieurement.",
             isSuccess: false,
+            style: "error",
         });
     }
 }
@@ -144,6 +152,7 @@ export async function confirmEmail(req, res) {
             return res.status(StatusCodes.BAD_REQUEST).render("error", {
                 message: "Lien de confirmation invalide ou expiré",
                 isSuccess: false,
+                style: "error",
             });
         }
         user.email_verified = true;
@@ -152,11 +161,13 @@ export async function confirmEmail(req, res) {
         return res.render("error", {
             message: "Adresse e-mail confirmée avec succès !",
             isSuccess: true,
+            style: "error",
         });
     } catch (error) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
             message: "Erreur lors de la validation",
             isSuccess: false,
+            style: "error",
         });
     }
 }

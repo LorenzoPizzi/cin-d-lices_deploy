@@ -10,13 +10,18 @@ main{
   align-items: center;
 }
 
-
 .register-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   background-color: var(--color-popcorn);
+}
+
+.error-register{
+  color: var(--color-red-cinema);
+  padding-bottom: 1em;
 }
 
 .input-group {

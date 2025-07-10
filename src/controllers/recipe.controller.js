@@ -32,7 +32,9 @@ const recipeController = {
             res.render("home", { recipes, categories, movies });
         } catch (error) {
             console.error("Erreur showAllRecipes :", error);
-            res.status(500).send("Erreur lors de la récupération des recettes");
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+                "Erreur lors de la récupération des recettes"
+            );
         }
     },
 
@@ -61,7 +63,7 @@ const recipeController = {
             res.locals.style = "recipedetail";
             res.render("recipeDetail", { recipe, categories, movies });
         } catch (error) {
-            res.status(500).send(
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
                 "Erreur lors de la récupération de la recette"
             );
         }
@@ -119,7 +121,9 @@ const recipeController = {
             res.redirect("/");
         } catch (error) {
             console.error("Erreur lors de l'ajout de la recette :", error);
-            res.status(500).send("Erreur lors de l'ajout de la recette");
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+                "Erreur lors de l'ajout de la recette"
+            );
         }
     },
 
@@ -130,7 +134,7 @@ const recipeController = {
             res.locals.style = "addrecipe";
             res.render("addrecipe", { recipe });
         } catch (error) {
-            res.status(500).send(
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
                 "Erreur lors de la récupération de la recette"
             );
         }
@@ -140,13 +144,16 @@ const recipeController = {
         try {
             const { name, instructions, ingredients, image_url } = req.body;
             const recipe = await Recipe.findByPk(req.params.id);
-            if (!recipe) return res.status(404).send("Recette non trouvée");
+            if (!recipe)
+                return res
+                    .status(StatusCodes.NOT_FOUND)
+                    .send("Recette non trouvée");
 
             await recipe.update({ name, instructions, ingredients, image_url });
             res.redirect("/admin");
         } catch (error) {
             console.error("Erreur lors de la modification :", error);
-            res.status(500).send(
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
                 "Erreur lors de la modification de la recette"
             );
         }
@@ -212,11 +219,10 @@ const recipeController = {
                 ],
                 limit: 10,
             });
-
             res.json({ results: recipes });
         } catch (error) {
             console.error("Erreur recherche recettes :", error);
-            res.status(500).json({ results: [] });
+            res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ results: [] });
         }
     },
 };

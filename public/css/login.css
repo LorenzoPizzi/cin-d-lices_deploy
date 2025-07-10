@@ -1,4 +1,3 @@
-
 form {
   display: flex;
   flex-direction: column;
@@ -12,12 +11,16 @@ main{
 
 .login-container {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
   background-color: var(--color-popcorn);
 }
-
+.error-login{
+  color: var(--color-red-cinema);
+  padding-bottom: 2em;
+}
 .input-group {
   position: relative;
   margin-bottom: 15px;
