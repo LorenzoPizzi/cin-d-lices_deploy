@@ -21,7 +21,6 @@
 
   .username-register {
     color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -38,7 +37,6 @@
   
   .mail-register {
     color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -55,7 +53,6 @@
   
   .password-register {
     color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -72,7 +69,6 @@
 
   .confirm-password-register {
     color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
@@ -101,7 +97,6 @@
     border: 2px solid var(--color-grey-cinema);
     border-radius: 8px;
     font-size: 16px;
-    font-family: "Cinzel", serif;
     outline: none;
     position: relative;
     z-index: 1;
@@ -121,7 +116,6 @@
     border: 2px solid var(--color-grey-cinema);
     border-radius: 8px;
     font-size: 16px;
-    font-family: "Cinzel", serif;
     outline: none;
     position: relative;
     z-index: 1;
@@ -141,7 +135,6 @@
     border: 2px solid var(--color-grey-cinema);
     border-radius: 8px;
     font-size: 16px;
-    font-family: "Cinzel", serif;
     outline: none;
     position: relative;
     z-index: 1;
