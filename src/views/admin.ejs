@@ -87,23 +87,6 @@
   <%- include('./partials/footer') %>
 </div>
 
-<script>
-  function toggleMenu(menuId, clickedButton) {
-    document.querySelectorAll(".menu-content").forEach((menu) => {
-      menu.style.display = "none";
-    });
-
-    requestAnimationFrame(() => {
-      const selectedMenu = document.getElementById(menuId);
-      selectedMenu.style.display = "block";
-    });
-
-    document.querySelectorAll(".admin-button").forEach((button) => {
-      button.classList.remove("selected");
-    });
-
-    clickedButton.classList.add("selected");
-  }
-</script>
+<script src="/js/script-admin.js"></script>
 
 <script src="/js/category-modal.js"></script>
