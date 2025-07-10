@@ -11,12 +11,13 @@
 .image-upload-box {
   position: relative;
   padding: 20px;
-
+  width: 70%;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   text-align: center;
   margin-right: 160px;
   border: 1px solid var(--color-gold-cinema);
   border-radius: 8px;
+  margin-bottom: 30px;
 }
 
 .recipe-image {
