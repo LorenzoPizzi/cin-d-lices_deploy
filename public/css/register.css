@@ -1,167 +1,184 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 500px;
+}
+
+main{
+  justify-content: center;
+  align-items: center;
+}
+
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  background-color: var(--color-popcorn);
+}
+
+.input-group {
+  position: relative;
+  margin-bottom: 15px;
+}
+
+/* Label Pseudo */
+.username-register {
+  color: var(--color-grey-cinema);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: var(--color-popcorn);
+  border-width: 12px;
+  padding: 0 30px 0 30px;
+  margin: 50px;
+  margin-bottom: -13px;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: auto;
+}
+
+/* Input Pseudo */
+.class-username {
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  background-size: 20px 20px;
+  background-color: var(--color-popcorn);
+  color: var(--color-grey-cinema);
+  padding-left: 50px;
+  padding-right: 16px;
+  height: 55px;
+  width: 500px;
+  border: 2px solid var(--color-grey-cinema);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* Label Email */
+.mail-register {
+  color: var(--color-grey-cinema);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: var(--color-popcorn);
+  border-width: 12px;
+  padding: 0 30px 0 30px;
+  margin: 50px;
+  margin-bottom: -13px;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: auto;
+}
+
+/* Input Email */
+.class-email {
+  background-image: url("");
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  background-size: 20px 20px;
+  background-color: var(--color-popcorn);
+  color: var(--color-grey-cinema);
+  padding-left: 50px;
+  padding-right: 16px;
+  height: 55px;
+  width: 500px;
+  border: 2px solid var(--color-grey-cinema);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+/* Label Mot de passe */
+.password-register,
+.confirm-password-register {
+  color: var(--color-grey-cinema);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  background-color: var(--color-popcorn);
+  border-width: 12px;
+  padding: 0 30px 0 30px;
+  margin: 50px;
+  margin-bottom: -13px;
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  width: auto;
+}
+
+/* Input Mot de passe */
+.class-password,
+.class-confirm-password {
+  background-image: url("/public/images/Icons/Key-logo.svg");
+  background-repeat: no-repeat;
+  background-position: left 16px center;
+  background-size: 20px 20px;
+  background-color: var(--color-popcorn);
+  color: var(--color-grey-cinema);
+  padding-left: 50px;
+  padding-right: 16px;
+  height: 55px;
+  width: 500px;
+  border: 2px solid var(--color-grey-cinema);
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  position: relative;
+  z-index: 1;
+}
+
+.register-button {
+  display: flex;
+  width: 500px;
+  height: 60px;
+  background-color: var(--color-gold-cinema);
+  justify-content: center;
+  align-items: center;
+  color: var(--color-popcorn);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (max-width: 600px) {
+  .label-register {
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  .confirm-password-register,
+  .username-register,
+  .mail-register,
+  .password-register {
+    padding: 0 20px;
+  }
+
+  .class-username,
+  .class-email,
+  .class-password,
+  .class-confirm-password,
+  .register-button {
+    width: 100%;
+    font-size: 16px;
+    height: 50px;
+  }
 
   form {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 500px;
+    width: 100%;
+    padding: 0 30px;
+    box-sizing: border-box;
   }
-  
-  .register-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 80vh;
-    background-color: var(--color-popcorn);
-  }
-  
-  .input-group {
-    position: relative;
-    margin-bottom: 15px;
-  }
-
-  .username-register {
-    color: var(--color-grey-cinema);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 20px 0px 20px;
-    width: 50px;
-    margin: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .mail-register {
-    color: var(--color-grey-cinema);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 20px 0px 20px;
-    width: 50px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .password-register {
-    color: var(--color-grey-cinema);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 20px 0px 20px;
-    width: 100px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .confirm-password-register {
-    color: var(--color-grey-cinema);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 20px 0px 20px;
-    width: 230px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-
-  .class-username {
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 55px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .class-password {
-    background-image: url("/public/images/Icons/Key-logo.svg");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 55px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    position: relative;
-    z-index: 1;
-  }
-  
-  .class-confirm-password {
-    background-image: url("/public/images/Icons/Key-logo.svg");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 55px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
-    outline: none;
-    position: relative;
-    z-index: 1;
-  }
-  .register-button {
-    display: flex;
-    width: 500px;
-    height: 80px;
-    background-color: var(--color-gold-cinema);
-    justify-content: center;
-    align-items: center;
-    color: var(--color-popcorn);
-    border-radius: 5px;
-  }
-
-
-  @media (max-width: 600px) {
-    .mail-title,
-    .password-title {
-      font-size: 16px;
-    } 
-    .class-username,
-    .class-email,
-    .class-password,
-    .class-confirm-password,
-    .register-button {
-      font-size: 16px;
-      height: 50px;
-    }
-  }
+}
