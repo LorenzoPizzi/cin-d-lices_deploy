@@ -27,12 +27,13 @@ form {
   line-height: normal;
   background-color: var(--color-popcorn);
   border-width: 12px;
-  padding: 0 20px 0px 20px;
-  width: 50px;
+  padding: 0 30px 0px 30px;
   margin-left: 50px;
   margin-bottom: -13px;
   position: relative;
   z-index: 2;
+  display: inline-block;
+  width: auto;
 }
 
 .password-title {
@@ -43,12 +44,15 @@ form {
   line-height: normal;
   background-color: var(--color-popcorn);
   border-width: 12px;
-  padding: 0 20px 0px 20px;
+  padding: 0 30px 0px 30px;
   width: 100px;
   margin-left: 50px;
   margin-bottom: -13px;
   position: relative;
   z-index: 2;
+  display: inline-block;
+  width: auto;
+
 }
 .class-email {
   background-image: url("/public/images/Icons/Mail.svg");
@@ -114,9 +118,13 @@ form {
   .password-title {
     font-size: 16px;
     margin-left: 0 !important;
-    padding: 0 10px !important;
     width: auto !important;
     display: inline-block;
+    text-align: center;
+    position: relative;
+    left: 35%;
+    transform: translateX(-50%);
+    padding: 0 20px 0px 20px;
   }
 
   .class-email,
