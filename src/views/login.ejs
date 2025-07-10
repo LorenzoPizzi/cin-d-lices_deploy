@@ -2,13 +2,16 @@
     <%- include('./partials/header') %>
 
     <main>
-        <section>
-            <div class="login-container">
-                <form action="/login" method="POST">
-                    <!-- Champ Email -->
-                    <div class="input-group">
-                        <div class="mail-title">Email</div>
-                        <input type="email" name="email" class="class-email" required />
+    <section>
+    <div class="login-container">
+        <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
+        <div class="error-login"><%= errorMessage %></div>
+        <% } %>
+        <form action="/login" method="POST">
+            <!-- Champ Email -->
+            <div class="input-group">
+                <div class="mail-title">Email</div>
+                <input type="email" name="email" class="class-email" required />
                     </div>
                     <!-- Champ Mot de passe -->
                     <div class="input-group">
