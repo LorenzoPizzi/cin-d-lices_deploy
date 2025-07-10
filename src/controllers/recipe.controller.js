@@ -173,7 +173,7 @@ const recipeController = {
                     await unlink(filePath);
                     console.log(`Image supprimée: ${filePath}`);
                 } catch (error) {
-                    console.warm(
+                    console.warn(
                         "Image non trouvée lors de la suppréssion: ",
                         error.message
                     );

@@ -32,7 +32,7 @@ const profileController = {
           {
             model: Recipe,
             as: "recipes",
-            attributes: ["id_user", "name", "image_url", "id_movie"],
+            attributes: ["id_recipe","id_user", "name", "image_url", "id_movie"],
           },
         ],
       });
