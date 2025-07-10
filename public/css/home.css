@@ -4,9 +4,8 @@
     min-height: 100vh;
   }
   
-  .home-container {
-    flex: 1;
-  }
+  
+
 
 .home-container {
     max-width: 1280px;
@@ -15,6 +14,7 @@
     position: relative; 
     text-align: center;
     margin-top: 50px;
+    flex: 1;
   }
   
   .intro-line {

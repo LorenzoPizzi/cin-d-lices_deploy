@@ -1,27 +1,34 @@
-<%- include('./partials/header') %>
+<div class="page-wrapper">
+    <%- include('./partials/header') %>
 
-<section>
-    <div class="login-container">
-        <form action="/login" method="POST">
-            <!-- Champ Email -->
-            <div class="input-group">
-                <div class="mail-title">Email</div>
-                <input type="email" name="email" class="class-email" required />
+    <main>
+        <section>
+            <div class="login-container">
+                <form action="/login" method="POST">
+                    <!-- Champ Email -->
+                    <div class="input-group">
+                        <div class="mail-title">Email</div>
+                        <input type="email" name="email" class="class-email" required />
+                    </div>
+                    <!-- Champ Mot de passe -->
+                    <div class="input-group">
+                        <div class="password-title">Mot de passe</div>
+                        <input
+                            type="password"
+                            name="password"
+                            class="class-password"
+                            required
+                        />
+                    </div>
+                    <!-- Boutton valider -->
+                    <button type="submit" class="login-button">Se connecter</button>
+                </form>
             </div>
-            <!-- Champ Mot de passe -->
-            <div class="input-group">
-                <div class="password-title">Mot de passe</div>
-                <input
-                    type="password"
-                    name="password"
-                    class="class-password"
-                    required
-                />
-            </div>
-            <!-- Boutton valider -->
-            <button type="submit" class="login-button">Se connecter</button>
-        </form>
-    </div>
-</section>
+        </section>
+
+    </main>
 
 <%- include('./partials/footer') %>
+
+</div>
+
