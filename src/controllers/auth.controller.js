@@ -25,6 +25,14 @@ export async function register(req, res) {
             isSuccess: false,
         });
     }
+    const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,}$/;
+    if (!passwordRegex.test(password)) {
+        return res.status(StatusCodes.BAD_REQUEST).render("error", {
+            message:
+                "Le mot de passe doit contenir au moins 8 caractères, une lettre et un chiffre.",
+            isSuccess: false,
+        });
+    }
 
     let user = await User.findOne({
         where: {
