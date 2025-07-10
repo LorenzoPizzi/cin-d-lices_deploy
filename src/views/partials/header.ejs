@@ -50,9 +50,8 @@
             class="search-input"
             placeholder="Je cherche une recette, un film…"
         />
-        <button type="submit" class="search-btn">
-            <img src="/images/Search.svg" alt="Rechercher" />
-        </button>
+            <img class="search-btn" src="/images/Search.svg" alt="Rechercher" />
+        
         <div id="search-results" class="search-results"></div>
     </form>
     <% if (user) { %>
@@ -60,27 +59,7 @@
             <img src="/images/Icons/Plus_icon.svg" alt="Ajouter une recette" />
         </a>
     <% } %>
-    <style>
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: white;
-            width: 100%;
-            max-height: 200px;
-            overflow-y: auto;
-            z-index: 1000;
-        }
 
-        .search-results div {
-            padding: 10px;
-            cursor: pointer;
-        }
-
-        .search-results div:hover {
-            background-color: #eee;
-        }
-    </style>
 
     <div class="profile-circle">
         <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />

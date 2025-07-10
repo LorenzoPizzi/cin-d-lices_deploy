@@ -178,6 +178,27 @@
   width: 24px;
   height: 24px;
 }
+
+.search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: white;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 1000;
+  border-radius: 5px;
+}
+
+.search-results div {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.search-results div:hover {
+  background-color: #eee;
+}
 @media (max-width: 1000px) {
   .logo-img.logo-desktop {
     height: 80px;
