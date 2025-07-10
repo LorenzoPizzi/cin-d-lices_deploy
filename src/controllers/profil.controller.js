@@ -24,7 +24,6 @@ const profileController = {
                 attributes: [
                     "id_user",
                     "nickname",
-
                     "email",
                     "picture_url",
                     "description",
@@ -34,12 +33,7 @@ const profileController = {
                     {
                         model: Recipe,
                         as: "recipes",
-                        attributes: [
-                            "id_user",
-                            "name",
-                            "image_url",
-                            "id_movie",
-                        ],
+                        attributes: ["id_recipe","id_user", "name", "image_url", "id_movie"],
                     },
                 ],
             });
