@@ -1,11 +1,4 @@
-/* Structure globale pour sticky footer */
 
-.page-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
 
 .main-content {
   flex: 1 0 auto;
@@ -88,6 +81,7 @@
   width: 100%;
   align-items: center;
   justify-content: center;
+  gap: 15px;
 }
 
 .modify-button {
@@ -160,6 +154,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 15px;
 }
 
 /* Catégories */
@@ -188,6 +183,7 @@
   cursor: pointer;
   background-color: var(--color-gold-cinema);
 }
+ 
 
 /* Responsive */
 @media screen and (max-width: 600px) {
@@ -219,10 +215,15 @@
     width: 100%;
     justify-content: flex-start;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
   }
 
   .categories-card {
     flex-direction: column;
+    gap: 10px;
+  }
+  .modify-button{
+    margin-top: 5px;
+    margin-bottom: 10px;
   }
 }
