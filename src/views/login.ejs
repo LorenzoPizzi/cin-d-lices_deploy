@@ -2,6 +2,9 @@
 
 <section>
     <div class="login-container">
+        <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
+        <div class="error-login"><%= errorMessage %></div>
+        <% } %>
         <form action="/login" method="POST">
             <!-- Champ Email -->
             <div class="input-group">

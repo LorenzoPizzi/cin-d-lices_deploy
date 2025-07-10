@@ -2,6 +2,9 @@
 
 <section>
     <div class="register-container">
+        <% if (typeof errorMessage !== "undefined" && errorMessage) { %>
+        <div class="error-register"><%= errorMessage %></div>
+        <% } %>
         <form action="/register" method="POST">
             <div class="input-group">
                 <div class="username-register">Pseudo</div>
@@ -9,13 +12,20 @@
                     type="text"
                     name="nickname"
                     class="class-username"
+                    value="<%= typeof nickname !== 'undefined' ? nickname : '' %>"
                     required
                 />
             </div>
 
             <div class="input-group">
                 <div class="mail-register">Email</div>
-                <input type="email" name="email" class="class-email" required />
+                <input
+                    type="email"
+                    name="email"
+                    class="class-email"
+                    value="<%= typeof email !== 'undefined' ? email : '' %>"
+                    required
+                />
             </div>
 
             <div class="input-group">
@@ -24,7 +34,7 @@
                     type="password"
                     name="password"
                     class="class-password"
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,}$"
                     title="Au moins 8 caractères, avec au moins une lettre et un chiffre"
                     required
                 />
@@ -38,7 +48,7 @@
                     type="password"
                     name="confirmedPassword"
                     class="class-confirm-password"
-                    pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                    pattern="^(?=.*[A-Za-z])(?=.*\d)[^\s]{8,}$"
                     title="Au moins 8 caractères, avec au moins une lettre et un chiffre"
                     required
                 />
