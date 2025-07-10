@@ -64,13 +64,13 @@
                 </p>
                 <div class="actions">
                   <a
-                    href="/recettes/edit/<%= recipe.id %>"
-                    class="edit-btn"
-                    title="Modifier"
+                  href="/recipes/<%= recipe.id_recipe %>/edit"
+                  class="edit-btn"
+                  title="Modifier"
                   >
                     <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
                   </a>
-                  <form action="/recettes/delete/<%= recipe.id %>" method="POST">
+                  <form action="/recipes/<%= recipe.id_recipe %>/delete" method="POST" onsubmit="return confirm('Confirmer la suppression ?')">
                     <button type="submit" class="delete-btn" title="Supprimer">
                       <img src="/images/Icons/delete.svg" alt="Supprimer" class="icon" />
                     </button>
