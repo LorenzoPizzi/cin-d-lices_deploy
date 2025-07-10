@@ -1,68 +1,76 @@
-<%- include('./partials/header') %>
+<div class="page-wrapper">
+  <%- include('./partials/header') %>
 
-<main class="home-container">
+  <main class="home-container">
 
-  
-  <div class="filter-container">
-    <button class="filter-btn" aria-label="Filtrer les recettes" id="filterBtn" type="button">
-      <img src="/images/Icons/filters.svg" alt="Filtrer" />
-    </button>
-    <div class="filter-dropdown" id="filterDropdown">
-      <div class="filter-section">
-        <label for="category-filter">Catégorie :</label>
-        <select id="category-filter">
-          <option value="">Toutes les catégories</option>
-          <% categories.forEach(category => { %>
-            <option value="<%= category.id_category %>"><%= category.name %></option>
-          <% }); %>
-        </select>
+    <section class="intro">
+      <p class="intro-line">Bienvenue sur le site des passionnés du cinéma et de la cuisine&nbsp;!</p>
+      <p class="intro-line">Vous trouverez des recettes de cuisine inspirées de vos films préférés.</p>
+      <p class="intro-note">-Attention, ces recettes peuvent contenir des spoilers… et beaucoup de fromage-</p>
+    </section>
+
+    <div class="heading-filter-wrapper">
+      <h2 class="section-heading">
+        <span class="dash">-</span> À L’AFFICHE <span class="dash">-</span>
+      </h2>
+      <div class="filter-container" style="position: relative;">
+        <button class="filter-btn" aria-label="Filtrer les recettes" id="filterBtn" type="button">
+          <img src="/images/Icons/filters.svg" alt="Filtrer" />
+        </button>
+        <div class="filter-dropdown" id="filterDropdown">
+          <div class="filter-section">
+            <label for="category-filter">Catégorie :</label>
+            <select id="category-filter">
+              <option value="">Toutes les catégories</option>
+              <% categories.forEach(category => { %>
+                <option value="<%= category.id_category %>"><%= category.name %></option>
+              <% }); %>
+            </select>
+          </div>
+          <div class="filter-section">
+            <label for="movie-filter">Film :</label>
+            <select id="movie-filter">
+              <option value="">Tous les films</option>
+              <% movies.forEach(movie => { %>
+                <option value="<%= movie.title %>"><%= movie.title %></option>
+              <% }); %>
+            </select>
+          </div>
+          <button id="applyFilter" type="button">Appliquer</button>
+        </div>
       </div>
-      <div class="filter-section">
-        <label for="movie-filter">Film :</label>
-        <select id="movie-filter">
-          <option value="">Tous les films</option>
-          <% movies.forEach(movie => { %>
-            <option value="<%= movie.title %>"><%= movie.title %></option>
-          <% }); %>
-        </select>
-      </div>
-      <button id="applyFilter" type="button">Appliquer</button>
     </div>
-  </div>
 
-  <section class="intro">
-    <p class="intro-line">Bienvenue sur le site des passionnés du cinéma et de la cuisine&nbsp;!</p>
-    <p class="intro-line">Vous trouverez des recettes de cuisine inspirées de vos films préférés.</p>
-    <p class="intro-note">-Attention, ces recettes peuvent contenir des spoilers… et beaucoup de fromage-</p>
-  </section>
+    <section class="cards" id="cards"></section>
 
-  <h2 class="section-heading"><span class="dash">-</span> À L’AFFICHE <span class="dash">-</span></h2>
+    <p id="noResult" style="display:none; text-align:center; margin-top:20px; font-weight:bold; color:#900;">
+      Aucune recette trouvée pour ce filtre.
+    </p>
 
-  <section class="cards" id="cards"></section>
+    <div class="cta">
+      <a href="#" class="btn-load-all" id="showMoreBtn">AFFICHER PLUS</a>
+    </div>
 
-  <p id="noResult" style="display:none; text-align:center; margin-top:20px; font-weight:bold; color:#900;">
-    Aucune recette trouvée pour ce filtre.
-  </p>
+    <div class="pagination" id="pagination" style="display: none;"></div>
 
-  <div class="cta">
-    <a href="#" class="btn-load-all" id="showMoreBtn">AFFICHER PLUS</a>
-  </div>
-  <div class="pagination" id="pagination" style="display: none;"></div>
+    <template id="recipe-template">
+      <a class="card-link" href="">
+        <article class="card">
+          <div class="card-image">
+            <img src="" alt="" />
+          </div>
+          <div class="card-body">
+            <h3 class="recipe-title"></h3>
+            <p class="film-title"><em></em></p>
+          </div>
+        </article>
+      </a>
+    </template>
 
-  <template id="recipe-template">
-    <a class="card-link" href="">
-      <article class="card">
-        <div class="card-image">
-          <img src="" alt="" />
-        </div>
-        <div class="card-body">
-          <h3 class="recipe-title"></h3>
-          <p class="film-title"><em></em></p>
-        </div>
-      </article>
-    </a>
-  </template>
-</main>
+  </main>
+
+  <%- include('./partials/footer') %>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', () => {
@@ -76,7 +84,6 @@
     const categoryFilter = document.getElementById('category-filter');
     const movieFilter = document.getElementById('movie-filter');
     const noResult = document.getElementById('noResult');
-
     const allRecipes = <%- JSON.stringify(recipes) %>;
     const recipesPerPage = 6;
 
@@ -84,13 +91,11 @@
       const clone = template.content.cloneNode(true);
       const link = clone.querySelector('.card-link');
       const img = clone.querySelector('img');
-
       link.href = `/recipes/${recipe.id_recipe}`;
       img.src = recipe.image_url || '/images/default-recipe.png';
       img.alt = `Photo de ${recipe.name}`;
       clone.querySelector('.recipe-title').textContent = recipe.name;
       clone.querySelector('.film-title em').textContent = recipe.movie?.title || "Aucun film associé";
-
       return clone;
     }
 
@@ -122,6 +127,7 @@
       }
     }
 
+    
     displayRecipes(allRecipes.slice(0, 3));
 
     showMoreBtn.addEventListener('click', e => {
@@ -131,15 +137,16 @@
       setupPagination(allRecipes);
     });
 
+    
     filterBtn.addEventListener('click', (event) => {
       event.stopPropagation();
-      filterDropdown.style.display = filterDropdown.style.display === 'block' ? 'none' : 'block';
+      filterDropdown.classList.toggle('active');
     });
 
+    
     applyFilterBtn.addEventListener('click', () => {
       const selectedCategoryId = categoryFilter.value;
       const selectedMovieTitle = movieFilter.value;
-
       let filteredRecipes = allRecipes;
 
       if (selectedCategoryId) {
@@ -149,20 +156,21 @@
       }
 
       if (selectedMovieTitle) {
-        filteredRecipes = filteredRecipes.filter(recipe => recipe.movie?.title === selectedMovieTitle);
+        filteredRecipes = filteredRecipes.filter(recipe =>
+          recipe.movie?.title === selectedMovieTitle
+        );
       }
 
       displayRecipes(filteredRecipes.slice(0, recipesPerPage));
       setupPagination(filteredRecipes);
-      filterDropdown.style.display = 'none';
+      filterDropdown.classList.remove('active');
     });
 
+    
     document.addEventListener('click', (event) => {
       if (!filterBtn.contains(event.target) && !filterDropdown.contains(event.target)) {
-        filterDropdown.style.display = 'none';
+        filterDropdown.classList.remove('active');
       }
     });
   });
 </script>
-
-<%- include('./partials/footer') %>
