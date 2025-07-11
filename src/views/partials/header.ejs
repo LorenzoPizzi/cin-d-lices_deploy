@@ -7,18 +7,8 @@
 
     <link rel="stylesheet" href="/css/header.css" />
     <link rel="stylesheet" href="/css/footer.css" />
-    <link rel="stylesheet" href="/css/layout.css">
-    <!-- <link rel="stylesheet" href="/css/addrecipe.css" />
-    <link rel="stylesheet" href="/css/adminpage.css" />
-    <link rel="stylesheet" href="/css/login.css" />
-    <link rel="stylesheet" href="/css/contact.css" />
-    <link rel="stylesheet" href="/css/profile.css" />
-    <link rel="stylesheet" href="/css/legal.css" />
-    <link rel="stylesheet" href="/css/register.css" />
-    <link rel="stylesheet" href="/css/errorpage.css" />
-    <link rel="stylesheet" href="/css/recipedetail.css" /> -->
-
-    <link rel="stylesheet" href="/css/<%= style %>.css">
+    <link rel="stylesheet" href="/css/layout.css" />
+    <link rel="stylesheet" href="/css/<%= style %>.css" />
 </head>
 
 <header class="site-header">
@@ -50,24 +40,27 @@
             class="search-input"
             placeholder="Je cherche une recette, un film…"
         />
-            <img class="search-btn" src="/images/Search.svg" alt="Rechercher" />
-        
+        <img class="search-btn" src="/images/Search.svg" alt="Rechercher" />
+
         <div id="search-results" class="search-results"></div>
     </form>
     <% if (user) { %>
-        <a href="/recipes/add" class="add-recipe-button" title="Ajouter une recette">
-            <img src="/images/Icons/Plus_icon.svg" alt="Ajouter une recette" />
-        </a>
+    <a
+        href="/recipes/add"
+        class="add-recipe-button"
+        title="Ajouter une recette"
+    >
+        <img src="/images/Icons/Plus_icon.svg" alt="Ajouter une recette" />
+    </a>
     <% } %>
-
-
+    <!--  -->
+    <% if (user) { %>
     <div class="profile-circle">
-        <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />
+        <img src="<%= user.picture_url %>" alt="Profil" id="user-img" />
     </div>
 
     <div class="overlay" id="modal-overlay">
         <div class="modal-box">
-            <% if (user) { %>
             <div id="user-buttons">
                 <button
                     class="profile-button-modal"
@@ -82,7 +75,15 @@
                     Déconnexion
                 </button>
             </div>
-            <% } else { %>
+        </div>
+    </div>
+    <% } else { %>
+    <div class="profile-circle">
+        <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />
+    </div>
+
+    <div class="overlay" id="modal-overlay">
+        <div class="modal-box">
             <div id="guest-buttons">
                 <button
                     class="sign-in-button-modal"
@@ -97,9 +98,9 @@
                     Inscription
                 </button>
             </div>
-            <% } %>
         </div>
     </div>
+    <% } %>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
