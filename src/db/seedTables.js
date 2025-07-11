@@ -8,6 +8,8 @@ import {
     RecipeCategory,
 } from "../models/index.js";
 import { scrypt } from "../utils/scrypt.js";
+import { getMediaById } from "../services/tmdbService.js";
+import { name } from "ejs";
 
 async function seedTables() {
     try {
@@ -44,19 +46,39 @@ async function seedTables() {
             picture_url: null,
             description: "J'aime la cuisine et les films",
             token: null,
-            email_verified: false,
+            email_verified: true,
             id_role: userRole.id_role,
         });
 
         // 3. Création des films
+        const inceptionData = await getMediaById(27205);
+        console.log("Données TMDB récupérées pour Inception :", inceptionData);
+
+        const harryData = await getMediaById(671);
+        console.log("Données TMDB récupérées pour Harry :", harryData);
+
+        const lotrData = await getMediaById(120);
+
+
+        const harry = await Movie.create({
+            title: harryData.title,
+            tmdb_id: harryData.id,
+            type: harryData.type,
+        })
+
         const inception = await Movie.create({
-            title: "Inception",
-            tmdb_id: 27205,
+            title: inceptionData.title,
+            tmdb_id: inceptionData.id,
+            type: inceptionData.type,
         });
+
         const lotr = await Movie.create({
-            title: "Le Seigneur des Anneaux",
-            tmdb_id: 120,
+            title: lotrData.title,
+            tmdb_id: lotrData.id,
+            type: lotrData.type,
         });
+
+        
 
         // 4. Création des catégories
         const entree = await Category.create({ name: "Entrée" });
@@ -82,6 +104,16 @@ async function seedTables() {
             id_user: jane.id_user,
             id_movie: lotr.id_movie,
         });
+
+        const biereaubeurre = await Recipe.create({
+            name:"Bière au beurre",
+            instructions: "Faire dondre du beurre à feu très doux",
+            ingredients: "Beurre, eau, levure, sucre roux, clou de girofle",
+            image_url:
+                "https://images.unsplash.com/photo-1692188840299-a9f2f00d4ecc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmklQzMlQThyZSUyMGF1JTIwYmV1cnJlfGVufDB8fDB8fHww",
+            id_user: jane.id_user,
+            id_movie: harry.id_movie,
+        })
 
         // 6. Table de liaison RECIPE_CATEGORY
         await RecipeCategory.create({

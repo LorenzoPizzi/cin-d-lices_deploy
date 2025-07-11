@@ -11,7 +11,7 @@ const recipeController = {
                 include: [
                     {
                         association: "movie",
-                        attributes: ["title", "id_movie"],
+                        attributes: ["title", "id_movie", "type" ],
                     },
                     {
                         association: "categories",
@@ -65,6 +65,18 @@ const recipeController = {
 
     addRecipe: async (req, res) => {
         try {
+
+            console.log('req.body:', req.body); 
+            const {
+                name,
+                instructions,
+                ingredients,
+                movie,
+                tmdbMovieId,
+                category,
+                tmdbType
+            } = req.body;
+
             const userId = req.id_user;
     
             if (!userId) {
@@ -72,11 +84,18 @@ const recipeController = {
             }
     
             const { name, instructions, ingredients, movie, tmdbMovieId, category } = req.body;
+
             const image_url = req.file ? `/uploads/${req.file.filename}` : null;
     
             let movieEntry = await Movie.findOne({ where: { tmdb_id: tmdbMovieId } });
             if (!movieEntry) {
-                movieEntry = await Movie.create({ title: movie, tmdb_id: tmdbMovieId });
+
+                movieEntry = await Movie.create({
+                    title: movie,
+                    tmdb_id: tmdbMovieId,
+                    type: tmdbType,
+                });
+
             }
     
             let categoryEntry = await Category.findOne({ where: { name: category } });
