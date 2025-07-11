@@ -8,9 +8,10 @@ export function authenticate(req, res, next) {
     const token = req.cookies.token;
 
     if (!token) {
-        return res.status(StatusCodes.UNAUTHORIZED).render("errorpage", {
+        return res.status(StatusCodes.UNAUTHORIZED).render("error", {
             message: "Accès refusé : veuillez vous connecter.",
             isSuccess: false,
+            style: "error",
         });
     }
 
@@ -20,9 +21,10 @@ export function authenticate(req, res, next) {
 
         next();
     } catch (error) {
-        return res.status(StatusCodes.UNAUTHORIZED).render("errorpage", {
+        return res.status(StatusCodes.UNAUTHORIZED).render("error", {
             message: "Session expirée ou invalide, merci de vous reconnecter.",
             isSuccess: false,
+            style: "error",
         });
     }
 }
@@ -35,9 +37,10 @@ export function checkRole(requiredRole) {
             });
 
             if (!user) {
-                return res.status(StatusCodes.FORBIDDEN).render("errorpage", {
+                return res.status(StatusCodes.FORBIDDEN).render("error", {
                     message: "Accès refusé. Utilisateur non trouvé.",
                     isSuccess: false,
+                    style: "error",
                 });
             }
 
@@ -66,10 +69,11 @@ export function checkRole(requiredRole) {
                     } else {
                         return res
                             .status(StatusCodes.FORBIDDEN)
-                            .render("errorpage", {
+                            .render("error", {
                                 message:
                                     "Vous ne pouvez modifier que vos propres recettes.",
                                 isSuccess: false,
+                                style: "error",
                             });
                     }
                 }
@@ -85,28 +89,32 @@ export function checkRole(requiredRole) {
                     } else {
                         return res
                             .status(StatusCodes.FORBIDDEN)
-                            .render("errorpage", {
+                            .render("error", {
                                 message:
                                     "Vous ne pouvez supprimer que vos propres recettes.",
                                 isSuccess: false,
+                                style: "error",
                             });
                     }
                 }
-                return res.status(StatusCodes.FORBIDDEN).render("errorpage", {
+                return res.status(StatusCodes.FORBIDDEN).render("error", {
                     message: "Accès refusé. Action non autorisée.",
                     isSuccess: false,
+                    style: "error",
                 });
             }
-            return res.status(StatusCodes.FORBIDDEN).render("errorpage", {
+            return res.status(StatusCodes.FORBIDDEN).render("error", {
                 message: "Accès refusé. Vous n'avez pas le rôle requis.",
                 isSuccess: false,
+                style: "error",
             });
         } catch (error) {
             return res
                 .status(StatusCodes.INTERNAL_SERVER_ERROR)
-                .render("errorpage", {
+                .render("error", {
                     message: "Erreur interne.",
                     isSuccess: false,
+                    style: "error",
                 });
         }
     };

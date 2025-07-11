@@ -6,8 +6,4 @@ const router = Router();
 
 router.get("/", adminController.showAdminPage);
 
-
-
-
 export default router;
-
