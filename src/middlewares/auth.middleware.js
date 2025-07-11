@@ -12,6 +12,7 @@ export function authenticate(req, res, next) {
             message: "Accès refusé : veuillez vous connecter.",
             isSuccess: false,
             style: "error",
+
         });
     }
 
@@ -25,6 +26,7 @@ export function authenticate(req, res, next) {
             message: "Session expirée ou invalide, merci de vous reconnecter.",
             isSuccess: false,
             style: "error",
+
         });
     }
 }
@@ -41,6 +43,7 @@ export function checkRole(requiredRole) {
                     message: "Accès refusé. Utilisateur non trouvé.",
                     isSuccess: false,
                     style: "error",
+
                 });
             }
 
@@ -94,6 +97,7 @@ export function checkRole(requiredRole) {
                                     "Vous ne pouvez supprimer que vos propres recettes.",
                                 isSuccess: false,
                                 style: "error",
+
                             });
                     }
                 }
@@ -107,6 +111,7 @@ export function checkRole(requiredRole) {
                 message: "Accès refusé. Vous n'avez pas le rôle requis.",
                 isSuccess: false,
                 style: "error",
+
             });
         } catch (error) {
             return res
@@ -115,6 +120,7 @@ export function checkRole(requiredRole) {
                     message: "Erreur interne.",
                     isSuccess: false,
                     style: "error",
+
                 });
         }
     };
