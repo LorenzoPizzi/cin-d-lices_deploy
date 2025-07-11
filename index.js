@@ -33,6 +33,14 @@ app.use(attachUser);
 
 app.use(router);
 
+app.use((req, res) => {
+    res.status(404).render("error", {
+        message: "Page non trouvée.",
+        isSuccess: false,
+        style: "error",
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

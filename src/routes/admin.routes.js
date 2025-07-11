@@ -7,8 +7,4 @@ const router = Router();
 
 router.get("/", authenticate ,checkRole("admin") ,adminController.showAdminPage);
 
-
-
-
 export default router;
-

@@ -11,7 +11,8 @@ export function authenticate(req, res, next) {
         return res.status(StatusCodes.UNAUTHORIZED).render("error", {
             message: "Accès refusé : veuillez vous connecter.",
             isSuccess: false,
-            style : "error"
+            style: "error",
+
         });
     }
 
@@ -24,7 +25,8 @@ export function authenticate(req, res, next) {
         return res.status(StatusCodes.UNAUTHORIZED).render("error", {
             message: "Session expirée ou invalide, merci de vous reconnecter.",
             isSuccess: false,
-            style : "error"
+            style: "error",
+
         });
     }
 }
@@ -40,7 +42,8 @@ export function checkRole(requiredRole) {
                 return res.status(StatusCodes.FORBIDDEN).render("error", {
                     message: "Accès refusé. Utilisateur non trouvé.",
                     isSuccess: false,
-                    style : "error"
+                    style: "error",
+
                 });
             }
 
@@ -73,7 +76,7 @@ export function checkRole(requiredRole) {
                                 message:
                                     "Vous ne pouvez modifier que vos propres recettes.",
                                 isSuccess: false,
-                                style : "error"
+                                style: "error",
                             });
                     }
                 }
@@ -93,20 +96,22 @@ export function checkRole(requiredRole) {
                                 message:
                                     "Vous ne pouvez supprimer que vos propres recettes.",
                                 isSuccess: false,
-                                style : "error"
+                                style: "error",
+
                             });
                     }
                 }
                 return res.status(StatusCodes.FORBIDDEN).render("error", {
                     message: "Accès refusé. Action non autorisée.",
                     isSuccess: false,
-                    style : "error"
+                    style: "error",
                 });
             }
             return res.status(StatusCodes.FORBIDDEN).render("error", {
                 message: "Accès refusé. Vous n'avez pas le rôle requis.",
                 isSuccess: false,
-                style : "error"
+                style: "error",
+
             });
         } catch (error) {
             return res
@@ -114,7 +119,8 @@ export function checkRole(requiredRole) {
                 .render("error", {
                     message: "Erreur interne.",
                     isSuccess: false,
-                    style : "error"
+                    style: "error",
+
                 });
         }
     };
