@@ -44,7 +44,7 @@ async function seedTables() {
             picture_url: null,
             description: "J'aime la cuisine et les films",
             token: null,
-            email_verified: false,
+            email_verified: true,
             id_role: userRole.id_role,
         });
 

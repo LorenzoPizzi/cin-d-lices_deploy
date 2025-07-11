@@ -112,6 +112,30 @@ const profileController = {
       });
     }
   },
+
+  uploadPicture: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const file = req.file;
+  
+      if (!file) {
+        return res.status(StatusCodes.BAD_REQUEST).send("Aucun fichier reçu");
+      }
+  
+      const profile = await User.findByPk(id);
+      if (!profile) {
+        return res.status(StatusCodes.NOT_FOUND).send("Utilisateur non trouvé");
+      }
+  
+      profile.picture_url = `/uploads/${file.filename}`;
+      await profile.save();
+  
+      res.redirect(`/profiles/myprofile/${id}`);
+    } catch (error) {
+      console.error("Erreur uploadPicture:", error);
+      res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Erreur lors de l'envoi de l'image");
+    }
+  }
 };
 
 export default profileController;

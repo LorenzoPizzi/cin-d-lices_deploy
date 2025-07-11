@@ -1,6 +1,6 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
-    <!DOCTYPE html>
-    <html lang="fr>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" />
@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="/css/layout.css" />
     <link rel="stylesheet" href="/css/<%= style %>.css" />
 </head>
+<body>
 <header class="site-header">
     <a href="/recipes" class="logo-block">
         <img src="/images/Logo_mini.svg" alt="Logo Ciné Délices" class="logo-img logo-desktop" />
@@ -28,7 +29,12 @@
     <% } %>
     <% if (user) { %>
     <div class="profile-circle">
-        <img src="<%= user.picture_url %>" alt="Profil" id="user-img" data-user-id="<%= user.id_user %>" />
+        <img 
+          src="<%= user.picture_url ? user.picture_url : '/images/default-profile.png' %>" 
+          alt="Profil" 
+          id="user-img" 
+          data-user-id="<%= user.id_user %>" 
+        />
     </div>
     <div class="overlay" id="modal-overlay">
         <div class="modal-box">
@@ -61,7 +67,6 @@
     <% } %>
     <script>
         function goToProfile(userId) {
-            
             window.location.href = `/profiles/myprofile/${userId}`;
         }
 
@@ -129,3 +134,5 @@
         });
     </script>
 </header>
+</body>
+</html>

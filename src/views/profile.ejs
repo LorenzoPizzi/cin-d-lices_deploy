@@ -8,11 +8,30 @@
 
         <section class="profile">
           <div class="profile-card">
-            <img
-              src="<%= user.picture_url %>"
-              alt="Photo de profil"
-              class="profile-img"
-            />
+            <form
+              id="upload-form"
+              action="/profiles/<%= user.id_user %>/upload-picture"
+              method="POST"
+              enctype="multipart/form-data"
+            >
+              <div id="drag-drop-area" class="drop-area">
+                <img
+                  id="image-preview"
+                  src="<%= user.picture_url ? user.picture_url : '/images/default-profile.png' %>"
+                  alt="Photo de profil"
+                  class="profile-img"
+                />
+                <input type="file" id="file-input" name="picture" hidden />
+                <button
+                  type="button"
+                  id="select-file-btn"
+                  class="edit-btn"
+                  title="Changer la photo"
+                >
+                  <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
+                </button>
+              </div>
+            </form>
 
             <h2 class="name">
               <span class="editable" data-field="nickname"><strong><%= user.nickname %></strong></span>
@@ -87,6 +106,6 @@
 
     <%- include('./partials/footer') %>
   </div>
-
+  <script src="/js/profile-photo-upload.js" defer></script>
   <script src="/js/profile-inline-edit.js" defer></script>
 </body>
