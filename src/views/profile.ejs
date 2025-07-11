@@ -55,18 +55,18 @@
             <% user.recipes.forEach(recipe => { %>
               <div class="recipe-card">
                 <img
-                  src="<%= recipe.image_url || '/images/tartelette.png' %>"
+                  src="<%= recipe.image_url %>"
                   alt="<%= recipe.name %>"
                 />
                 <h3><%= recipe.name %></h3>
                 <p class="film">
-                  <em><%= recipe.movie || 'Le Fabuleux Destin d’Amélie Poulain' %></em>
+                  <em><%= recipe.movie ? recipe.movie.title : '' %></em>
                 </p>
                 <div class="actions">
                   <a
-                  href="/recipes/<%= recipe.id_recipe %>/edit"
-                  class="edit-btn"
-                  title="Modifier"
+                    href="/recipes/<%= recipe.id_recipe %>/edit"
+                    class="edit-btn"
+                    title="Modifier"
                   >
                     <img src="/images/Icons/edit.svg" alt="Modifier" class="icon" />
                   </a>
