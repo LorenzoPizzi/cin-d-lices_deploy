@@ -1,137 +1,184 @@
-<div class="page-wrapper" >
+<div class="page-wrapper">
     <%- include('./partials/header') %>
-<main>
-    <div class="container">
+  
+    <main>
+      <div class="container">
         <form
-            class="recipe-form"
-            method="POST"
-            enctype="multipart/form-data"
-            action="<%= recipe && recipe.id_recipe ? '/recipes/' + recipe.id_recipe + '/edit' : '/recipes/add' %>"
+          class="recipe-form"
+          method="POST"
+          enctype="multipart/form-data"
+          action="<%= recipe && recipe.id_recipe ? '/recipes/' + recipe.id_recipe + '/edit' : '/recipes/add' %>"
         >
-            <div class="image-upload-box">
-                <% if (recipe && recipe.image_url) { %>
-                <img
-                    id="image-preview"
-                    src="<%= recipe.image_url %>"
-                    alt="Recipe Image"
-                    class="recipe-image"
-                />
-                <% } else { %>
-                <img
-                    id="image-preview"
-                    style="display: none"
-                    alt="Recipe Image"
-                    class="recipe-image"
-                />
-                <% } %> <% if (recipe) { %>
-                <!-- <div class="delete-recipe-floating">
-                    <form action="/recettes/<%= recipe.id %>/delete" method="POST">
-                        <button type="submit" class="delete-btn" title="Supprimer">
-                            <img
-                                src="/images/Icons/delete.svg"
-                                alt="Supprimer"
-                                class="icon"
-                            />
-                        </button>
-                    </form>
-                </div> -->
-                <% } %>
-                <div class="drag-drop-area" id="drag-drop-area">
-                    <p>Drag and drop (or) choose files</p>
-                    <input
-                        type="file"
-                        name="image"
-                        id="file-input"
-                        accept="image/*"
-                        style="display: none"
-                    />
-                    <button
-                        type="button"
-                        class="upload-button"
-                        id="select-file-btn"
-                    >
-                        <img src="/images/Icons/Upload.svg" alt="Upload" />
-                    </button>
-                </div>
+          <div class="image-upload-box" style="position: relative">
+            <% if (recipe && recipe.image_url) { %>
+              <img
+                id="image-preview"
+                src="<%= recipe.image_url %>"
+                alt="Recipe Image"
+                class="recipe-image"
+                style="display: block"
+              />
+            <% } else { %>
+              <img
+                id="image-preview"
+                style="display: none"
+                alt="Recipe Image"
+                class="recipe-image"
+              />
+            <% } %>
+  
+            <button
+              type="button"
+              id="delete-image-btn"
+              class="delete-image-button"
+              title="Supprimer l’image"
+              style="display: none"
+            >
+              <img src="/images/Icons/delete.svg" alt="Supprimer l’image" class="icon" />
+            </button>
+  
+            <div class="drag-drop-area" id="drag-drop-area">
+              <p>Drag and drop (ou) choisis un fichier</p>
+              <input
+                type="file"
+                name="image"
+                id="file-input"
+                accept="image/*"
+                style="display: none"
+              />
+              <button
+                type="button"
+                class="upload-button"
+                id="select-file-btn"
+              >
+                <img src="/images/Icons/Upload.svg" alt="Upload" />
+              </button>
             </div>
-            <div class="form-group">
-                <label for="recipe-title">Titre Recette</label>
-                <input
-                    type="text"
-                    id="recipe-title"
-                    name="name"
-                    placeholder="Valeur"
-                    value="<%= recipe ? recipe.name : '' %>"
-                />
-            </div>
-            <div class="form-group">
-                <label for="recipe-category">Catégorie</label>
-                <input
-                    type="text"
-                    id="recipe-category"
-                    name="category"
-                    placeholder="Valeur"
-                    value="<%= recipe && recipe.categories ? recipe.categories.name : '' %>"
-                />
-            </div>
-            <div class="form-group">
-                <label for="recipe-film">Film</label>
-                <input
-                    type="text"
-                    id="recipe-film"
-                    name="movie"
-                    placeholder="Chercher un film..."
-                    autocomplete="off"
-                    value="<%= recipe && recipe.movie ? recipe.movie.title : '' %>"
-                />
-                <ul
-                    id="film-suggestions"
-                    style="overflow: auto; padding: 0; margin-top: 5px"
-                ></ul>
-                <input
-                    type="hidden"
-                    name="tmdbMovieId"
-                    id="tmdbMovieId"
-                    value="<%= recipe ? recipe.id_movie : '' %>"
-                />
-                <input
-                    type="hidden"
-                    name="tmdbType"
-                    id="tmdbType"
-                    value="<%= recipe ? 'movie' : '' %>"
-                />
-            </div>
-    
-            <div class="form-group">
-                <label for="recipe-instructions">Instructions</label>
-                <textarea
-                    id="recipe-instructions"
-                    name="instructions"
-                    placeholder="Valeur"
-                >
-    <%= recipe ? recipe.instructions : '' %></textarea
-                >
-            </div>
-            <div class="form-group">
-                <label for="recipe-ingredients">Ingrédients</label>
-                <textarea
-                    id="recipe-ingredients"
-                    name="ingredients"
-                    placeholder="Valeur"
-                >
-    <%= recipe ? recipe.ingredients : '' %></textarea
-                >
-            </div>
-            <button type="submit" class="publish-button">Publier</button>
+          </div>
+  
+          <div class="form-group">
+            <label for="recipe-title">Titre Recette</label>
+            <input
+              type="text"
+              id="recipe-title"
+              name="name"
+              placeholder="Valeur"
+              value="<%= recipe ? recipe.name : '' %>"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="recipe-category">Catégorie</label>
+            <input
+              type="text"
+              id="recipe-category"
+              name="category"
+              placeholder="Valeur"
+              value="<%= recipe && recipe.categories ? recipe.categories.name : '' %>"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="recipe-film">Film</label>
+            <input
+              type="text"
+              id="recipe-film"
+              name="movie"
+              placeholder="Chercher un film..."
+              autocomplete="off"
+              value="<%= recipe && recipe.movie ? recipe.movie.title : '' %>"
+            />
+            <ul
+              id="film-suggestions"
+              style="overflow: auto; padding: 0; margin-top: 5px"
+            ></ul>
+            <input
+              type="hidden"
+              name="tmdbMovieId"
+              id="tmdbMovieId"
+              value="<%= recipe ? recipe.id_movie : '' %>"
+            />
+            <input
+              type="hidden"
+              name="tmdbType"
+              id="tmdbType"
+              value="<%= recipe ? 'movie' : '' %>"
+            />
+          </div>
+  
+          <div class="form-group">
+            <label for="recipe-instructions">Instructions</label>
+            <textarea
+              id="recipe-instructions"
+              name="instructions"
+              placeholder="Valeur"
+            ><%= recipe ? recipe.instructions : '' %></textarea>
+          </div>
+  
+          <div class="form-group">
+            <label for="recipe-ingredients">Ingrédients</label>
+            <textarea
+              id="recipe-ingredients"
+              name="ingredients"
+              placeholder="Valeur"
+            ><%= recipe ? recipe.ingredients : '' %></textarea>
+          </div>
+  
+          <button type="submit" class="publish-button">Publier</button>
         </form>
-    </div>
-
-</main>
-
-
-<script src="/js/script.js"></script>
-<script src="/js/upload-image.js"></script>
-
-<%- include('./partials/footer') %>
-</div>
-
+      </div>
+    </main>
+  
+    <script src="/js/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const fileInput = document.getElementById("file-input");
+        const imagePreview = document.getElementById("image-preview");
+        const deleteBtn = document.getElementById("delete-image-btn");
+        const selectFileBtn = document.getElementById("select-file-btn");
+  
+        const showDeleteBtn = () => {
+          deleteBtn.style.display = "block";
+        };
+  
+        const hideDeleteBtn = () => {
+          deleteBtn.style.display = "none";
+        };
+  
+        const updatePreview = (file) => {
+          const reader = new FileReader();
+          reader.onload = (e) => {
+            imagePreview.src = e.target.result;
+            imagePreview.style.display = "block";
+            showDeleteBtn();
+          };
+          reader.readAsDataURL(file);
+        };
+  
+        fileInput.addEventListener("change", (e) => {
+          if (e.target.files[0]) {
+            updatePreview(e.target.files[0]);
+          }
+        });
+  
+        deleteBtn.addEventListener("click", () => {
+          fileInput.value = "";
+          imagePreview.src = "";
+          imagePreview.style.display = "none";
+          hideDeleteBtn();
+        });
+  
+        selectFileBtn.addEventListener("click", () => {
+          fileInput.click();
+        });
+  
+        // Affiche le bouton si une image existe déjà
+        if (imagePreview.src && imagePreview.style.display !== "none") {
+          showDeleteBtn();
+        }
+      });
+    </script>
+  
+    <%- include('./partials/footer') %>
+  </div>
+  
