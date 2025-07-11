@@ -20,13 +20,18 @@ const router = Router();
 
 router.get("/", recipeController.showAllRecipes);
 
+
 router.get("/add", authenticate, recipeController.showAddRecipeForm);
+
+
 
 router.get("/:id", recipeController.showRecipeDetail);
 
 router.post(
     "/add",
+
      authenticate, upload.single("image"),
+
     recipeController.addRecipe
 );
 
@@ -38,7 +43,9 @@ router.post(
     recipeController.editRecipe
 );
 
+
 router.post("/:id/delete", authenticate, recipeController.deleteRecipe);
+
 
 
 
