@@ -2,9 +2,8 @@
   <%- include('./partials/header') %>
 
   <main class="home-container">
-
     <section class="intro">
-      <p class="intro-line">Bienvenue sur le site des passionnés du cinéma et de la cuisine&nbsp;!</p>
+      <p class="intro-line">Bienvenue sur le site des passionnés du cinéma et de la cuisine !</p>
       <p class="intro-line">Vous trouverez des recettes de cuisine inspirées de vos films préférés.</p>
       <p class="intro-note">-Attention, ces recettes peuvent contenir des spoilers… et beaucoup de fromage-</p>
     </section>
@@ -27,14 +26,11 @@
               <% }); %>
             </select>
           </div>
-          <div class="filter-section">
+          <div class="filter-section" style="position: relative">
             <label for="movie-filter">Film :</label>
-            <select id="movie-filter">
-              <option value="">Tous les films</option>
-              <% movies.forEach(movie => { %>
-                <option value="<%= movie.title %>"><%= movie.title %></option>
-              <% }); %>
-            </select>
+            <input type="text" id="movie-filter" placeholder="Rechercher un film..." autocomplete="off" />
+            <ul id="film-suggestions" class="autocomplete-suggestions"></ul>
+            <input type="hidden" id="movie-id-hidden" />
           </div>
           <button id="applyFilter" type="button">Appliquer</button>
         </div>
@@ -66,13 +62,14 @@
         </article>
       </a>
     </template>
-
   </main>
+
   <script>
-    const allRecipes = <%- JSON.stringify(recipes) %>
+    
+    const allRecipes = <%- JSON.stringify(recipes) %>;
+    const allMovies = <%- JSON.stringify(movies) %>;
   </script>
   <script src="/js/script-home.js"></script>
+  <script src="/js/film-autocomplete.js"></script>
   <%- include('./partials/footer') %>
 </div>
-
-
