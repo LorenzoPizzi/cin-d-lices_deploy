@@ -20,25 +20,25 @@ const router = Router();
 
 router.get("/", recipeController.showAllRecipes);
 
-router.get("/add", /* authenticate*/ recipeController.showAddRecipeForm);
+router.get("/add", authenticate, recipeController.showAddRecipeForm);
 
 router.get("/:id", recipeController.showRecipeDetail);
 
 router.post(
     "/add",
-    /* authenticate,*/ upload.single("image"),
+     authenticate, upload.single("image"),
     recipeController.addRecipe
 );
 
-router.get("/:id/edit", /* authenticate,*/ recipeController.showEditRecipeForm);
+router.get("/:id/edit",  authenticate, recipeController.showEditRecipeForm);
 
 router.post(
     "/:id/edit",
-    /*authenticate,*/ upload.single("image"),
+    authenticate, upload.single("image"),
     recipeController.editRecipe
 );
 
-router.post("/:id/delete", /*authenticate,*/ recipeController.deleteRecipe);
+router.post("/:id/delete", authenticate, recipeController.deleteRecipe);
 
 
 

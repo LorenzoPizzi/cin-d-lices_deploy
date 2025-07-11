@@ -23,3 +23,7 @@
   color: var(--color-grey-cinema);
   font-size: 1.1rem;
 }
+
+.btn {
+  text-decoration: none;
+}

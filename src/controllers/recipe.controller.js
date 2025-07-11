@@ -11,7 +11,7 @@ const recipeController = {
                 include: [
                     {
                         association: "movie",
-                        attributes: ["title", "id_movie"],
+                        attributes: ["title", "id_movie", "type" ],
                     },
                     {
                         association: "categories",
@@ -76,6 +76,7 @@ const recipeController = {
 
     addRecipe: async (req, res) => {
         try {
+            console.log('req.body:', req.body); 
             const {
                 name,
                 instructions,
@@ -83,6 +84,7 @@ const recipeController = {
                 movie,
                 tmdbMovieId,
                 category,
+                tmdbType
             } = req.body;
             const image_url = req.file ? `/uploads/${req.file.filename}` : null;
 
@@ -94,6 +96,7 @@ const recipeController = {
                 movieEntry = await Movie.create({
                     title: movie,
                     tmdb_id: tmdbMovieId,
+                    type: tmdbType,
                 });
             }
 

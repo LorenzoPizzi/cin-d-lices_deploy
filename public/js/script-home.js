@@ -19,13 +19,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const clone = template.content.cloneNode(true);
       const link = clone.querySelector('.card-link');
       const img = clone.querySelector('img');
+      const filmTitle = clone.querySelector('.film-title em');
+      const filmType = clone.querySelector('.film-title-type'); // ta classe
+    
       link.href = `/recipes/${recipe.id_recipe}`;
       img.src = recipe.image_url || '/images/default-recipe.png';
       img.alt = `Photo de ${recipe.name}`;
       clone.querySelector('.recipe-title').textContent = recipe.name;
-      clone.querySelector('.film-title em').textContent = recipe.movie?.title || "Aucun film associé";
+    
+      if (recipe.movie) {
+        filmTitle.textContent = recipe.movie.title;
+    
+        // Vérifie si le titre contient déjà le type (insensible à la casse)
+        const typeInTitle = recipe.movie.title.toLowerCase().includes(recipe.movie.type.toLowerCase());
+    
+        filmType.textContent = typeInTitle ? '' : ` (${recipe.movie.type})`;
+      } else {
+        filmTitle.textContent = "Aucun film associé";
+        filmType.textContent = "";
+      }
+    
       return clone;
     }
+    
+    
   
     function displayRecipes(recipes) {
       cardsSection.innerHTML = '';
