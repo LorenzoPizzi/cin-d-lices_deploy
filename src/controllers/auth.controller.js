@@ -86,6 +86,7 @@ export async function register(req, res) {
         return res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
             message: "Merci de réessayer ultérieurement.",
             isSuccess: false,
+            style: "error",
         });
     }
 }
