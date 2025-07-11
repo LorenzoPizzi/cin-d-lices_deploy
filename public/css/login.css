@@ -62,9 +62,6 @@ main{
 
 }
 .class-email {
-  background-image: url("/public/images/Icons/Mail.svg");
-  background-repeat: no-repeat;
-  background-position: left 16px center;
   background-size: 20px 20px;
   background-color: var(--color-popcorn);
   color: #2e2e2e;
@@ -81,9 +78,6 @@ main{
 }
 
 .class-password {
-  background-image: url("/public/images/Icons/Key-logo.svg");
-  background-repeat: no-repeat;
-  background-position: left 16px center;
   background-size: 20px 20px;
   background-color: var(--color-popcorn);
   color: #2e2e2e;

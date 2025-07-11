@@ -47,8 +47,8 @@
 
 .filter-btn img {
   display: block;
-  width: 20px;
-  height: 20px;
+  width: 26px;
+  height: 26px;
   margin: 0;
   padding: 0;
   border: none;
@@ -137,8 +137,8 @@
 .filter-container {
   position: absolute;
   top: 50%;
+  right: 0; 
   transform: translateY(-50%);
-  left: 95%;
   padding-bottom: 35px;
 }
 

@@ -1,222 +1,121 @@
-
-  
-  form {
+form {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
     width: 500px;
   }
-  
-  .contact-container {
+
+  section{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: var(--color-popcorn);
-  }
-  
-  .input-group {
-    position: relative;
-    margin-bottom: 15px;
+    gap: 15px;
+    margin-top: 25px;
   }
 
-  .name-title {
-    color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 20px 0px 20px;
-    width: 50px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
+  .contact-instruction{
+    margin-bottom: 25px;
   }
-  
-  .firstname-title {
-    color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 27px 0px 17px;
-    width: 50px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .subject-title {
-    color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    background-color: var(--color-popcorn);
-    border-width: 12px;
-    padding: 0 20px 0px 20px;
-    width: 50px;
-    margin-left: 50px;
-    margin-bottom: -13px;
-    position: relative;
-    z-index: 2;
-  }
-  
+
+  .name-title,
+  .email-title,
   .message-title {
-    color: var(--color-grey-cinema);
-    font-family: "Cinzel", serif;
+    color: #2e2e2e;
     font-size: 18px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     background-color: var(--color-popcorn);
     border-width: 12px;
-    padding: 0 40px 0px 17px;
-    width: 50px;
+    padding: 0 30px 0px 30px;
     margin-left: 50px;
     margin-bottom: -13px;
     position: relative;
     z-index: 2;
+    display: inline-block;
+    width: auto;
   }
 
-  .class-name {
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
+  .class-name,
+  .class-email,
+  .class-message
+  {
     background-size: 20px 20px;
     background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
+    color: #2e2e2e;
+    padding-left: 50px;
     padding-right: 16px;
     height: 55px;
     width: 500px;
     border: 2px solid var(--color-grey-cinema);
     border-radius: 8px;
     font-size: 16px;
-    font-family: "Cinzel", serif;
     outline: none;
     position: relative;
     z-index: 1;
   }
 
-  .class-firstname {
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 55px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: "Cinzel", serif;
-    outline: none;
-    position: relative;
-    z-index: 1;
-  }
-
-  .class-subject {
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 55px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: "Cinzel", serif;
-    outline: none;
-    position: relative;
-    z-index: 1;
-  }
-
-  .class-message {
-    background-image: url("");
-    background-repeat: no-repeat;
-    background-position: left 16px center;
-    background-size: 20px 20px;
-    background-color: var(--color-popcorn);
-    color: var(--color-grey-cinema);
-    padding-left: 50px; 
-    padding-right: 16px;
-    height: 100px;
-    width: 500px;
-    border: 2px solid var(--color-grey-cinema);
-    border-radius: 8px;
-    font-size: 16px;
-    font-family: "Cinzel", serif;
-    outline: none;
-    position: relative;
-    z-index: 1;
-  }
+  .class-message{
+   
+    height: 120px;
   
-  .contact-instruction {
-    font-size: 0.9rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-  .send-button {
-    display: flex;
-    font-size: medium;
-    width: 500px;
-    height: 80px;
-    background-color: var(--color-gold-cinema);
-    justify-content: center;
-    align-items: center;
-    color: var(--color-popcorn);
-    border-radius: 5px;
+
   }
+
+  .send-button{
+  display: flex;
+  width: 500px;
+  height: 50px;
+  background-color: var(--color-gold-cinema);
+  justify-content: center;
+  align-items: center;
+  color: var(--color-popcorn);
+  border-radius: 5px;
+}
+.send-button:hover {
+  background-color: #ffc700;
+}
+  
+
   
 
 @media (max-width: 600px) {
 form {
-    width: 90%;
-    margin: 0 auto;
-    gap: 20px;
-    }
-        
-.contact-container {
-    height: auto;
-    padding: 20px 0;
-    align-items: flex-start; 
+    width: 100%;
+    gap: 30px;
+    box-sizing: border-box;
     }
 
-.name-title,
-.firstname-title,
-.subject-title,
-.message-title {
-    font-size: 16px;
-}
-       
-.class-name,
-.class-firstname,
-.class-subject,
-.class-message,
-.send-button {
-    height: 50px; 
-    font-size: 15px; 
-}
-      
-.class-message {
-    height: 120px; 
+    .name-title,
+    .email-title,
+    .message-title{
+      font-size: 16px;
+
+    }
+
+    
+
+    .class-email,
+    .class-message,
+    .class-name{
+      width: 100%;
+      font-size: 15px;
+      height: 50px;
+    }
+
+    .send-button{
+      width: 100%;
+      font-size: 15px;
+      height: 50px;
+    }
+
+    .class-message{
+      height: 100px;
+    }
+    
+    .contact-instruction{
+      padding: 0 10px;
+      text-align: center;
     }
 }
