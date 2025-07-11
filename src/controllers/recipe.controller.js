@@ -83,7 +83,6 @@ const recipeController = {
                 return res.status(StatusCodes.UNAUTHORIZED).send("Utilisateur non connecté");
             }
     
-            const { name, instructions, ingredients, movie, tmdbMovieId, category } = req.body;
 
             const image_url = req.file ? `/uploads/${req.file.filename}` : null;
     

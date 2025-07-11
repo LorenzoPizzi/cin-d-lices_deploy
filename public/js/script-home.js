@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
     }
-  }
+  
 
   function applyFilters() {
     const selectedCategoryId = categoryFilter.value;
@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ------------------------------------
   // 🎬 Autocomplétion film (locale, sans fetch)
   // ------------------------------------
-  movieFilterInput.addEventListener('input', () => {
+  movieFilter.addEventListener('input', () => {
     const query = movieFilterInput.value.trim().toLowerCase();
     movieSuggestions.innerHTML = '';
 
@@ -137,3 +137,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
   displayRecipes(allRecipes.slice(0, 3));
 });
+
