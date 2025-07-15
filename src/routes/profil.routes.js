@@ -1,4 +1,5 @@
 import express from "express";
+
 import {
     deleteProfile,
     getAllProfiles,
@@ -6,6 +7,7 @@ import {
     updateProfile,
     uploadPicture,
 } from "../controllers/profil.controller.js";
+import upload from "../middlewares/multer.middleware.js";
 import { confirmEmail } from "../controllers/auth.controller.js";
 import { authenticate } from "../middlewares/auth.middleware.js";
 

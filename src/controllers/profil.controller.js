@@ -118,6 +118,7 @@ export async function deleteProfile(req, res) {
             message: "Erreur serveur",
         });
     }
+
 }
 
 export async function uploadPicture(req, res) {
@@ -130,6 +131,7 @@ export async function uploadPicture(req, res) {
                 .status(StatusCodes.BAD_REQUEST)
                 .send("Aucun fichier reçu");
         }
+
 
         const profile = await User.findByPk(id);
         if (!profile) {
