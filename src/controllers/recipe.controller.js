@@ -101,12 +101,12 @@ export async function addRecipe(req, res) {
                 type: tmdbType,
             });
         }
-
+        const categoryLower = category.trim().toLowerCase();
         let categoryEntry = await Category.findOne({
-            where: { name: category },
+            where: { name: categoryLower },
         });
         if (!categoryEntry) {
-            categoryEntry = await Category.create({ name: category });
+            categoryEntry = await Category.create({ name: categoryLower });
         }
 
         const newRecipe = await Recipe.create({

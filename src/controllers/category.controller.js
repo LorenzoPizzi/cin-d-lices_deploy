@@ -13,32 +13,6 @@ export async function getAllCategories(req, res) {
     }
 }
 
-export async function createCategory(req, res) {
-    try {
-        let { name } = req.body;
-        if (!name)
-            return res
-                .status(StatusCodes.BAD_REQUEST)
-                .json({ message: "Le nom est requis" });
-        nameLower = name.toLowerCase();
-        const nameExisting = await Category.findOne({
-            where: { name: nameLower },
-        });
-        if (nameExisting) {
-            return res
-                .status(StatusCodes.CONFLICT)
-                .json({ message: "Catégorie déjà existante" });
-        }
-        const newCategory = await Category.create({ nameLower });
-        res.status(StatusCodes.CREATED).json(newCategory);
-    } catch (error) {
-        console.error("Erreur createCategory:", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
-            message: "Erreur serveur",
-        });
-    }
-}
-
 export async function updateCategory(req, res) {
     try {
         const { id } = req.params;
