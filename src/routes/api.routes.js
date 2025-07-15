@@ -1,6 +1,5 @@
 import { Router } from "express";
-import recipeController from "../controllers/recipe.controller.js";
-import { checkRole } from "../middlewares/auth.middleware.js";
+import { searchRecipesAutocomplete } from "../controllers/recipe.controller.js";
 
 const router = Router();
 
@@ -61,7 +60,7 @@ router.get("/search", async (req, res) => {
     }
 });
 
-router.get("/search-recipes", recipeController.searchRecipesAutocomplete);
+router.get("/search-recipes", searchRecipesAutocomplete);
 console.log("✅ API routes loaded");
 // On exporte ce routeur pour pouvoir l’utiliser dans l’application principale Express
 export default router;

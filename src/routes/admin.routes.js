@@ -1,10 +1,9 @@
 import { Router } from "express";
-import adminController from "../controllers/admin.controller.js";
-import profileController from "../controllers/profil.controller.js ";
+import { showAdminPage } from "../controllers/admin.controller.js";
 import { authenticate, checkRole } from "../middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", authenticate ,checkRole("admin") ,adminController.showAdminPage);
+router.get("/", authenticate, checkRole("admin"), showAdminPage);
 
 export default router;
