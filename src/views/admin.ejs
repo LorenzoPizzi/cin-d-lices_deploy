@@ -50,20 +50,23 @@
               </form>
               <button class="modify-button" data-id="<%= category.id_category %>" data-name="<%= category.name %>">Modifier</button>
 
-              <div id="categoryModal" class="modal" style="display:none;">
-                <div class="modal-content">
-                  <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
-                  <h2>Modifier la catégorie</h2>
-                  <form id="categoryForm">
-                    <input type="text" id="categoryName" name="categoryName" required />
-                    <button type="submit">Enregistrer</button>
-                  </form>
-                </div>
-              </div>
+        
             </div>
           <% }) %>
         </div>
+        <div id="categoryModal" class="modal" style="display:none; margin-top: 2rem;">
+          <div class="modal-content">
+            <span id="closeModal" style="float:right; cursor:pointer;">&times;</span>
+            <h2>Modifier la catégorie</h2>
+            <form id="categoryForm">
+              <input type="text" id="categoryName" name="categoryName" required />
+              <button class="save-btn" type="submit">Enregistrer</button>
+            </form>
+          </div>
+        </div>
       </div>
+
+   
 
       <div id="recipes" class="menu-content" style="display: none">
         <div class="recipes">

@@ -13,7 +13,7 @@
   background-color: var(--color-popcorn);
   margin: 0;
   padding: 20px;
-  flex: 1; /* permet à admin-container de prendre la place disponible */
+  flex: 1;
 }
 
 .admin-header {
@@ -164,7 +164,6 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 30px;
-  padding: 20px;
 }
 
 .categories-card {
@@ -185,7 +184,44 @@
   cursor: pointer;
   background-color: var(--color-gold-cinema);
 }
- 
+
+/*CSS modal*/
+
+.modal {
+
+  position: static; 
+  z-index: auto;
+  background: #f8f8f8;
+  padding: 1rem;
+  border: 1px solid var(--color-gold-cinema);
+  width: 100%;
+  border-radius: 8px;
+  background-color: rgb(245, 238, 228);
+  width: 50%;
+  overflow-x: auto;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: rgb(245, 238, 228);
+  overflow-x: auto;
+}
+
+.save-btn{
+  text-decoration: none;
+  background-color: var(--color-red-cinema);
+  color: white;
+  border: none;
+  font: inherit;
+  padding: 5px;
+  border-radius: 5px;
+  margin-left: 15px;
+}
+
+
+
 
 /* Responsive */
 @media screen and (max-width: 600px) {
@@ -227,5 +263,30 @@
   .modify-button{
     margin-top: 5px;
     margin-bottom: 10px;
+  }
+
+  .modal {
+    width: 90%;
+    padding: 1rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    overflow-x: auto;
+  }
+
+  .modal-content {
+    padding: 1rem;
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .modal * {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .save-btn{
+    margin-top: 10px;
   }
 }

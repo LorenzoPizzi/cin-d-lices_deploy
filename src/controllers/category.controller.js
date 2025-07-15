@@ -16,7 +16,7 @@ export async function getAllCategories(req, res) {
 export async function updateCategory(req, res) {
     try {
         const { id } = req.params;
-        const { name } = req.body;
+        let { name } = req.body;
         const category = await Category.findByPk(id);
         if (!category)
             return res
