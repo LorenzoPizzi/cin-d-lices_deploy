@@ -2,7 +2,7 @@
   padding: 20px;
   color: var(--color-grey-cinema);
   width: 60%;
-  
+
 }
 
 main{
@@ -27,7 +27,6 @@ main{
 }
 
 .recipe-title {
-  color: var(--color-gold-cinema);
   font-size: 1.8rem;
   margin: 0;
 }
@@ -49,6 +48,13 @@ main{
 
 .recipe-meta h2,
 .recipe-section h2 {
+  margin-top: 0;
+  color: var(--color-red-cinema);
+}
+
+
+.recipe-meta h3,
+.recipe-section h3 {
   margin-top: 0;
   color: var(--color-red-cinema);
 }

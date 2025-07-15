@@ -35,7 +35,6 @@
   width: 100%;
   margin-left: auto;
   margin-right: 2rem;
-  margin-top: 1.25rem;
   background-color: white;
   border-radius: 999px;
 }
@@ -50,6 +49,7 @@
   background-color: transparent;
   box-sizing: border-box;
   margin-left: 2rem;
+  height: 42px;
 }
 
 .search-btn {
@@ -59,7 +59,6 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  cursor: pointer;
   padding: 0;
   display: flex;
   align-items: center;
@@ -204,9 +203,7 @@
   cursor: pointer;
 }
 
-.search-results div:hover {
-  background-color: #eee;
-}
+
 @media (max-width: 1000px) {
   .logo-img.logo-desktop {
     height: 80px;
