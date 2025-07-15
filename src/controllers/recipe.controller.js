@@ -1,4 +1,4 @@
-import { Category, Recipe, Movie } from "../models/index.js";
+import { Category, Recipe, Movie, User } from "../models/index.js";
 import { StatusCodes } from "http-status-codes";
 import { Op } from "sequelize";
 import { unlink } from "fs/promises";
@@ -53,9 +53,10 @@ export async function showRecipeDetail(req, res) {
 
         const categories = await Category.findAll();
         const movies = await Movie.findAll();
+        const user = await User.findByPk(recipe.id_user);
 
         res.locals.style = "recipedetail";
-        res.render("recipeDetail", { recipe, categories, movies });
+        res.render("recipeDetail", { recipe, categories, movies, user });
     } catch (error) {
         res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
             "Erreur lors de la récupération de la recette"
