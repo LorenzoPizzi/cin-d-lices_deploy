@@ -129,10 +129,10 @@ async function seedTables() {
 
 
         // 4. Création des catégories
-        const entree = await Category.create({ name: "Entrée" });
-        const plat = await Category.create({ name: "Plat" });
-        const dessert = await Category.create({ name: "Dessert" });
-        const boisson = await Category.create({ name: "Boisson"});
+        const entree = await Category.create({ name: "entrée" });
+        const plat = await Category.create({ name: "plat" });
+        const dessert = await Category.create({ name: "dessert" });
+        const boisson = await Category.create({ name: "boisson"});
 
         // 5. Création des recettes
         const burgerBigKahuna = await Recipe.create({
@@ -149,7 +149,7 @@ async function seedTables() {
             instructions: "Préparez la pâte. Coupez le beurre ramolli en dés. Dans un saladier, versez la farine et creusez-y un puits. Versez-y le beurre, le sel et le bicarbonate. Pétrissez grossièrement, puis incorporez progressivement l’eau. Pétrissez à nouveau jusqu’à former une boule. Couvrez le saladier et laissez reposer 30 min au frais. Préchauffez le four th.6 (180°C). Épluchez et épépinez les pommes, puis coupez-les en morceaux. Arrosez-les du jus du citron jaune dans un saladier, ajoutez la cannelle et mélangez pour enrober les pommes. Sortez la pâte et étalez-la sur un plan de travail fariné, assez pour y découper deux disques plus grands que votre moule. Placez le premier au fond du moule. Tapissez-le de morceaux de pommes. Recouvrez avec le second disque de pâte. Scellez les bords en pinçant avec les doigts, puis découpez des incisions en étoile sur le dessus, afin que la vapeur s’échappe. Saupoudrez de cassonade et enfournez pour 55 min. ",
             ingredients: "300g de farine, 190g de beurre mou, 5 cl d'eau, 0,5g cuillère à café, 1 pincée de sel",
             image_url:
-                "https://images.ctfassets.net/1p5r6txvlxu4/3LRdtPLHOQQJite2lWU6MR/534ee0cc061d9e04239136a7fc39d7f0/pizza_maison.jpg?w=768&h=541&fm=webp&q=100&fit=fill&f=center",
+                "https://plus.unsplash.com/premium_photo-1694336203192-c9e7f2891b95?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YXBwbGUlMjBwaWV8ZW58MHx8MHx8fDA%3D",
             id_user: jane.id_user,
             id_movie: americanpie.id_movie,
         });
