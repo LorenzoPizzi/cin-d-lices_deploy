@@ -218,6 +218,38 @@
   border: 1px solid #ccc; 
   max-width: 100%;
 }
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
+
+.pagination button {
+  background-color: var(--color-popcorn);
+  border: 1px solid var(--color-gold-cinema);
+  color: #333;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #ddd;
+}
+
+.pagination button.active {
+  background-color: #007BFF;
+  color: white;
+  border: 1px solid #007BFF;
+}
+
 @media (max-width: 600px) {
 
   .section-heading {
