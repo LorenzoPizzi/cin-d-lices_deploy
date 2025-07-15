@@ -241,7 +241,7 @@
 }
 
 .pagination button:hover {
-  background-color: #ddd;
+  background-color: var(--color-gold-cinema);
 }
 
 .pagination button.active {
@@ -249,7 +249,17 @@
   color: white;
   border: 1px solid #007BFF;
 }
-
+.autocomplete-suggestions {
+  list-style-type: none;
+  
+}
+button.active-page {
+  background-color: var(--color-gold-cinema);
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+}
 @media (max-width: 600px) {
 
   .section-heading {
