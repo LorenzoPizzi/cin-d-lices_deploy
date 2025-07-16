@@ -62,7 +62,7 @@
             type="text"
             id="recipe-title"
             name="name"
-            placeholder="Valeur"
+            placeholder="Titre"
             value="<%= recipe ? recipe.name : '' %>"
           />
         </div>
@@ -73,7 +73,7 @@
             type="text"
             id="recipe-category"
             name="category"
-            placeholder="Valeur"
+            placeholder="Ex: Plat, dessert, entrée, boisson..."
             value="<%= recipe && recipe.categories ? recipe.categories.name : '' %>"
           />
         </div>
@@ -111,7 +111,7 @@
           <textarea
             id="recipe-instructions"
             name="instructions"
-            placeholder="Valeur"
+            placeholder="Comment faire ?"
           ><%= recipe ? recipe.instructions : '' %></textarea>
         </div>
 
@@ -120,7 +120,7 @@
           <textarea
             id="recipe-ingredients"
             name="ingredients"
-            placeholder="Valeur"
+            placeholder="Et avec quoi?"
           ><%= recipe ? recipe.ingredients : '' %></textarea>
         </div>
 
