@@ -125,6 +125,7 @@ async function seedTables() {
         // 5. Création des recettes
         const burgerBigKahuna = await Recipe.create({
             name: "Le Big Kahuna Burger",
+
             instructions: `Préchauffez le four à 160°C. \nPlacez les rondelles d’ananas dans une assiette creuse avec la sauce Teriyaki. \nLaissez mariner 20 minutes. \nPendant ce temps, lavez les tomates et découpez 8 tranches régulières, pas trop fines. \nOuvrez les pains à burger. \nPlacez-les sur une plaque de four, mie vers le haut, et déposez une tranche de fromage sur chaque moitié inférieure. \nEnfournez pour 10 minutes. \nDans une poêle antiadhésive, faites cuire les steaks et les rondelles d’ananas à feu moyen, avec la sauce, selon vos goûts. \nSortez les pains à burger, le fromage doit être fondu. \nDéposez sur le fromage un steak, une tranche d’ananas, une ou deux tranches de tomate selon leur taille puis une feuille de salade. \nRefermez le burger. S’il n’est pas assez chaud, enfournez 5 minutes de plus.`,
             ingredients:
                 "2 steaks hachés, \n4 tranches d'ananas, \n4 tranches de cheddar, \n4 feuilles de salade, \n4 cuillère à soupe de sauce teriyaki, \n2 tomates",

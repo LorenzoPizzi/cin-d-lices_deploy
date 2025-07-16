@@ -37,7 +37,7 @@
             <img src="/images/Icons/delete.svg" alt="Supprimer l’image" class="icon" />
           </button>
 
-          <div class="drag-drop-area" id="drag-drop-area">
+          <div id="drag-drop-area" class="drag-drop-area">
             <p>Drag and drop (ou) choisis un fichier</p>
             <input
               type="file"
@@ -136,16 +136,24 @@
         const imagePreview = document.getElementById("image-preview");
         const deleteBtn = document.getElementById("delete-image-btn");
         const selectFileBtn = document.getElementById("select-file-btn");
-  
+        const dragDropArea = document.getElementById("drag-drop-area");
+      
         const showDeleteBtn = () => {
           deleteBtn.style.display = "block";
         };
-  
+      
         const hideDeleteBtn = () => {
           deleteBtn.style.display = "none";
         };
-  
+      
         const updatePreview = (file) => {
+          if (!file) {
+            imagePreview.src = "";
+            imagePreview.style.display = "none";
+            hideDeleteBtn();
+            return;
+          }
+      
           const reader = new FileReader();
           reader.onload = (e) => {
             imagePreview.src = e.target.result;
@@ -154,30 +162,62 @@
           };
           reader.readAsDataURL(file);
         };
-  
-        fileInput.addEventListener("change", (e) => {
-          if (e.target.files[0]) {
-            updatePreview(e.target.files[0]);
-          }
-        });
-  
-        deleteBtn.addEventListener("click", () => {
-          fileInput.value = "";
-          imagePreview.src = "";
-          imagePreview.style.display = "none";
-          hideDeleteBtn();
-        });
-  
+      
+        // Click sur bouton pour ouvrir la sélection
         selectFileBtn.addEventListener("click", () => {
           fileInput.click();
         });
-  
-        // Affiche le bouton si une image existe déjà
-        if (imagePreview.src && imagePreview.style.display !== "none") {
+      
+        // Changement via input file
+        fileInput.addEventListener("change", (e) => {
+          if (fileInput.files.length > 0) {
+            updatePreview(fileInput.files[0]);
+          } else {
+            updatePreview(null);
+          }
+        });
+      
+        // Suppression image
+        deleteBtn.addEventListener("click", () => {
+          fileInput.value = "";
+          updatePreview(null);
+        });
+      
+        // Drag & drop events
+        dragDropArea.addEventListener("dragover", (e) => {
+          e.preventDefault();
+          dragDropArea.style.background = "#f2f2f2";
+        });
+      
+        dragDropArea.addEventListener("dragleave", (e) => {
+          e.preventDefault();
+          dragDropArea.style.background = "";
+        });
+      
+        dragDropArea.addEventListener("drop", (e) => {
+          e.preventDefault();
+          dragDropArea.style.background = "";
+      
+          const files = e.dataTransfer.files;
+          if (files.length > 0) {
+            // Utiliser DataTransfer pour assigner les fichiers à fileInput.files
+            const dataTransfer = new DataTransfer();
+            for (let i = 0; i < files.length; i++) {
+              dataTransfer.items.add(files[i]);
+            }
+            fileInput.files = dataTransfer.files;
+      
+            updatePreview(fileInput.files[0]);
+          }
+        });
+      
+        // Affiche le bouton supprimer si image déjà présente à l'initialisation
+        if (imagePreview.getAttribute("src") && imagePreview.style.display !== "none") {
           showDeleteBtn();
         }
       });
-    </script>
+      </script>
+      
   
     <%- include('./partials/footer') %>
   </div>
