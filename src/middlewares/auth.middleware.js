@@ -12,13 +12,12 @@ export function authenticate(req, res, next) {
             message: "Accès refusé : veuillez vous connecter.",
             isSuccess: false,
             style: "error",
-
         });
     }
 
     try {
         const dataDecoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.id_user = dataDecoded.id_user;
+        req.user = dataDecoded;
 
         next();
     } catch (error) {
@@ -26,7 +25,6 @@ export function authenticate(req, res, next) {
             message: "Session expirée ou invalide, merci de vous reconnecter.",
             isSuccess: false,
             style: "error",
-
         });
     }
 }
@@ -43,7 +41,6 @@ export function checkRole(requiredRole) {
                     message: "Accès refusé. Utilisateur non trouvé.",
                     isSuccess: false,
                     style: "error",
-
                 });
             }
 
@@ -97,7 +94,6 @@ export function checkRole(requiredRole) {
                                     "Vous ne pouvez supprimer que vos propres recettes.",
                                 isSuccess: false,
                                 style: "error",
-
                             });
                     }
                 }
@@ -111,7 +107,6 @@ export function checkRole(requiredRole) {
                 message: "Accès refusé. Vous n'avez pas le rôle requis.",
                 isSuccess: false,
                 style: "error",
-
             });
         } catch (error) {
             return res
@@ -120,7 +115,6 @@ export function checkRole(requiredRole) {
                     message: "Erreur interne.",
                     isSuccess: false,
                     style: "error",
-
                 });
         }
     };
@@ -140,6 +134,20 @@ export async function attachUser(req, res, next) {
         res.locals.user = user || null;
     } catch {
         res.locals.user = null;
+    }
+    next();
+}
+
+export function checkOwner(req, res, next) {
+    const requestedId = parseInt(req.params.id);
+    const loggedUserId = req.user.id_user;
+
+    if (requestedId !== loggedUserId) {
+        return res.status(StatusCodes.FORBIDDEN).render("error", {
+            message: "Accès interdit : ce profil ne vous appartient pas.",
+            isSuccess: false,
+            style: "error",
+        });
     }
     next();
 }
