@@ -1,139 +1,185 @@
-    <!DOCTYPE html>
-    <html lang="fr-FR">
-        <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <meta name="description" />
-            <title>Ciné Délices</title>
-            <link rel="icon" href="/images/favicon.png" />
-            <link rel="stylesheet" href="/css/header.css" />
-            <link rel="stylesheet" href="/css/footer.css" />
-            <link rel="stylesheet" href="/css/layout.css" />
-            <link rel="stylesheet" href="/css/<%= style %>.css" />
-        </head>
-<body>
-<header class="site-header">
-    <a href="/recipes" class="logo-block">
-        <img src="/images/Logo_mini.svg" alt="Logo Ciné Délices" class="logo-img logo-desktop" />
-        <img src="/images/Logo_Full.svg" alt="Logo Ciné Délices" class="logo-img logo-mobile" />
-        <h1 class="logo-title">CINÉ DÉLICES</h1>
-    </a>
-    <form action="/search" method="GET" class="search-form" autocomplete="off" style="position: relative">
-        <input type="text" id="search-input" name="q" class="search-input" placeholder="Je cherche une recette, un film…" />
-        <img class="search-btn" src="/images/Search.svg" alt="Rechercher" />
-        <div id="search-results" class="search-results"></div>
-    </form>
-    <% if (user) { %>
-    <a href="/recipes/add" class="add-recipe-button" title="Ajouter une recette">
-        <img src="/images/Icons/Plus_icon.svg" alt="Ajouter une recette" />
-    </a>
-    <% } %>
-    <% if (user) { %>
-    <div class="profile-circle">
-        <img 
-          src="<%= user.picture_url ? user.picture_url : '/images/default-profile.png' %>" 
-          alt="Profil" 
-          id="user-img" 
-          data-user-id="<%= user.id_user %>" 
-        />
-    </div>
-    <div class="overlay" id="modal-overlay">
-        <div class="modal-box">
-            <div id="user-buttons">
-                <button class="profile-button-modal" onclick="goToProfile('<%= user.id_user %>')">
-                    Profil
-                </button>
-                <button class="logout-button-modal" onclick="location.href='/logout'">
-                    Déconnexion
-                </button>
+<!DOCTYPE html>
+<html lang="fr-FR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" />
+        <title>Ciné Délices</title>
+        <link rel="icon" href="/images/favicon.png" />
+        <link rel="stylesheet" href="/css/header.css" />
+        <link rel="stylesheet" href="/css/footer.css" />
+        <link rel="stylesheet" href="/css/layout.css" />
+        <link rel="stylesheet" href="/css/<%= style %>.css" />
+    </head>
+    <body>
+        <header class="site-header">
+            <a href="/recipes" class="logo-block">
+                <img
+                    src="/images/Logo_mini.svg"
+                    alt="Logo Ciné Délices"
+                    class="logo-img logo-desktop"
+                />
+                <img
+                    src="/images/Logo_Full.svg"
+                    alt="Logo Ciné Délices"
+                    class="logo-img logo-mobile"
+                />
+                <h1 class="logo-title">CINÉ DÉLICES</h1>
+            </a>
+            <form
+                action="/search"
+                method="GET"
+                class="search-form"
+                autocomplete="off"
+                style="position: relative"
+            >
+                <input
+                    type="text"
+                    id="search-input"
+                    name="q"
+                    class="search-input"
+                    placeholder="Je cherche une recette, un film…"
+                />
+                <img
+                    class="search-btn"
+                    src="/images/Search.svg"
+                    alt="Rechercher"
+                />
+                <div id="search-results" class="search-results"></div>
+            </form>
+            <% if (isAuthenticated) { %>
+            <a
+                href="/recipes/add"
+                class="add-recipe-button"
+                title="Ajouter une recette"
+            >
+                <img
+                    src="/images/Icons/Plus_icon.svg"
+                    alt="Ajouter une recette"
+                />
+            </a>
+            <% } %> <% if (isAuthenticated) { %>
+            <div class="profile-circle">
+                <img
+                    src="<%= user.picture_url ? user.picture_url : '/images/default-profile.png' %>"
+                    alt="Profil"
+                    id="user-img"
+                    data-user-id="<%= user.id_user %>"
+                />
             </div>
-        </div>
-    </div>
-    <% } else { %>
-    <div class="profile-circle">
-        <img src="/images/Profile_icon.svg" alt="Profil" id="profile-img" />
-    </div>
-    <div class="overlay" id="modal-overlay">
-        <div class="modal-box">
-            <div id="guest-buttons">
-                <button class="sign-in-button-modal" onclick="location.href='/login'">
-                    Connexion
-                </button>
-                <button class="register-button-modal" onclick="location.href='/register'">
-                    Inscription
-                </button>
+            <div class="overlay" id="modal-overlay">
+                <div class="modal-box">
+                    <div id="user-buttons">
+                        <button
+                            class="profile-button-modal"
+                            onclick="goToProfile('<%= user.id_user %>')"
+                        >
+                            Profil
+                        </button>
+                        <button
+                            class="logout-button-modal"
+                            onclick="location.href='/logout'"
+                        >
+                            Déconnexion
+                        </button>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-    <% } %>
-    <script>
-        function goToProfile(userId) {
-            window.location.href = `/profiles/myprofile/${userId}`;
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            const profileImg = document.getElementById("profile-img");
-            const userImg = document.getElementById("user-img");
-            const modal = document.getElementById("modal-overlay");
-
-            if (profileImg) {
-                profileImg.addEventListener("click", () => {
-                    modal.classList.toggle("active");
-                });
-            }
-
-            if (userImg) {
-                userImg.addEventListener("click", () => {
-                    modal.classList.toggle("active");
-                });
-            }
-
-            window.addEventListener("click", (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove("active");
+            <% } else { %>
+            <div class="profile-circle">
+                <img
+                    src="/images/Profile_icon.svg"
+                    alt="Profil"
+                    id="profile-img"
+                />
+            </div>
+            <div class="overlay" id="modal-overlay">
+                <div class="modal-box">
+                    <div id="guest-buttons">
+                        <button
+                            class="sign-in-button-modal"
+                            onclick="location.href='/login'"
+                        >
+                            Connexion
+                        </button>
+                        <button
+                            class="register-button-modal"
+                            onclick="location.href='/register'"
+                        >
+                            Inscription
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <script>
+                function goToProfile(userId) {
+                    window.location.href = `/profiles/myprofile/${userId}`;
                 }
-            });
-        });
 
-        // Autocomplete logic
-        const input = document.getElementById("search-input");
-        const results = document.getElementById("search-results");
+                document.addEventListener("DOMContentLoaded", () => {
+                    const profileImg = document.getElementById("profile-img");
+                    const userImg = document.getElementById("user-img");
+                    const modal = document.getElementById("modal-overlay");
 
-        input.addEventListener("input", async () => {
-            const query = input.value.trim();
-            if (query.length < 2) {
-                results.innerHTML = "";
-                return;
-            }
-            try {
-                const res = await fetch(
-                    `/api/search-recipes?q=${encodeURIComponent(query)}`
-                );
-                const data = await res.json();
-                console.log("Résultats de la recherche:", data);
-                results.innerHTML = "";
-                data.results.forEach((recipe) => {
-                    const movieTitle = recipe.movie
-                        ? recipe.movie.title
-                        : "Film inconnu";
-                    const div = document.createElement("div");
-                    div.textContent = `${recipe.name} - ${movieTitle}`;
-                    div.addEventListener("click", () => {
-                        window.location.href = `/recipes/${recipe.id_recipe}`;
+                    if (profileImg) {
+                        profileImg.addEventListener("click", () => {
+                            modal.classList.toggle("active");
+                        });
+                    }
+
+                    if (userImg) {
+                        userImg.addEventListener("click", () => {
+                            modal.classList.toggle("active");
+                        });
+                    }
+
+                    window.addEventListener("click", (e) => {
+                        if (e.target === modal) {
+                            modal.classList.remove("active");
+                        }
                     });
-                    results.appendChild(div);
                 });
-            } catch (error) {
-                console.error("Erreur recherche AJAX :", error);
-            }
-        });
 
-        document.addEventListener("click", (e) => {
-            if (!e.target.closest(".search-form")) {
-                results.innerHTML = "";
-            }
-        });
-    </script>
-</header>
-</body>
+                // Autocomplete logic
+                const input = document.getElementById("search-input");
+                const results = document.getElementById("search-results");
+
+                input.addEventListener("input", async () => {
+                    const query = input.value.trim();
+                    if (query.length < 2) {
+                        results.innerHTML = "";
+                        return;
+                    }
+                    try {
+                        const res = await fetch(
+                            `/api/search-recipes?q=${encodeURIComponent(query)}`
+                        );
+                        const data = await res.json();
+                        console.log("Résultats de la recherche:", data);
+                        results.innerHTML = "";
+                        data.results.forEach((recipe) => {
+                            const movieTitle = recipe.movie
+                                ? recipe.movie.title
+                                : "Film inconnu";
+                            const div = document.createElement("div");
+                            div.textContent = `${recipe.name} - ${movieTitle}`;
+                            div.addEventListener("click", () => {
+                                window.location.href = `/recipes/${recipe.id_recipe}`;
+                            });
+                            results.appendChild(div);
+                        });
+                    } catch (error) {
+                        console.error("Erreur recherche AJAX :", error);
+                    }
+                });
+
+                document.addEventListener("click", (e) => {
+                    if (!e.target.closest(".search-form")) {
+                        results.innerHTML = "";
+                    }
+                });
+            </script>
+        </header>
+    </body>
 </html>
