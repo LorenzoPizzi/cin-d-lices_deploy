@@ -58,7 +58,6 @@ async function seedTables() {
 
         const ratatouilleFilmData = await getMediaById(2062)
         const saucebolognaiseData = await getMediaById(238)
-        const tartemelasseData = await getMediaById(671)
         const carbonnadeData = await getMediaById(8265)
         const applepieData = await getMediaById(2105)
         const lasagneData = await getMediaById(8920)
@@ -98,11 +97,7 @@ async function seedTables() {
             type: saucebolognaiseData.type,
         });
 
-        const tartemelasseFilm = await Movie.create({
-            title: tartemelasseData.title,
-            tmdb_id: tartemelasseData.id,
-            type: tartemelasseData.type,
-        });
+    
 
         const carbonnadeFilm= await Movie.create({
             title: carbonnadeData.title,
@@ -191,7 +186,7 @@ async function seedTables() {
             image_url:
                 "https://images.unsplash.com/photo-1576464244768-aa683350ecbc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dGFydGUlMjAlQzMlQTAlMjBsYSUyMG0lQzMlQTlsYXNzZXxlbnwwfHwwfHx8MA%3D%3D",
             id_user: jane.id_user,
-            id_movie: tartemelasseFilm.id_movie,
+            id_movie: harry.id_movie,
         })
 
         const carbonnade = await Recipe.create({

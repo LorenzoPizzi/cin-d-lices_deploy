@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const start = i * recipesPerPage;
           const end = start + recipesPerPage;
           displayRecipes(recipes.slice(start, end));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
   
           const allButtons = paginationSection.querySelectorAll('button');
           allButtons.forEach(btn => btn.classList.remove('active-page'));
