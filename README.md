@@ -5,7 +5,7 @@ Ce projet a été réalisé dans le cadre de la préparation au Titre Profession
 
 
 #### Les objectifs :
-- Centraliser ces recettes inspirées du cinéma.
+- Centraliser ces recettes inspirées du cinéma et des séries.
 - Permettre aux utilisateurs de contribuer et partager  leurs propres recettes.
 - Offrir une immersion culinaire dans leurs univers préférés.
 
