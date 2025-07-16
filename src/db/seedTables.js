@@ -125,7 +125,8 @@ async function seedTables() {
         // 5. Création des recettes
         const burgerBigKahuna = await Recipe.create({
             name: "Le Big Kahuna Burger",
-            instructions: `Préchauffez le four à 160°C. \nPlacez les rondelles d’ananas dans une assiette creuse avec la sauce Teriyaki. \nLaissez mariner 20 minutes. \nPendant ce temps, lavez les tomates et découpez 8 tranches régulières, pas trop fines. \nOuvrez les pains à burger. \nPlacez-les sur une plaque de four, mie vers le haut, et déposez une tranche de fromage sur chaque moitié inférieure. \nEnfournez pour 10 minutes. \nDans une poêle antiadhésive, faites cuire les steaks et les rondelles d’ananas à feu moyen, avec la sauce, selon vos goûts. \nSortez les pains à burger, le fromage doit être fondu. \nDéposez sur le fromage un steak, une tranche d’ananas, une ou deux tranches de tomate selon leur taille puis une feuille de salade. \nRefermez le burger. S’il n’est pas assez chaud, enfournez 5 minutes de plus.`,
+            instructions:
+                "Préchauffez le four à 160°C. \nPlacez les rondelles d’ananas dans une assiette creuse avec la sauce Teriyaki. \nLaissez mariner 20 minutes. \nPendant ce temps, lavez les tomates et découpez 8 tranches régulières, pas trop fines. \nOuvrez les pains à burger. \nPlacez-les sur une plaque de four, mie vers le haut, et déposez une tranche de fromage sur chaque moitié inférieure. \nEnfournez pour 10 minutes. \nDans une poêle antiadhésive, faites cuire les steaks et les rondelles d’ananas à feu moyen, avec la sauce, selon vos goûts. \nSortez les pains à burger, le fromage doit être fondu. \nDéposez sur le fromage un steak, une tranche d’ananas, une ou deux tranches de tomate selon leur taille puis une feuille de salade. \nRefermez le burger. S’il n’est pas assez chaud, enfournez 5 minutes de plus.",
             ingredients:
                 "2 steaks hachés, \n4 tranches d'ananas, \n4 tranches de cheddar, \n4 feuilles de salade, \n4 cuillère à soupe de sauce teriyaki, \n2 tomates",
             image_url:
@@ -147,12 +148,8 @@ async function seedTables() {
 
         const biereaubeurre = await Recipe.create({
             name: "Bière au beurre",
-            instructions: `Faire fondre du beurre à feu très doux.\n
-                        Puis ajouter le sucre roux au beurre et le mélanger jusqu’à sa dissolution.\n
-                        Pour les amateurs d’épices, c’est le moment de les ajouter !\n
-                        Faire attention aux grumeaux : mélanger vigoureusement sans s’arrêter pour les éviter.\n
-                        Dans un autre récipient, porter à ébullition la bière sans alcool  et l’ajouter directement au mélange beurre-sucre-épices.\n
-                        Enfin, verser la préparation dans des chopes et terminer avec la crème chantilly (à défaut, mélanger la crème liquide et le sucre avant de les battre pour obtenir une crème chantilly onctueuse).\n`,
+            instructions:
+                "Faire fondre du beurre à feu très doux.\nPuis ajouter le sucre roux au beurre et le mélanger jusqu’à sa dissolution.\nPour les amateurs d’épices, c’est le moment de les ajouter !\nFaire attention aux grumeaux : mélanger vigoureusement sans s’arrêter pour les éviter.\nDans un autre récipient, porter à ébullition la bière sans alcool  et l’ajouter directement au mélange beurre-sucre-épices.\nEnfin, verser la préparation dans des chopes et terminer avec la crème chantilly (à défaut, mélanger la crème liquide et le sucre avant de les battre pour obtenir une crème chantilly onctueuse).\n",
             ingredients:
                 "Beurre, \neau, \nlevure, \nsucre roux, \nclou de girofle",
             image_url:
@@ -200,9 +197,9 @@ async function seedTables() {
         const carbonnade = await Recipe.create({
             name: "Carbonnade flammande",
             instructions:
-                "Découpez la viande en gros cubes.\n Pelez les oignons et émincez-les en rondelles.\n Dans une grande cocotte, faites fondre le beurre à feu moyen.\n Faites dorer les cubes de viande, puis retirez et réservez.\n Ajoutez les oignons et faites-les revenir quelques minutes, jusqu’à ce qu’ils soient dorés.\n Ajoutez le sucre roux.\n Mélangez et laissez mijoter 5 minutes, en remuant.\n Ajoutez le vinaigre et la viande, puis la farine.\n Salez, poivrez.\n Ajoutez la bière.\n Le liquide doit recouvrir la viande, complétez avec de l’eau si besoin.\n Ajoutez le thym, le laurier, les clous de girofle et laissez mijoter à feu moyen 15 minutes, sans couvrir.\n Tartinez les tranches de pain d’épices de moutarde et ajoutez dans la cocotte. \nCouvrez, baissez à feu doux et laisse mijoter 3 heures.\n Servez bien chaud avec des frites ! ",
+                "Découpez la viande en gros cubes.\nPelez les oignons et émincez-les en rondelles.\nDans une grande cocotte, faites fondre le beurre à feu moyen.\nFaites dorer les cubes de viande, puis retirez et réservez.\nAjoutez les oignons et faites-les revenir quelques minutes, jusqu’à ce qu’ils soient dorés.\nAjoutez le sucre roux.\nMélangez et laissez mijoter 5 minutes, en remuant.\nAjoutez le vinaigre et la viande, puis la farine.\nSalez, poivrez.\nAjoutez la bière.\nLe liquide doit recouvrir la viande, complétez avec de l’eau si besoin.\nAjoutez le thym, le laurier, les clous de girofle et laissez mijoter à feu moyen 15 minutes, sans couvrir.\nTartinez les tranches de pain d’épices de moutarde et ajoutez dans la cocotte. \nCouvrez, baissez à feu doux et laisse mijoter 3 heures.\nServez bien chaud avec des frites ! ",
             ingredients:
-                "1.5kg viande de boeuf,\n 25g de beurre,\n 6 oignons,\n 5 tranches de pain d'épices,\n 3 cuillère à soupe de farine,\n 1L de bière blonde,\n 3 cuillère à soupe de sucre roux",
+                "1.5kg viande de boeuf,\n25g de beurre,\n6 oignons,\n5 tranches de pain d'épices,\n3 cuillère à soupe de farine,\n1L de bière blonde,\n3 cuillère à soupe de sucre roux",
             image_url:
                 "https://img.cuisineaz.com/660x495/2015/04/24/i1643-la-carbonnade-flamande-de-bienvenue-chez-les-ch-tis.webp",
             id_user: jane.id_user,
@@ -212,9 +209,9 @@ async function seedTables() {
         const lasagne = await Recipe.create({
             name: "Lasagne",
             instructions:
-                "Préchauffez le four à 200°C.\n Pelez et émincez finement l’oignon.\n Faites chauffer l’huile d’olive dans une poêle antiadhésive, puis ajoutez l’oignon.\n Faites revenir à feu moyen jusqu’à ce qu’il soit translucide. Ajoutez la viande hachée émiettée et les herbes de Provence.\n Laissez mijoter 10 minutes, jusqu’à ce que la viande soit cuite.\n Dans un plat à gratin, versez le lait.\n Tapissez de 2 feuilles de lasagnes, recouvrez de sauce provençale, d’une couche de viande et de crème.\n Recouvrez de lasagnes et répétez les mêmes opérations deux fois.\n Terminez par des feuilles de lasagnes.\n Répartissez ce qu’il vous reste de sauce et de crème sur les dernières feuilles, saupoudrez de gruyère, de parmesan et déposez une noisette de beurre.\n Enfournez pour 20 minutes.\n Les feuilles de lasagnes doivent être fondantes.  ",
+                "Préchauffez le four à 200°C.\nPelez et émincez finement l’oignon.\nFaites chauffer l’huile d’olive dans une poêle antiadhésive, puis ajoutez l’oignon.\nFaites revenir à feu moyen jusqu’à ce qu’il soit translucide. Ajoutez la viande hachée émiettée et les herbes de Provence.\nLaissez mijoter 10 minutes, jusqu’à ce que la viande soit cuite.\nDans un plat à gratin, versez le lait.\nTapissez de 2 feuilles de lasagnes, recouvrez de sauce provençale, d’une couche de viande et de crème.\nRecouvrez de lasagnes et répétez les mêmes opérations deux fois.\nTerminez par des feuilles de lasagnes.\nRépartissez ce qu’il vous reste de sauce et de crème sur les dernières feuilles, saupoudrez de gruyère, de parmesan et déposez une noisette de beurre.\nEnfournez pour 20 minutes.\nLes feuilles de lasagnes doivent être fondantes.  ",
             ingredients:
-                "Feuille de lasagne,\n 600g de sauce provençale,\n 500g de viande hachée,\n 50g de gruyère râpé,\n 25cl de crème liquide,\n 1 oignon,\n 4 cuillère à soupe de lait,\n 1 beurre",
+                "Feuille de lasagne,\n600g de sauce provençale,\n500g de viande hachée,\n50g de gruyère râpé,\n25cl de crème liquide,\n1 oignon,\n4 cuillère à soupe de lait,\n1 beurre",
             image_url:
                 "https://images.unsplash.com/photo-1597289124948-688c1a35cb48?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGxhc2FnbmV8ZW58MHx8MHx8fDA%3D",
             id_user: jane.id_user,
@@ -224,9 +221,9 @@ async function seedTables() {
         const spaghettidelmare = await Recipe.create({
             name: "Les spaghetti del mare",
             instructions:
-                "Pelez l’ail et émincez-le finement.\n Dans une casserole, faites revenir l’ail dans 2 cuillères d’huile d’olive.\n Ajoutez le vin blanc juste avant coloration de l’ail.\n Ajoutez le mélange de fruits de mer, baissez le feu et laissez mijoter 10 minutes à feu moyen.\n Dans une cocotte, diluez le court-bouillon dans 1 litre d’eau.\n Portez à ébullition et ajoutez les langoustines et les coquillages.\n Laissez frémir 3 minutes.\n Egouttez et décortiquez les langoustines en conservant la queue.\n Changez l’eau de la cocotte et faites cuire les spaghettis al dente, selon les instructions du paquet.\n Egouttez les spaghettis et servez par assiette.\n Arrosez du reste d’huile d’olive, mélangez avec une portion de mélange de fruits de mer à l’ail. ",
+                "Pelez l’ail et émincez-le finement.\nDans une casserole, faites revenir l’ail dans 2 cuillères d’huile d’olive.\nAjoutez le vin blanc juste avant coloration de l’ail.\nAjoutez le mélange de fruits de mer, baissez le feu et laissez mijoter 10 minutes à feu moyen.\nDans une cocotte, diluez le court-bouillon dans 1 litre d’eau.\nPortez à ébullition et ajoutez les langoustines et les coquillages.\nLaissez frémir 3 minutes.\n Egouttez et décortiquez les langoustines en conservant la queue.\nChangez l’eau de la cocotte et faites cuire les spaghettis al dente, selon les instructions du paquet.\nEgouttez les spaghettis et servez par assiette.\nArrosez du reste d’huile d’olive, mélangez avec une portion de mélange de fruits de mer à l’ail. ",
             ingredients:
-                "500g de spaghettis,\n 250g de fruits de mer,\n 250g de praire,\n 20cl de vin blanc,\n 8 langoustines,\n 2 gousses d'ail,\n 6 cuillèreà soupe d'huile d'olive,\n 1 court-bouillon pour poisson",
+                "500g de spaghettis,\n250g de fruits de mer,\n250g de praire,\n20cl de vin blanc,\n8 langoustines,\n2 gousses d'ail,\n6 cuillèreà soupe d'huile d'olive,\n1 court-bouillon pour poisson",
             image_url:
                 "https://plus.unsplash.com/premium_photo-1661445014453-784cd6c59ac8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhZ2hldHRpJTIwZnJ1aXQlMjBkZSUyMG1lcnxlbnwwfHwwfHx8MA%3D%3D",
             id_user: jane.id_user,
@@ -236,9 +233,9 @@ async function seedTables() {
         const lasoupeauxchoux = await Recipe.create({
             name: "La soupe aux choux",
             instructions:
-                "Lavez le poireau et coupez-le en rondelles.\n Epluchez la carotte et détaillez-la en morceaux.\n Lavez le chou, détachez les feuilles.\n Epluchez les pommes de terre et coupez-les en cubes.\n Dans une cocotte, faites fondre le beurre à feu doux.\n Ajoutez le poireau, les carottes, la rave et les pommes de terre.\n Salez, poivrez. Dans une cocotte, faites fondre le beurre à feu doux.\n Ajoutez le poireau, les carottes, la rave et les pommes de terre.\n Salez, poivrez. Laissez mijoter 1 heure à feu doux et servez.",
+                "Lavez le poireau et coupez-le en rondelles\nEpluchez la carotte et détaillez-la en morceaux.\n Lavez le chou, détachez les feuilles.\nEpluchez les pommes de terre et coupez-les en cubes.\nDans une cocotte, faites fondre le beurre à feu doux.\nAjoutez le poireau, les carottes, la rave et les pommes de terre.\nSalez, poivrez. Dans une cocotte, faites fondre le beurre à feu doux.\nAjoutez le poireau, les carottes, la rave et les pommes de terre.\nSalez, poivrez. Laissez mijoter 1 heure à feu doux et servez.",
             ingredients:
-                "500g de poitrine fumée,\n 4 pommes de terre,\n 2 carrottes,\n 1 chou vert,\n 1 poireau",
+                "500g de poitrine fumée,\n4 pommes de terre,\n2 carrottes,\n1 chou vert,\n1 poireau",
             image_url:
                 "https://images.unsplash.com/photo-1612108438004-257c47560118?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDd8fHNvdXBlJTIwYXV4JTIwY2hvdXh8ZW58MHx8MHx8fDA%3D",
             id_user: jane.id_user,
