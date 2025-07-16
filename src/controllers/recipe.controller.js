@@ -9,19 +9,32 @@ export async function showAllRecipes(req, res) {
     try {
         const recipes = await Recipe.findAll({
             include: [
-                { association: "movie", attributes: ["title", "id_movie", "type"] },
-                { association: "categories", attributes: ["name", "id_category"], through: { attributes: [] } },
+                {
+                    association: "movie",
+                    attributes: ["title", "id_movie", "type"],
+                },
+                {
+                    association: "categories",
+                    attributes: ["name", "id_category"],
+                    through: { attributes: [] },
+                },
             ],
         });
 
-        const categories = await Category.findAll({ attributes: ["id_category", "name"] });
-        const movies = await Movie.findAll({ attributes: ["id_movie", "title"] });
+        const categories = await Category.findAll({
+            attributes: ["id_category", "name"],
+        });
+        const movies = await Movie.findAll({
+            attributes: ["id_movie", "title"],
+        });
 
         res.locals.style = "home";
         res.render("home", { recipes, categories, movies });
     } catch (error) {
         console.error("Erreur showAllRecipes :", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Erreur lors de la récupération des recettes");
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            "Erreur lors de la récupération des recettes"
+        );
     }
 }
 
@@ -35,7 +48,13 @@ export async function showRecipeDetail(req, res) {
             ],
         });
 
-        if (!recipe) return res.status(404).send("Recette non trouvée");
+        if (!recipe) {
+            return res.status(StatusCodes.NOT_FOUND).render("error", {
+                message: "Recette non trouvée.",
+                isSuccess: false,
+                style: "error",
+            });
+        }
 
         const categories = await Category.findAll();
         const movies = await Movie.findAll();
@@ -44,7 +63,9 @@ export async function showRecipeDetail(req, res) {
         res.locals.style = "recipedetail";
         res.render("recipeDetail", { recipe, categories, movies, user });
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Erreur lors de la récupération de la recette");
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            "Erreur lors de la récupération de la recette"
+        );
     }
 }
 
@@ -68,11 +89,16 @@ export async function addRecipe(req, res) {
         } = req.body;
 
         const userId = req.id_user;
-        if (!userId) return res.status(StatusCodes.UNAUTHORIZED).send("Utilisateur non connecté");
+        if (!userId)
+            return res
+                .status(StatusCodes.UNAUTHORIZED)
+                .send("Utilisateur non connecté");
 
         const image_url = req.file ? `/uploads/${req.file.filename}` : null;
 
-        let movieEntry = await Movie.findOne({ where: { tmdb_id: tmdbMovieId } });
+        let movieEntry = await Movie.findOne({
+            where: { tmdb_id: tmdbMovieId },
+        });
         if (!movieEntry) {
             movieEntry = await Movie.create({
                 title: movie,
@@ -82,7 +108,9 @@ export async function addRecipe(req, res) {
         }
 
         const categoryLower = category.trim().toLowerCase();
-        let categoryEntry = await Category.findOne({ where: { name: categoryLower } });
+        let categoryEntry = await Category.findOne({
+            where: { name: categoryLower },
+        });
         if (!categoryEntry) {
             categoryEntry = await Category.create({ name: categoryLower });
         }
@@ -101,7 +129,9 @@ export async function addRecipe(req, res) {
         res.redirect("/");
     } catch (error) {
         console.error("Erreur lors de l'ajout de la recette :", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Erreur lors de l'ajout de la recette");
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            "Erreur lors de l'ajout de la recette"
+        );
     }
 }
 
@@ -114,7 +144,9 @@ export async function showEditRecipeForm(req, res) {
         res.locals.style = "addrecipe";
         res.render("addrecipe", { recipe });
     } catch (error) {
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Erreur lors de la récupération de la recette");
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            "Erreur lors de la récupération de la recette"
+        );
     }
 }
 
@@ -124,7 +156,10 @@ export async function editRecipe(req, res) {
         const { name, instructions, ingredients } = req.body;
         const recipe = await Recipe.findByPk(req.params.id);
 
-        if (!recipe) return res.status(StatusCodes.NOT_FOUND).send("Recette non trouvée");
+        if (!recipe)
+            return res
+                .status(StatusCodes.NOT_FOUND)
+                .send("Recette non trouvée");
 
         let newImageUrl = recipe.image_url;
 
@@ -133,7 +168,11 @@ export async function editRecipe(req, res) {
 
             // Supprimer l’ancienne image si elle existe
             if (recipe.image_url) {
-                const oldPath = path.join(process.cwd(), "public", recipe.image_url);
+                const oldPath = path.join(
+                    process.cwd(),
+                    "public",
+                    recipe.image_url
+                );
                 try {
                     await unlink(oldPath);
                     console.log(`Image supprimée : ${oldPath}`);
@@ -153,7 +192,9 @@ export async function editRecipe(req, res) {
         res.redirect("/");
     } catch (error) {
         console.error("Erreur lors de la modification :", error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send("Erreur lors de la modification de la recette");
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(
+            "Erreur lors de la modification de la recette"
+        );
     }
 }
 
@@ -161,15 +202,25 @@ export async function editRecipe(req, res) {
 export async function deleteRecipe(req, res) {
     try {
         const recipe = await Recipe.findByPk(req.params.id);
-        if (!recipe) return res.status(StatusCodes.NOT_FOUND).render("error", { message: "Recette non trouvée" });
+        if (!recipe)
+            return res
+                .status(StatusCodes.NOT_FOUND)
+                .render("error", { message: "Recette non trouvée" });
 
         if (recipe.image_url) {
-            const filePath = path.join(process.cwd(), "public", recipe.image_url);
+            const filePath = path.join(
+                process.cwd(),
+                "public",
+                recipe.image_url
+            );
             try {
                 await unlink(filePath);
                 console.log(`Image supprimée: ${filePath}`);
             } catch (error) {
-                console.warn("Image non trouvée lors de la suppression :", error.message);
+                console.warn(
+                    "Image non trouvée lors de la suppression :",
+                    error.message
+                );
             }
         }
 
@@ -177,7 +228,9 @@ export async function deleteRecipe(req, res) {
         res.redirect("/recipes");
     } catch (error) {
         console.error(error);
-        res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", { message: "Erreur lors de la suppression" });
+        res.status(StatusCodes.INTERNAL_SERVER_ERROR).render("error", {
+            message: "Erreur lors de la suppression",
+        });
     }
 }
 

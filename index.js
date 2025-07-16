@@ -31,6 +31,11 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(attachUser);
 
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = !!req.cookies.token;
+    next();
+});
+
 app.use(router);
 
 app.use((req, res) => {
