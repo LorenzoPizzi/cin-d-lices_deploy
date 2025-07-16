@@ -6,7 +6,7 @@ export async function handleContactForm(req, res) {
     res.locals.style = "error";
 
     if (!name || !email || !message) {
-        return res.status(StatusCodes.BAD_REQUEST).render("errorpage", {
+        return res.status(StatusCodes.BAD_REQUEST).render("error", {
             message: "Tous les champs sont obligatoires.",
             isSuccess: false,
         });
