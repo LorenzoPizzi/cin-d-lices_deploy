@@ -88,7 +88,7 @@ export async function addRecipe(req, res) {
             tmdbType,
         } = req.body;
 
-        const userId = req.id_user;
+        const userId = req.user.id_user;
         if (!userId)
             return res
                 .status(StatusCodes.UNAUTHORIZED)
