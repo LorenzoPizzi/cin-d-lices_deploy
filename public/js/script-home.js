@@ -118,7 +118,11 @@ document.addEventListener('DOMContentLoaded', () => {
       filterDropdown.classList.toggle('active');
     });
   
-    applyFilterBtn.addEventListener('click', applyFilters);
+    applyFilterBtn.addEventListener('click', () => {
+      applyFilters();
+      filterDropdown.classList.remove('active'); // Ferme le filtre après application
+      movieSuggestions.innerHTML = ''; // Optionnel : nettoie les suggestions si encore visibles
+    });
   
     document.addEventListener('click', (event) => {
       const clickedInsideDropdown = filterDropdown.contains(event.target);
