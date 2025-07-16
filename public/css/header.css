@@ -104,11 +104,11 @@
 }
 
 .overlay {
-  position: absolute;  /* changer fixed en absolute */
-  top: 100%;          /* juste sous le header ou le bouton */
-  right: 0;           /* aligné à droite du parent */
-  width: 180px;       /* largeur fixe */
-  background: transparent; /* si besoin */
+  position: absolute;  
+  top: 100%;          
+  right: 0;           
+  width: 180px;       
+  background: transparent; 
   z-index: 999;
   opacity: 0;
   visibility: hidden;
@@ -117,7 +117,7 @@
   justify-content: flex-end;
   align-items: flex-start;
   padding: 0;
-  pointer-events: none; /* pour éviter clics quand caché */
+  pointer-events: none; 
 }
 
 .overlay.active {
