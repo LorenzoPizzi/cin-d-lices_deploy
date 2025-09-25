@@ -79,3 +79,6 @@ document.addEventListener("click", (e) => {
         suggestions.style.border = "none"; // 👉 Bordure disparaît même si champ non vide
     }
 });
+
+
+
