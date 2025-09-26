@@ -3,3 +3,7 @@
 node_modules
 node_modules/
 .DS_Store
+src/utils/createAdminAndToken.js
+src/utils/createAdminAndToken.js
+src/utils/forceVerify.js
+src/utils/showUser.js
